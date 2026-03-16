@@ -7,7 +7,7 @@ namespace Zodiac {
 
     public class Card : ScriptableObject 
     {
-        public string name;
+        public string cardName;
         public CardElement element;
         public int rank;
         public int power;
@@ -17,7 +17,7 @@ namespace Zodiac {
 
         public enum CardElement
         {
-            FIRE, EARTH, WATER, WIND, DARK, LIGHT
+            FIRE, EARTH, WATER, WIND, LIGHT, DARK
         }
     }
 }

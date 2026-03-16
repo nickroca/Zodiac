@@ -3,7 +3,10 @@ guid: c5a994d3ac9e026428474de2d196e29e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SummonCard: {fileID: 3021126197319410854, guid: 05d8049ff2d7610448c6aace66c47bd2, type: 3}
+  - Card2: {fileID: 1733887943084715610, guid: e8fb9f884fa11a34fba0f6032c068698, type: 3}
+  - PlayerHandArea: {fileID: 4162150497536165629, guid: 15bb5ec88c710514189577e6f7a2ae76, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

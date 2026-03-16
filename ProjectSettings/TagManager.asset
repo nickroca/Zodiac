@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CardImage
+    uniqueID: 1425167107
+    locked: 0
+  - name: Card Text
+    uniqueID: 1835750323
+    locked: 0

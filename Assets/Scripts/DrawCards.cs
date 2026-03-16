@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
-    public GameObject Card1;
+    public GameObject SummonCard;
     public GameObject Card2;
     public GameObject PlayerHandArea;
 
@@ -12,7 +12,7 @@ public class DrawCards : MonoBehaviour
     {
         for(int i = 0; i < 5; i++) 
         {
-            GameObject card = Instantiate(Card1, new Vector2(0,0), Quaternion.identity);
+            GameObject card = Instantiate(SummonCard, new Vector2(0,0), Quaternion.identity);
             card.transform.SetParent(PlayerHandArea.transform, false);
         }
     }
