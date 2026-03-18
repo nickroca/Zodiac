@@ -65,10 +65,18 @@ MonoBehaviour:
   description: Just a single battle.
   preview: {fileID: -2064868069179515889}
   dependencies:
+  - dependency: {fileID: 2800000, guid: a0f5e5ea445940446b37241048787b01, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 1835446846155515304, guid: a8794eddf95994741b6e87e668e5413b, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 7945055439883048036, guid: 3c0006801a31f1c4cb395da3c0dd3d05, type: 3}
     instantiationMode: 1
   - dependency: {fileID: 11400000, guid: bdd53c302f69ee74396f1de0fd63e1a3, type: 2}
     instantiationMode: 1
+  - dependency: {fileID: 6665457825575080428, guid: b0e81d0d51be51e409e131903447da31, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 55a9fb78688570f48b5e72542204bd78, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: ee148e281f3c41c5b4ff5f8a5afe5a6c, type: 3}
@@ -79,8 +87,14 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     instantiationMode: 1
-  - dependency: {fileID: 11400000, guid: 2ab8638f8d9f7ee498e275f6acc358cf, type: 2}
-    instantiationMode: 1
+  - dependency: {fileID: 7647726972973780263, guid: e0357db3834abea43a5b96bd43e2b0cf, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 1272963093079301974, guid: 94b74b10c0a22fb4fbdd90e4ae42232d, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2838390915708938878, guid: 606c9eebeaa646a419b8e0ca36ba4ca2, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 7924373496286580445, guid: 272ec20109c80544199944ec7368a47b, type: 3}
+    instantiationMode: 0
   templatePipeline: {fileID: 11500000, guid: c8a5283f26e52f74780b32daabbea2e3, type: 3}
   badge: {fileID: 0}
   addToDefaults: 0

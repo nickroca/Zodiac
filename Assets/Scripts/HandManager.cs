@@ -38,6 +38,7 @@ public class HandManager : MonoBehaviour
     void Update()
     {
         UpdateHandVisuals();
+
     }
 
     public void UpdateHandVisuals()
@@ -51,19 +52,36 @@ public class HandManager : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < cardCount; i++)
+        if (cardCount == 3)
         {
-            float rotationAngle = (fanSpread * (i - (cardCount - 1) / 2f));
-            cardsInHand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
-
-            float horizontalOffset = (cardSpacing * (i - (cardCount - 1) / 2f));
-
-            float normalizedPosition = (2f * i / (cardCount - 1) - 1f); //normalize card position between -1 and 1
-            
-            float verticalOffset = verticalSpacing * (1 - normalizedPosition * normalizedPosition);
-
-            //set card positions
-            cardsInHand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
+            verticalSpacing = 6f;
+        } 
+        else if (cardCount == 4)
+        {
+            verticalSpacing = 14f;
         }
+        else if (cardCount == 5)
+        {
+            verticalSpacing = 25f;
+        }
+        else if (cardCount == 6)
+        {
+            verticalSpacing = 40f;
+        }
+
+            for (int i = 0; i < cardCount; i++)
+            {
+                float rotationAngle = (fanSpread * (i - (cardCount - 1) / 2f));
+                cardsInHand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
+
+                float horizontalOffset = (cardSpacing * (i - (cardCount - 1) / 2f));
+
+                float normalizedPosition = (2f * i / (cardCount - 1) - 1f); //normalize card position between -1 and 1
+
+                float verticalOffset = verticalSpacing * (1 - normalizedPosition * normalizedPosition);
+
+                //set card positions
+                cardsInHand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
+            }
     }
 }

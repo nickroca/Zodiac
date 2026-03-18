@@ -6,16 +6,34 @@ using Zodiac;
 public class DeckManager : MonoBehaviour
 {
     public List<Card> allCards = new List<Card>();
-
+    public int startingHandSize = 5;
     private int currentIndex = 0;
+    public int maxHandSize = 6;
+    public int currentHandSize;
+    private HandManager handManager;
 
-    private void Start()
+    void Start()
     {
         //Load all card assets from the Resources folder
         Card[] cards = Resources.LoadAll<Card>("CardData");
 
         //add the loaded cards to the allCards list
         allCards.AddRange(cards);
+
+        handManager = FindObjectOfType<HandManager>();
+        for (int i = 0; i < startingHandSize; i++)
+        {
+            Debug.Log($"Drawing Card");
+            DrawCard(handManager);
+        }
+    }
+
+    void Update()
+    {
+        if (handManager != null)
+        {
+            currentHandSize = handManager.cardsInHand.Count;
+        }
     }
 
     public void DrawCard(HandManager handManager)
@@ -24,8 +42,11 @@ public class DeckManager : MonoBehaviour
         {
             return;
         }
-        Card nextCard = allCards[currentIndex];
-        handManager.AddCardToHand(nextCard);
-        currentIndex = (currentIndex + 1) % allCards.Count;
+        if (currentHandSize < maxHandSize)
+        {
+            Card nextCard = allCards[currentIndex];
+            handManager.AddCardToHand(nextCard);
+            currentIndex = (currentIndex + 1) % allCards.Count;
+        }
     }
 }

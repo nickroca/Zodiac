@@ -61,12 +61,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardDisplay.cs" />
+    <Compile Include="Assets\Scripts\CardMovement.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />
+    <Compile Include="Assets\Scripts\OptionsManager.cs" />
     <Compile Include="Assets\Scenes\NewSceneTemplatePipeline.cs" />
+    <Compile Include="Assets\Scripts\GridCell.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
+    <Compile Include="Assets\Scripts\GridCellHighlighter.cs" />
+    <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\ArcRenderer.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HandManager.cs" />
     <Compile Include="Assets\Scripts\DragDrop.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\UIPositionObject.cs" />
+    <Compile Include="Assets\Scripts\DragUIObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1064,12 +1074,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
