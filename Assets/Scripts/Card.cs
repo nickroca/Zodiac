@@ -14,6 +14,8 @@ namespace Zodiac {
         public int guard;
         public string text;
         public Sprite sprite;
+        public GameObject prefab;
+        
 
         public enum CardElement
         {

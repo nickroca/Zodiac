@@ -15,12 +15,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text powerText;
     public TMP_Text guardText;
     public Image[] element;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        UpdateCardDisplay();
-    }
+    public Image cardSprite;
 
     public void UpdateCardDisplay()
     {
@@ -40,5 +35,6 @@ public class CardDisplay : MonoBehaviour
         rankText.text = cardData.rank.ToString();
         powerText.text = cardData.power.ToString();
         guardText.text = cardData.guard.ToString();
+        cardSprite.sprite = cardData.sprite;
     }
 }

@@ -947,6 +947,7 @@ MonoBehaviour:
   - {fileID: 3255150942184014473}
   - {fileID: 2965837174117100977}
   - {fileID: 4366124081877799811}
+  cardSprite: {fileID: 8651138854941328026}
 --- !u!114 &4604184999078626821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,12 +961,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectScale: 1.1
-  cardPlay: {x: 0, y: 0}
+  cardPlay: {x: 0, y: 150}
   playPosition: {x: 480, y: 480, z: 0}
   glowEffect: {fileID: 1161720467470548495}
   playArrow: {fileID: 107925017665779242}
   lerpTime: 0.3
-  cardPlayDivider: 4
+  cardPlayDivider: 7
   cardPlayMultiplier: 1
   needUpdateCardPlayPosition: 0
   playPositionYDivider: 6

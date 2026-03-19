@@ -16,6 +16,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private int currentState = 0;
     private Quaternion originalRotation;
     private Vector3 originalPosition;
+    private GridManager gridManager;
 
     [SerializeField] private float selectScale = 1.1f;
     [SerializeField] private Vector2 cardPlay;
@@ -48,6 +49,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         updateCardPlayPosition();
         updatePlayPosition();
+        gridManager = FindObjectOfType<GridManager>();
     }
 
     void Update()
@@ -66,10 +68,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 break;
             case 3:
                 HandlePlayState();
-                if (!Input.GetMouseButton(0)) //check if mouse button is released
-                {
-                    TransitionToState0();
-                }
                 break;
         }
     }
@@ -148,6 +146,31 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         rectTransform.localPosition = playPosition;
         rectTransform.localRotation = Quaternion.identity;
+
+        if (!Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+            if(hit.collider != null && hit.collider.GetComponent<GridCell>())
+            {
+                GridCell cell = hit.collider.GetComponent<GridCell>();
+                Vector2 targetPos = cell.gridIndex;
+                if (gridManager.AddObjectToGrid(GetComponent<CardDisplay>().cardData.prefab, targetPos))//if (gridManager.IsCellFull(targetPos))
+                {
+                    //GameObject newCard = Instantiate(gridManager);
+                    //newCard.GetComponent<CardDisplay>().cardData = (Card)Resources.Load("CardData/Minotaur");
+                    //Resources.Load<Card>("CardData/Minotaur");
+                    //gridManager.AddObjectToGrid(newCard, targetPos);
+                    HandManager handManager = FindAnyObjectByType<HandManager>();
+                    handManager.cardsInHand.Remove(gameObject);
+                    handManager.UpdateHandVisuals();
+                    Debug.Log("Placed a card");
+                    Destroy(gameObject);
+                }
+            }
+            TransitionToState0();
+        }
 
         if (Input.mousePosition.y < cardPlay.y)
         {

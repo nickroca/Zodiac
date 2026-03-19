@@ -51,6 +51,11 @@ public class GridManager : MonoBehaviour
             {
                 GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position, Quaternion.identity);
                 newObj.transform.SetParent(transform);
+                newObj.transform.localScale = new Vector3(3,3,1);
+                //Debug.Log($"" + (int)gridPosition.x);
+                //float offset = 13.5f * (2 - (int)gridPosition.x);
+                //Debug.Log($"" + offset);
+                //newObj.transform.position = new Vector2(-1262, -834);
                 gridObjects.Add(newObj);
                 cell.objectInCell = newObj;
                 cell.cellFull = true;
@@ -58,6 +63,18 @@ public class GridManager : MonoBehaviour
             }
         }
         else
+        {
+            return false;
+        }
+    }
+    
+    public bool IsCellFull(Vector2 gridPosition)
+    {
+        GridCell cell = gridCells[(int)gridPosition.x, (int)gridPosition.y].GetComponent<GridCell>();
+        if (cell.cellFull)
+        {
+            return true;
+        } else
         {
             return false;
         }

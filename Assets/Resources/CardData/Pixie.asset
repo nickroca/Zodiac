@@ -19,3 +19,4 @@ MonoBehaviour:
   guard: 20
   text: 
   sprite: {fileID: 0}
+  prefab: {fileID: 1766478236457053089, guid: 69c6cef7a82860b4f9936f8a3e2abff5, type: 3}
