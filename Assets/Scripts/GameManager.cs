@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using Zodiac;
 
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     public AudioManager AudioManager { get; private set; }
     public DeckManager DeckManager { get; private set; }
 
-
+    public bool PlayingCard = false;
 
     private void Awake()
     {

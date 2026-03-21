@@ -5,6 +5,7 @@ using Zodiac;
 using UnityEngine.EventSystems;
 using System.ComponentModel;
 using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
@@ -26,12 +27,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     [SerializeField] private float lerpTime = 0.3f;
     [SerializeField] private int cardPlayDivider = 4;
     [SerializeField] private float cardPlayMultiplier = 1f;
-    [SerializeField] private bool needUpdateCardPlayPosition = false;
     [SerializeField] private int playPositionYDivider = 1;
     [SerializeField] private float playPositionYMultiplier = 1f;
     [SerializeField] private int playPositionXDivider = 1;
     [SerializeField] private float playPositionXMultiplier = 1f;
-    [SerializeField] private bool needUpdatePlayPosition = false;
+    private LayerMask gridLayerMask;
+    private LayerMask summonLayerMask;
+    private Card cardData;
+    private CardDisplay cardDisplay;
+    HandManager handManager;
+    DiscardManager discardManager;
 
     void Awake()
     {
@@ -47,9 +52,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         originalPosition = rectTransform.localPosition;
         originalRotation = rectTransform.localRotation;
 
-        updateCardPlayPosition();
-        updatePlayPosition();
+        //updateCardPlayPosition();
+        //updatePlayPosition();
         gridManager = FindObjectOfType<GridManager>();
+        handManager = FindObjectOfType<HandManager>();
+        discardManager = FindObjectOfType<DiscardManager>();
+        cardDisplay = FindObjectOfType<CardDisplay>();
+
+        gridLayerMask = LayerMask.GetMask("Grid");
+        summonLayerMask = LayerMask.GetMask("Summons");
+        cardData = cardDisplay.cardData;
     }
 
     void Update()
@@ -70,12 +82,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 HandlePlayState();
                 break;
         }
+
+        if (cardData != cardDisplay.cardData)
+        {
+            cardData = cardDisplay.cardData;
+        }
     }
 
     private void TransitionToState0()
     {
         currentState = 0;
-        
+        GameManager.Instance.PlayingCard = false;
+
         //reset back to original
         rectTransform.localScale = originalScale;
         rectTransform.localRotation = originalRotation;
@@ -144,41 +162,95 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void HandlePlayState()
     {
+        if (!GameManager.Instance.PlayingCard)
+        {
+            GameManager.Instance.PlayingCard = true;
+        }
+        
         rectTransform.localPosition = playPosition;
         rectTransform.localRotation = Quaternion.identity;
 
         if (!Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-            if(hit.collider != null && hit.collider.GetComponent<GridCell>())
+            if (cardData is Summon summonCard)
             {
-                GridCell cell = hit.collider.GetComponent<GridCell>();
-                Vector2 targetPos = cell.gridIndex;
-                if (gridManager.AddObjectToGrid(GetComponent<CardDisplay>().cardData.prefab, targetPos))//if (gridManager.IsCellFull(targetPos))
-                {
-                    //GameObject newCard = Instantiate(gridManager);
-                    //newCard.GetComponent<CardDisplay>().cardData = (Card)Resources.Load("CardData/Minotaur");
-                    //Resources.Load<Card>("CardData/Minotaur");
-                    //gridManager.AddObjectToGrid(newCard, targetPos);
-                    HandManager handManager = FindAnyObjectByType<HandManager>();
-                    handManager.cardsInHand.Remove(gameObject);
-                    handManager.UpdateHandVisuals();
-                    Debug.Log("Placed a card");
-                    Destroy(gameObject);
-                }
+                TryToPlaySummonCard(ray, summonCard);
+            }
+            else if (cardData is Sorcery sorceryCard)
+            {
+                TryToPlaySorceryCard(ray, sorceryCard);
+            }
+            else if (cardData is Hex hexCard)
+            {
+                TryToPlayHexCard(ray, hexCard);
             }
             TransitionToState0();
         }
 
-        if (Input.mousePosition.y < cardPlay.y)
+        if (Input.mousePosition.y < 150)
         {
             currentState = 2;
             playArrow.SetActive(false);
         }
+
     }
 
+    private void TryToPlaySummonCard(Ray ray, Summon summonCard)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+        {
+            Vector2 targetPos = cell.gridIndex;
+            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos))
+            {
+                cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
+                handManager.cardsInHand.Remove(gameObject);
+                handManager.UpdateHandVisuals();
+                Debug.Log($"Played Summon: {summonCard.name}");
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void TryToPlaySorceryCard(Ray ray, Sorcery sorceryCard)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+        {
+            Vector2 targetPos = cell.gridIndex;
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos))
+            {
+                handManager.cardsInHand.Remove(gameObject);
+                handManager.UpdateHandVisuals();
+                Debug.Log($"Played Sorcery: {sorceryCard.name}");
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void TryToPlayHexCard(Ray ray, Hex hexCard)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+        {
+            Vector2 targetPos = cell.gridIndex;
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos))
+            {
+                handManager.cardsInHand.Remove(gameObject);
+                handManager.UpdateHandVisuals();
+                Debug.Log($"Played Hex: {hexCard.name}");
+                Destroy(gameObject);
+            }
+        }
+    }
+
+
+
+    /*
     private void updateCardPlayPosition()
     {
         if (cardPlayDivider != 0 && canvasRectTransform != null)
@@ -199,4 +271,5 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             playPosition.y = canvasRectTransform.rect.height * segmentY;
         }
     }
+    */
 }

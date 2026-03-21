@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zodiac {
-    [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+    //[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 
     public class Card : ScriptableObject 
     {
         public string cardName;
-        public CardElement element;
-        public int rank;
-        public int power;
-        public int guard;
         public string text;
         public Sprite sprite;
         public GameObject prefab;
-        
 
-        public enum CardElement
+
+        void Awake()
         {
-            FIRE, EARTH, WATER, WIND, LIGHT, DARK
+            if (prefab == null)
+            {
+                prefab = (GameObject)Resources.Load("ArtworkPrefabs/Placeholder");
+            }
+            if (sprite == null)
+            {
+                prefab = (GameObject)Resources.Load("Artworks/Placeholder");
+            }
         }
     }
 }

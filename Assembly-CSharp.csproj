@@ -64,19 +64,28 @@
     <Compile Include="Assets\Scripts\CardMovement.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />
     <Compile Include="Assets\Scripts\OptionsManager.cs" />
+    <Compile Include="Assets\Scripts\SummonStatsTooltipDisplay.cs" />
     <Compile Include="Assets\Scenes\NewSceneTemplatePipeline.cs" />
     <Compile Include="Assets\Scripts\GridCell.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
+    <Compile Include="Assets\Scripts\Sorcery.cs" />
     <Compile Include="Assets\Scripts\GridCellHighlighter.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scripts\DeckPileManager.cs" />
     <Compile Include="Assets\Scripts\ArcRenderer.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\SummonTooltip.cs" />
     <Compile Include="Assets\Scripts\HandManager.cs" />
+    <Compile Include="Assets\Scripts\Hex.cs" />
     <Compile Include="Assets\Scripts\DragDrop.cs" />
+    <Compile Include="Assets\Scripts\Summon.cs" />
+    <Compile Include="Assets\Scripts\SummonStats.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\UIPositionObject.cs" />
     <Compile Include="Assets\Scripts\DragUIObject.cs" />
+    <Compile Include="Assets\Scripts\DiscardManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

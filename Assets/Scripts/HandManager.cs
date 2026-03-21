@@ -42,6 +42,11 @@ public class HandManager : MonoBehaviour
 
     }
 
+    public void BattleSetup(int setMaxHandSize)
+    {
+        
+    }
+
     public void UpdateHandVisuals()
     {
         int cardCount = cardsInHand.Count;

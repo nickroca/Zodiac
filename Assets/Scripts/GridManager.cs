@@ -16,7 +16,7 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         CreateGrid();
-        transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+        transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
 
     void CreateGrid()
@@ -49,13 +49,12 @@ public class GridManager : MonoBehaviour
             }
             else
             {
-                GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position, Quaternion.identity);
-                newObj.transform.SetParent(transform);
-                newObj.transform.localScale = new Vector3(3,3,1);
-                //Debug.Log($"" + (int)gridPosition.x);
-                //float offset = 13.5f * (2 - (int)gridPosition.x);
-                //Debug.Log($"" + offset);
-                //newObj.transform.position = new Vector2(-1262, -834);
+                //If grid is spaced out improperly, change the value after cell.GC<>().pos (higher value is more spaced out, smaller is less)
+                GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position * 0.83f, Quaternion.identity);
+                newObj.transform.SetParent(cell.transform);
+                newObj.transform.localScale = new Vector3(0.75f,0.75f,1);
+                //newObj.transform.localPosition = new Vector2(10f, 10f);
+                newObj.transform.position = new Vector2(newObj.transform.position.x + 63f , newObj.transform.position.y + 35f);
                 gridObjects.Add(newObj);
                 cell.objectInCell = newObj;
                 cell.cellFull = true;
@@ -74,7 +73,8 @@ public class GridManager : MonoBehaviour
         if (cell.cellFull)
         {
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
