@@ -16,7 +16,13 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         //Load all card assets from the Resources folder
-        Card[] cards = Resources.LoadAll<Card>("CardData");
+        Card[] cardAssets = Resources.LoadAll<Card>("CardData/Summons");
+        System.Random rand = new System.Random();
+        Card[] cards = new Card[40];
+        for (int i = 0; i < 40; i++)
+        {
+            cards[i] = cardAssets[rand.Next(cardAssets.Length)];
+        }
 
         //add the loaded cards to the allCards list
         allCards.AddRange(cards);

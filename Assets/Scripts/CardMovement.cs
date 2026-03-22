@@ -37,6 +37,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private CardDisplay cardDisplay;
     HandManager handManager;
     DiscardManager discardManager;
+    TurnSystem turnSystem;
 
     void Awake()
     {
@@ -58,6 +59,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         handManager = FindObjectOfType<HandManager>();
         discardManager = FindObjectOfType<DiscardManager>();
         cardDisplay = FindObjectOfType<CardDisplay>();
+        turnSystem = FindObjectOfType<TurnSystem>();
 
         gridLayerMask = LayerMask.GetMask("Grid");
         summonLayerMask = LayerMask.GetMask("Summons");
@@ -72,14 +74,24 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 HandleHoverState();
                 break;
             case 2:
-                HandleDragState();
+                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3))
+                {
+                    HandleDragState();
+                }
                 if (!Input.GetMouseButton(0)) //check if mouse button is released
                 {
                     TransitionToState0();
                 }
-                break;
+                else
+                {
+                    Debug.Log($"Cannot Summon");
+                }
+                    break;
             case 3:
-                HandlePlayState();
+                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
+                {
+                    HandlePlayState();
+                }
                 break;
         }
 
@@ -210,6 +222,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 handManager.UpdateHandVisuals();
                 Debug.Log($"Played Summon: {summonCard.name}");
                 Destroy(gameObject);
+                turnSystem.summonLimit = 0;
             }
         }
     }

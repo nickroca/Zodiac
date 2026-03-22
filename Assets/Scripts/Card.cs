@@ -11,18 +11,5 @@ namespace Zodiac {
         public string text;
         public Sprite sprite;
         public GameObject prefab;
-
-
-        void Awake()
-        {
-            if (prefab == null)
-            {
-                prefab = (GameObject)Resources.Load("ArtworkPrefabs/Placeholder");
-            }
-            if (sprite == null)
-            {
-                prefab = (GameObject)Resources.Load("Artworks/Placeholder");
-            }
-        }
     }
 }

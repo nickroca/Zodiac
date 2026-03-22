@@ -565,7 +565,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2826956490025411027}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -587,6 +587,7 @@ MonoBehaviour:
   power: {fileID: 2905437277248132536}
   guard: {fileID: 5780655801236979447}
   cardText: {fileID: 261776325818285359}
+  canvasGroup: {fileID: 0}
   lerpFactor: 0.1
   xOffset: 200
 --- !u!1 &2875565292550655466
