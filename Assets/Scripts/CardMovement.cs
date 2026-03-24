@@ -74,19 +74,19 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 HandleHoverState();
                 break;
             case 2:
-                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3))
+                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
                 {
                     HandleDragState();
+                    if (!Input.GetMouseButton(0)) //check if mouse button is released
+                    {
+                        TransitionToState0();
+                    }
+                    else
+                    {
+                        Debug.Log($"Cannot Summon");
+                    }
                 }
-                if (!Input.GetMouseButton(0)) //check if mouse button is released
-                {
-                    TransitionToState0();
-                }
-                else
-                {
-                    Debug.Log($"Cannot Summon");
-                }
-                    break;
+                break;
             case 3:
                 if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
                 {
@@ -137,7 +137,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (currentState == 1)
+        if (currentState == 1 && turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
         {
             currentState = 2;
         }
