@@ -225,7 +225,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos))
+            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, true))
             {
                 cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
                 handManager.cardsInHand.Remove(gameObject);
@@ -244,7 +244,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos))
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos, true, true))
             {
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
@@ -261,7 +261,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos))
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, true))
             {
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();

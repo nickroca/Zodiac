@@ -89,6 +89,10 @@ public class TurnSystem : MonoBehaviour
             if (phaseCount != 3)
             {
                 phaseCount += 1;
+                if (phaseCount == 2)
+                {
+                    gridManager.PlayOpponentCard();
+                }
             }
             else
             {
