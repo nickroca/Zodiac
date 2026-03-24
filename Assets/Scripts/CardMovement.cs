@@ -38,6 +38,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     HandManager handManager;
     DiscardManager discardManager;
     TurnSystem turnSystem;
+    PositionManager positionManager;
+    public bool positionSelected = false;
 
     void Awake()
     {
@@ -60,6 +62,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         discardManager = FindObjectOfType<DiscardManager>();
         cardDisplay = FindObjectOfType<CardDisplay>();
         turnSystem = FindObjectOfType<TurnSystem>();
+        positionManager = FindObjectOfType<PositionManager>();
 
         gridLayerMask = LayerMask.GetMask("Grid");
         summonLayerMask = LayerMask.GetMask("Summons");
@@ -180,7 +183,14 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         }
         
         rectTransform.localPosition = playPosition;
-        rectTransform.localRotation = Quaternion.identity;
+        if (positionManager.attackPosition)
+        {
+            rectTransform.localRotation = Quaternion.identity;
+        }
+        else
+        {
+            rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
+        }
 
         if (!Input.GetMouseButton(0))
         {

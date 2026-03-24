@@ -66,6 +66,14 @@ public class GridManager : MonoBehaviour
             return false;
         }
     }
+
+    public void PlayOpponentCard()
+    {
+        Card[] cardAssets = Resources.LoadAll<Card>("CardData/Summons");
+        System.Random rand = new System.Random();
+        Card oppCard = cardAssets[rand.Next(cardAssets.Length)];
+        
+    }
     
     public bool IsCellFull(Vector2 gridPosition)
     {

@@ -17,7 +17,7 @@ public class TurnSystem : MonoBehaviour
      */
     public int summonLimit = 1;
     public int turnCount;
-    DeckManager deckManager;
+    DeckPileManager deckManager;
     HandManager handManager;
     GridManager gridManager;
     public Image DP;
@@ -27,6 +27,10 @@ public class TurnSystem : MonoBehaviour
 
     void Start()
     {
+        deckManager = FindObjectOfType<DeckPileManager>();
+        handManager = FindObjectOfType<HandManager>();
+        gridManager = FindObjectOfType<GridManager>();
+        
         isYourTurn = true;
         phaseCount = 0;
         turnCount = 1;
@@ -80,16 +84,20 @@ public class TurnSystem : MonoBehaviour
 
     public void OpponentPhaseChange()
     {
-        if (phaseCount != 3)
+        if (!isYourTurn)
         {
-            phaseCount += 1;
-        }
-        else
-        {
-            isYourTurn = true;
-            turnCount++;
-            summonLimit = 1;
-            phaseCount = 0;
+            if (phaseCount != 3)
+            {
+                phaseCount += 1;
+            }
+            else
+            {
+                isYourTurn = true;
+                turnCount++;
+                summonLimit = 1;
+                phaseCount = 0;
+                deckManager.DrawCard(handManager);
+            }
         }
     }
 

@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 306.0869
+  orthographic size: 308.08746
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 468.5, y: 263.5, z: -10}
+  m_LocalPosition: {x: 684, y: 349, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2421986209908678275, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_Name
+      value: Phase Button
+      objectReference: {fileID: 0}
     - target: {fileID: 2432571208170285807, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -405,6 +409,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2432571208170285807, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234266394297857652, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5051951355366638182, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
@@ -489,6 +497,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7326296813585684950, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787583978257425442, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317382497026014574, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
@@ -628,7 +640,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5538926260630002966, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
