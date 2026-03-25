@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
-  m_Name: The Warden
+  m_Name: Holy Mage
   m_EditorClassIdentifier: 
-  cardName: The Warden
-  text: 'Aura. Warded. Immortal. Chant: Destroy 1 random opponent''s card.'
-  sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 8e2e86c1f50d90843a5ec3dbd06a17d5, type: 3}
-  element: 0
-  rank: 2
-  power: 28
-  guard: 26
+  cardName: Holy Mage
+  text: 
+  sprite: {fileID: 21300000, guid: 7f17bb335a7f79d43a9ca5d4716f6bdc, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: d7e7c1a6317b2c247a6a15cd67e5113f, type: 3}
+  element: 4
+  rank: 0
+  power: 4
+  guard: 17
+  attackPosition: 0

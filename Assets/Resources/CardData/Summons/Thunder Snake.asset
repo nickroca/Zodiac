@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
-  m_Name: Minotaur
+  m_Name: Thunder Snake
   m_EditorClassIdentifier: 
-  cardName: Minotaur
-  text: Guard Break. Veteran.
-  sprite: {fileID: 21300000, guid: 684860b50696f134e9bb47d1ad1ce79e, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 3b7a33e35770e554b854a0a2914400e4, type: 3}
-  element: 1
-  rank: 1
-  power: 25
-  guard: 12
+  cardName: Thunder Snake
+  text: 
+  sprite: {fileID: 21300000, guid: 78854a7510e167048b359f0aed45aa30, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 8eeff3da81a3f0c488217cac37ea34f2, type: 3}
+  element: 3
+  rank: 0
+  power: 17
+  guard: 14
   attackPosition: 0

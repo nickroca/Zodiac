@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Pixie
   text: 'Counter: Gain 3 LIFE.'
-  sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 8e2e86c1f50d90843a5ec3dbd06a17d5, type: 3}
+  sprite: {fileID: 21300000, guid: e0039a341af8bd445ba512ee8fea8719, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b751bea19bfeba04181c51a18c4defbc, type: 3}
   element: 4
   rank: 0
   power: 5
   guard: 18
+  attackPosition: 0

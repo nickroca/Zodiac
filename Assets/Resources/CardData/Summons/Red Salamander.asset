@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
-  m_Name: Minotaur
+  m_Name: Red Salamander
   m_EditorClassIdentifier: 
-  cardName: Minotaur
-  text: Guard Break. Veteran.
-  sprite: {fileID: 21300000, guid: 684860b50696f134e9bb47d1ad1ce79e, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 3b7a33e35770e554b854a0a2914400e4, type: 3}
-  element: 1
+  cardName: Red Salamander
+  text: 
+  sprite: {fileID: 21300000, guid: 8d4c0174958827e46b5b8228857fee62, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: c79238bf68cbd0545822566afc15c743, type: 3}
+  element: 0
   rank: 1
-  power: 25
-  guard: 12
+  power: 19
+  guard: 15
   attackPosition: 0

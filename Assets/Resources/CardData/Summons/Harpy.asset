@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Harpy
   text: 'Chant: Destroy 1 Sorcery or Hex on the field.'
-  sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 8e2e86c1f50d90843a5ec3dbd06a17d5, type: 3}
+  sprite: {fileID: 21300000, guid: 52259ffeb21e8cf4aa8d603062b7e670, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 7c1b7f13355f86448bf7eda8ef326695, type: 3}
   element: 3
   rank: 1
   power: 20
   guard: 5
+  attackPosition: 0

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
-  m_Name: Minotaur
+  m_Name: Mini Golem
   m_EditorClassIdentifier: 
-  cardName: Minotaur
-  text: Guard Break. Veteran.
-  sprite: {fileID: 21300000, guid: 684860b50696f134e9bb47d1ad1ce79e, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 3b7a33e35770e554b854a0a2914400e4, type: 3}
+  cardName: Mini Golem
+  text: 
+  sprite: {fileID: 21300000, guid: c006048ed9bd47149906ad1e13bb19bb, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 9f3b4dc0e4e07dd43ad7cab6a54d3c5b, type: 3}
   element: 1
-  rank: 1
-  power: 25
-  guard: 12
+  rank: 0
+  power: 0
+  guard: 20
   attackPosition: 0

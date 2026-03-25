@@ -20,16 +20,19 @@ public class TurnSystem : MonoBehaviour
     DeckPileManager deckManager;
     HandManager handManager;
     GridManager gridManager;
+    PositionManager positionManager;
     public Image DP;
     public Image MP1;
     public Image BP;
     public Image MP2;
+    private bool switched;
 
     void Start()
     {
         deckManager = FindObjectOfType<DeckPileManager>();
         handManager = FindObjectOfType<HandManager>();
         gridManager = FindObjectOfType<GridManager>();
+        positionManager = FindObjectOfType<PositionManager>();
         
         isYourTurn = true;
         phaseCount = 0;
@@ -47,6 +50,19 @@ public class TurnSystem : MonoBehaviour
             turnText.text = "Opponent Turn";
         }
         UpdatePhaseGraphics();
+        if(!isYourTurn || (phaseCount == 0 || phaseCount == 2))
+        {
+            positionManager.attackBoard.SetActive(false);
+            positionManager.defenseBoard.SetActive(false);
+            switched = false;
+        } 
+        else
+        {
+            if (!switched) {
+                positionManager.SwitchToAttack();
+                switched = true;
+            }
+        }
     }
 
     public void YourPhaseChange()

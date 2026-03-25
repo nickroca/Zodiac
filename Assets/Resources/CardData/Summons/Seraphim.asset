@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Seraphim
   text: 'Call: Draw 1 card. Bloodshed: Gain 10 LIFE.'
-  sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 8e2e86c1f50d90843a5ec3dbd06a17d5, type: 3}
+  sprite: {fileID: 21300000, guid: b0f8e6495cb08d842a48e26fa1d311bb, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 91390e3689421a04883ed99975267df9, type: 3}
   element: 4
   rank: 2
   power: 25
   guard: 30
+  attackPosition: 0

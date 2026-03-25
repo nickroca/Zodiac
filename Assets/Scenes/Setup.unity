@@ -666,6 +666,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2039769167621483076, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039769167621483076, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039769167621483076, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2421986209908678275, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_Name
       value: Phase Button
@@ -702,6 +714,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3362334240991873436, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393272095211442256, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936389079840275880, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: offsetx
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936389079840275880, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: offsety
+      value: -3.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5051951355366638182, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -722,6 +750,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5113944471639198803, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5188650683147897730, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -737,6 +769,10 @@ PrefabInstance:
     - target: {fileID: 5188650683147897730, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200823284390131436, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.76001
       objectReference: {fileID: 0}
     - target: {fileID: 5691457987408889558, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -746,6 +782,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6155605883727629536, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.76001
+      objectReference: {fileID: 0}
     - target: {fileID: 6375188351850725169, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -776,6 +816,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6591148698197432891, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975517413256714952, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 6975517413256714952, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975517413256714952, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975517413256714952, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_UpdateRectTransformForStandalone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224703666416607925, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7326296813585684950, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
