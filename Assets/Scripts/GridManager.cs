@@ -55,11 +55,11 @@ public class GridManager : MonoBehaviour
                 newObj.transform.localScale = new Vector3(0.75f,0.75f,1);
                 if(!playerCard)
                 {
+                    newObj.transform.localRotation = Quaternion.Euler(0, 0, 180);
                     if (!attackPosition)
                     {
-                        newObj.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                        newObj.transform.localRotation = Quaternion.Euler(0, 0, -90);
                     }
-                    newObj.transform.localRotation = Quaternion.Euler(0, 0, 180);
                 }
                 else
                 {
@@ -101,6 +101,12 @@ public class GridManager : MonoBehaviour
             Vector2 place = new Vector2(summons, 2);
             bool attackPosition = true;
             Debug.Log($"{oppCard.power}");
+            if(oppCard.power < oppCard.guard || oppCard.power < 10)
+            {
+                attackPosition = false;
+                oppCard.attackPosition = false;
+            }
+            Debug.Log($"{oppCard.attackPosition}");
             AddObjectToGrid(oppCard.prefab, place, false, attackPosition);
             GridCell oppCell = gridCells[summons, 2];
             oppCell.objectInCell.GetComponent<SummonStats>().summonStartData = oppCard;

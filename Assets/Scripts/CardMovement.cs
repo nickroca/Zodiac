@@ -225,9 +225,10 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, true))
+            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
             {
                 cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
+                //cell.objectInCell.attackposition = positionManager.attackPosition;
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
                 Debug.Log($"Played Summon: {summonCard.name}");
@@ -244,7 +245,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos, true, true))
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos, true, positionManager.attackPosition))
             {
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
@@ -261,7 +262,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, true))
+            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, positionManager.attackPosition))
             {
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
