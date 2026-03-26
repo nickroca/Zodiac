@@ -5,13 +5,13 @@ using Zodiac;
 
 public class GridManager : MonoBehaviour
 {
-    public int width = 5;
-    public int height = 4;
+    public static int width = 5;
+    public static int height = 4;
     public float offsetx;
     public float offsety;
     public GameObject gridCellPrefab;
     public List<GameObject> gridObjects = new List<GameObject>();
-    public GridCell[,] gridCells;
+    public GridCell[,] gridCells = new GridCell[width, height];
     PlayerLIFE playerLife;
     DiscardManager discardManager;
     private SummonSelect selectedAttacker = null;
@@ -20,12 +20,26 @@ public class GridManager : MonoBehaviour
     {
         playerLife = FindObjectOfType<PlayerLIFE>();
         discardManager = FindObjectOfType<DiscardManager>();
-        CreateGrid();
-        transform.localScale = new Vector3(0.8f, 0.8f, 1);
+        GetGrid();
+        //transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
 
-    void CreateGrid()
+    void GetGrid()
     {
+        GridCell[] allCells = GetComponentsInChildren<GridCell>();
+        Debug.Log($"Total Cells Found: {allCells.Length - 1}");
+        int index = 0;
+        for(int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Vector2 test = new Vector2(x, y);
+                gridCells[x, y] = allCells[index];
+                index++;
+            }
+        }
+
+        /*
         gridCells = new GridCell[width, height];
         Vector2 centerOffset = new Vector2(width / 2.0f - 0.5f + offsetx, height / 2.0f - 0.5f + offsety);
         for (int x = 0; x < width; x++)
@@ -40,6 +54,7 @@ public class GridManager : MonoBehaviour
                 gridCells[x, y] = gridCell;
             }
         }
+        */
     }
 
     public bool AddObjectToGrid(GameObject obj, Vector2 gridPosition, bool playerCard, bool attackPosition)
@@ -55,12 +70,12 @@ public class GridManager : MonoBehaviour
             else
             {
                 //If grid is spaced out improperly, change the value after cell.GC<>().pos (higher value is more spaced out, smaller is less)
-                GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position * 0.8f, Quaternion.identity);
+                GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position, Quaternion.identity);
                 SummonSelect selectable = newObj.GetComponent<SummonSelect>();
                 selectable.gridPosition = gridPosition;
                 selectable.controller = playerCard ? 1 : 2;
                 newObj.transform.SetParent(cell.transform);
-                newObj.transform.localScale = new Vector3(0.7f,0.7f,1);
+                newObj.transform.localScale = new Vector3(0.9f,0.9f,1);
                 if(!playerCard)
                 {
                     newObj.transform.localRotation = Quaternion.Euler(0, 0, 180);
@@ -77,7 +92,7 @@ public class GridManager : MonoBehaviour
                     }
                 }
                 //newObj.transform.localPosition = new Vector2(10f, 10f);
-                newObj.transform.position = new Vector2(newObj.transform.position.x - 114f , newObj.transform.position.y - 34f);
+                newObj.transform.position = new Vector2(newObj.transform.position.x, newObj.transform.position.y);
                 gridObjects.Add(newObj);
                 cell.objectInCell = newObj;
                 cell.cellFull = true;
@@ -165,7 +180,7 @@ public class GridManager : MonoBehaviour
                 discardManager.AddToDiscard(attacker);
                 RemoveObjectFromGrid(attackerWins);
             }
-            else
+            else if (attacker.power == defender.power)
             {
                 discardManager.AddToDiscard(attacker);
                 RemoveObjectFromGrid(attackerWins);
@@ -187,41 +202,34 @@ public class GridManager : MonoBehaviour
 
     public void OnCellClicked(GridCell clickedCell)
     {
-        if (clickedCell.objectInCell != null)  // Ensure the cell isn't empty
+        if (clickedCell.objectInCell != null)
         {
             SummonSelect clickedSummon = clickedCell.objectInCell.GetComponent<SummonSelect>();
 
             if (clickedSummon != null)
             {
-                if (clickedSummon.controller == 1) // Player's summon
+                if (clickedSummon.controller == 1)
                 {
-                    // Select this summon as the attacker if it's the player's summon
-                    if (selectedAttacker == null)  // If no attacker is selected
+                    if (selectedAttacker == null)
                     {
                         selectedAttacker = clickedSummon;
                         Debug.Log("Selected attacker: " + selectedAttacker.gameObject.name);
                     }
                     else
                     {
-                        // If an attacker is already selected, do nothing or display a message
-                        Debug.Log("You already have an attacker selected.");
+                        // If an attacker is already selected, do nothing
                     }
                 }
-                else if (clickedSummon.controller == 2) // Opponent's summon
+                else if (clickedSummon.controller == 2)
                 {
-                    if (selectedAttacker != null) // Only if an attacker is selected
+                    if (selectedAttacker != null)
                     {
-                        // Proceed with the battle between attacker and defender
                         Debug.Log("Selected defender: " + clickedSummon.gameObject.name);
                         int attackerX = (int)selectedAttacker.gridPosition.x;
                         int attackerY = (int)selectedAttacker.gridPosition.y;
                         int defenderX = (int)clickedSummon.gridPosition.x;
                         int defenderY = (int)clickedSummon.gridPosition.y;
-
-                        // Trigger the battle
                         doBattle(attackerX, attackerY, defenderX, defenderY);
-
-                        // After the battle, reset the selection
                         selectedAttacker = null;
                     }
                     else
@@ -269,6 +277,71 @@ public class GridManager : MonoBehaviour
         {
             selectedAttacker = null;
             return;
+        }
+    }
+
+    public void OpponentAttack()
+    {
+        // Opponent row is y = 2
+        for (int x = 0; x < width; x++)
+        {
+            Vector2 oppPos = new Vector2(x, 2);
+
+            if (!IsCellFull(oppPos))
+                continue;
+
+            Summon attacker = gridCells[x, 2].objectInCell
+                .GetComponent<SummonStats>().summonStartData;
+
+            int bestTargetX = -1;
+            int bestValue = -1;
+
+            // Player row is y = 1
+            for (int px = 0; px < width; px++)
+            {
+                Vector2 playerPos = new Vector2(px, 1);
+
+                if (!IsCellFull(playerPos))
+                    continue;
+
+                Summon defender = gridCells[px, 1].objectInCell
+                    .GetComponent<SummonStats>().summonStartData;
+
+                bool canKill = false;
+
+                if (defender.attackPosition)
+                {
+                    if (attacker.power > defender.power)
+                        canKill = true;
+                }
+                else
+                {
+                    if (attacker.power > defender.guard)
+                        canKill = true;
+                }
+
+                if (canKill)
+                {
+                    int value = defender.power;
+
+                    // Prioritize attack position targets
+                    if (defender.attackPosition)
+                        value += 100;
+
+                    // Pick strongest killable target
+                    if (value > bestValue)
+                    {
+                        bestValue = value;
+                        bestTargetX = px;
+                    }
+                }
+            }
+
+            // Attack best target if found
+            if (bestTargetX != -1)
+            {
+                doBattle(x, 2, bestTargetX, 1);
+            }
         }
     }
 }

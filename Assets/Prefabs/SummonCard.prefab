@@ -1051,6 +1051,7 @@ MonoBehaviour:
   playPositionYMultiplier: 1
   playPositionXDivider: 3
   playPositionXMultiplier: 1
+  positionSelected: 0
 --- !u!1 &3108477914467608122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bdd53c302f69ee74396f1de0fd63e1a3, type: 2}
   m_sharedMaterial: {fileID: 4807873115040063675, guid: bdd53c302f69ee74396f1de0fd63e1a3, type: 2}
@@ -1400,12 +1401,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 10.9
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512

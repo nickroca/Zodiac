@@ -171,7 +171,10 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private void HandleDragState()
     {
         rectTransform.localRotation = Quaternion.identity;
-        transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos.z = 0;
+        transform.position = mousePos;
         //rectTransform.position = Vector3.Lerp(rectTransform.position, Input.mousePosition, lerpTime); //this doesn't work for some reason
     }
 
