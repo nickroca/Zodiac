@@ -184,9 +184,6 @@ public class GridManager : MonoBehaviour
         {
             if (attacker.power > defender.power)
             {
-<<<<<<< Updated upstream
-                Debug.Log("Attacker Wins against Power!");
-=======
                 int difference = attacker.power - defender.power;
                 Debug.Log("Attacker Wins against Power!");
                 if (attackingController == 1)
@@ -197,7 +194,6 @@ public class GridManager : MonoBehaviour
                 {
                     playerLife.currentHP = playerLife.currentHP - difference;
                 }
->>>>>>> Stashed changes
                 RemoveObjectFromGrid(defenderWins);
             }
             else //if (attacker.power < defender.power)
@@ -239,14 +235,11 @@ public class GridManager : MonoBehaviour
                 if (clickedSummon.controller == 1)
                 {
                     if (turnSystem.isYourTurn && turnSystem.phaseCount == 2) {
-<<<<<<< Updated upstream
-=======
                         if (clickedSummon.GetComponent<SummonStats>().hasAttacked)
                         {
                             Debug.Log("This monster has already attacked");
                             return;
                         }
->>>>>>> Stashed changes
                         if (selectedAttacker == null)
                         {
                             selectedAttacker = clickedSummon;
@@ -344,11 +337,7 @@ public class GridManager : MonoBehaviour
             Summon attacker = gridCells[x, 2].objectInCell
                 .GetComponent<SummonStats>().summonStartData;
             
-<<<<<<< Updated upstream
-            if (attacker.attackPosition)
-=======
             if (!attacker.attackPosition)
->>>>>>> Stashed changes
                 continue;
 
             int bestTargetX = -1;

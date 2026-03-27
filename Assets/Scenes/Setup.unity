@@ -119,8 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!224 &201327246 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4670774516083684149, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
@@ -137,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
->>>>>>> Stashed changes
 --- !u!1 &445513230
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,8 +467,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!1 &1430258713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1226124127319141223, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
@@ -506,7 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
->>>>>>> Stashed changes
 --- !u!1 &1829170118
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,10 +557,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-<<<<<<< Updated upstream
-=======
   m_UseReflectionProbes: 0
->>>>>>> Stashed changes
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -624396057
@@ -608,8 +599,6 @@ PrefabInstance:
       propertyPath: attackPosition
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 378718425606929962, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -638,7 +627,6 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 675207672940326680, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -835,8 +823,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 5245627348702582946, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -845,13 +831,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 5482650058771370388, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 5905630403831957759, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -864,7 +847,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -7744424781442014258, guid: db77f8052670fa14f8c3fc7120edb0ea, type: 3}
->>>>>>> Stashed changes
     - target: {fileID: 6375188351850725169, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -897,13 +879,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 6532578891004280537, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 6591148698197432891, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -936,8 +915,6 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 7043194168500590698, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -950,7 +927,6 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 7326296813585684950, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -967,8 +943,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 7461969491329663023, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -977,13 +951,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 7690735574872635763, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 7876294873528229203, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -1008,7 +979,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 8317382497026014574, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1077,8 +1047,6 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 8874399060252910856, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -1087,7 +1055,6 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 9063653779261167741, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1175,14 +1142,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9063653779261167741, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1829170119}
-<<<<<<< Updated upstream
-    m_AddedComponents: []
-=======
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1226124127319141223, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1430258715}
->>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 9bc4a23ffa114834a937eebeb5f2264f, type: 3}
 --- !u!1001 &6286294123533803634
 PrefabInstance:

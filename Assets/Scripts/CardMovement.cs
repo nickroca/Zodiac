@@ -84,13 +84,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                     {
                         TransitionToState0();
                     }
-<<<<<<< Updated upstream
-=======
-                    else
-                    {
-                        
-                    }
->>>>>>> Stashed changes
                 }
                 break;
             case 3:
