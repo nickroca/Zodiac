@@ -36,6 +36,7 @@ public class SummonStats : MonoBehaviour
         rank = summonStartData.rank;
         power = summonStartData.power;
         guard = summonStartData.guard;
+        attackPosition = summonStartData.attackPosition;
         statsSet = true;
     }
 }

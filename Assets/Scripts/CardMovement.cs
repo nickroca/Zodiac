@@ -84,10 +84,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                     {
                         TransitionToState0();
                     }
-                    else
-                    {
-                        Debug.Log($"Cannot Summon");
-                    }
                 }
                 break;
             case 3:
@@ -230,6 +226,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             Vector2 targetPos = cell.gridIndex;
             if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
             {
+                summonCard.attackPosition = positionManager.attackPosition;
                 cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
                 //cell.objectInCell.attackposition = positionManager.attackPosition;
                 handManager.cardsInHand.Remove(gameObject);

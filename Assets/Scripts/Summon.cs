@@ -10,7 +10,7 @@ public class Summon : Card
     public int rank;
     public int power;
     public int guard;
-    public bool attackPosition;
+    public bool attackPosition = true;
 
 
     public enum CardElement

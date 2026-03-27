@@ -15,11 +15,13 @@ public class GridManager : MonoBehaviour
     PlayerLIFE playerLife;
     DiscardManager discardManager;
     private SummonSelect selectedAttacker = null;
+    public TurnSystem turnSystem;
 
     private void Start()
     {
         playerLife = FindObjectOfType<PlayerLIFE>();
         discardManager = FindObjectOfType<DiscardManager>();
+        turnSystem = FindObjectOfType<TurnSystem>();
         GetGrid();
         //transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
@@ -133,15 +135,23 @@ public class GridManager : MonoBehaviour
             System.Random rand = new System.Random();
             Summon oppCard = cardAssets[rand.Next(cardAssets.Length)] as Summon;
             Vector2 place = new Vector2(summons, 2);
-            bool attackPosition = true;
-            Debug.Log($"{oppCard.power}");
-            if(oppCard.power < oppCard.guard || oppCard.power < 10)
+            if (oppCard.power < oppCard.guard || oppCard.power < 10)
             {
-                attackPosition = false;
                 oppCard.attackPosition = false;
             }
-            Debug.Log($"{oppCard.attackPosition}");
-            AddObjectToGrid(oppCard.prefab, place, false, attackPosition);
+            else
+            {
+                oppCard.attackPosition = true;
+            }
+            if(oppCard.attackPosition)
+            {
+                Debug.Log("Summoning Opponent's Monster in Attack Position");
+            }
+            else
+            {
+                Debug.Log("Summoning Opponent's Monster in Defense Position");
+            }
+            AddObjectToGrid(oppCard.prefab, place, false, oppCard.attackPosition);
             GridCell oppCell = gridCells[summons, 2];
             oppCell.objectInCell.GetComponent<SummonStats>().summonStartData = oppCard;
 
@@ -168,20 +178,22 @@ public class GridManager : MonoBehaviour
         Summon defender = gridCells[defending, defendingController].objectInCell.GetComponent<SummonStats>().summonStartData;
         Vector2 attackerWins = new Vector2(attacking, attackingController);
         Vector2 defenderWins = new Vector2(defending, defendingController);
-        Debug.Log($"Battle!");
         if (defender.attackPosition)
         {
-            if(attacker.power > defender.power)
+            if (attacker.power > defender.power)
             {
+                Debug.Log("Attacker Wins against Power!");
                 RemoveObjectFromGrid(defenderWins);
-            } 
-            else if (attacker.power < defender.power)
+            }
+            else //if (attacker.power < defender.power)
             {
+                Debug.Log("Defender Wins against Attacker!");
                 discardManager.AddToDiscard(attacker);
                 RemoveObjectFromGrid(attackerWins);
             }
-            else if (attacker.power == defender.power)
+            if (attacker.power == defender.power)
             {
+                Debug.Log("Clash Happened");
                 discardManager.AddToDiscard(attacker);
                 RemoveObjectFromGrid(attackerWins);
                 RemoveObjectFromGrid(defenderWins);
@@ -191,10 +203,11 @@ public class GridManager : MonoBehaviour
         {
             if(attacker.power <= defender.guard)
             {
-                
+                Debug.Log("Attacker loses against Guard!");
             }
             else
             {
+                Debug.Log("Attacker Wins against Guard!");
                 RemoveObjectFromGrid(defenderWins);
             }
         }
@@ -210,14 +223,16 @@ public class GridManager : MonoBehaviour
             {
                 if (clickedSummon.controller == 1)
                 {
-                    if (selectedAttacker == null)
-                    {
-                        selectedAttacker = clickedSummon;
-                        Debug.Log("Selected attacker: " + selectedAttacker.gameObject.name);
-                    }
-                    else
-                    {
-                        // If an attacker is already selected, do nothing
+                    if (turnSystem.isYourTurn && turnSystem.phaseCount == 2) {
+                        if (selectedAttacker == null)
+                        {
+                            selectedAttacker = clickedSummon;
+                            Debug.Log("Selected attacker: " + selectedAttacker.gameObject.name);
+                        }
+                        else
+                        {
+                            // If an attacker is already selected, do nothing
+                        }
                     }
                 }
                 else if (clickedSummon.controller == 2)
@@ -262,6 +277,7 @@ public class GridManager : MonoBehaviour
             if (IsCellFull(selected.gridPosition))
             {
                 doBattle((int)selectedAttacker.gridPosition.x, (int)selectedAttacker.gridPosition.y, (int)selected.gridPosition.x, (int)selected.gridPosition.y);
+                
                 selectedAttacker = null;
             }
             else
@@ -292,6 +308,9 @@ public class GridManager : MonoBehaviour
 
             Summon attacker = gridCells[x, 2].objectInCell
                 .GetComponent<SummonStats>().summonStartData;
+            
+            if (attacker.attackPosition)
+                continue;
 
             int bestTargetX = -1;
             int bestValue = -1;
@@ -312,12 +331,18 @@ public class GridManager : MonoBehaviour
                 if (defender.attackPosition)
                 {
                     if (attacker.power > defender.power)
+                    {
+                        Debug.Log("OpponentAttack() Attacker Power Stronger than Defender Power");
                         canKill = true;
+                    }
                 }
                 else
                 {
                     if (attacker.power > defender.guard)
+                    {
+                        Debug.Log("OpponentAttack() Attacker Power Stronger than Defender Guard");
                         canKill = true;
+                    }
                 }
 
                 if (canKill)

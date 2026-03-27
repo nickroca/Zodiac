@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - Cards
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Card Text
     uniqueID: 1835750323
+    locked: 0
+  - name: Background
+    uniqueID: 3670571239
     locked: 0

@@ -12,6 +12,7 @@ public class SummonStatsTooltipDisplay : MonoBehaviour
     public TextMeshProUGUI power;
     public TextMeshProUGUI guard;
     public TextMeshProUGUI cardText;
+    public TextMeshProUGUI position;
 
     private RectTransform rectTransform;
     public CanvasGroup canvasGroup;
@@ -34,5 +35,13 @@ public class SummonStatsTooltipDisplay : MonoBehaviour
         power.text = stats.power.ToString();
         guard.text = stats.guard.ToString();
         cardText.text = $"{stats.text}";
+        if (stats.attackPosition)
+        {
+            position.text = "Attack";
+        }
+        else
+        {
+            position.text = "Defense";
+        }
     }
 }
