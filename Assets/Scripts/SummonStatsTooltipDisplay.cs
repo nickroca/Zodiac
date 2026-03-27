@@ -37,11 +37,19 @@ public class SummonStatsTooltipDisplay : MonoBehaviour
         cardText.text = $"{stats.text}";
         if (stats.attackPosition)
         {
+<<<<<<< Updated upstream
             position.text = "Attack";
         }
         else
         {
             position.text = "Defense";
+=======
+            position.text = $"Attack";
+        }
+        else
+        {
+            position.text = $"Defense";
+>>>>>>> Stashed changes
         }
     }
 }

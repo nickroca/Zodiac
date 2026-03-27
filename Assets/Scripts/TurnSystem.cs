@@ -26,6 +26,7 @@ public class TurnSystem : MonoBehaviour
     public Image BP;
     public Image MP2;
     private bool switched;
+    private bool opponentTurn = false;
 
     void Start()
     {
@@ -63,6 +64,10 @@ public class TurnSystem : MonoBehaviour
                 switched = true;
             }
         }
+        if(!isYourTurn && !opponentTurn)
+        {
+            StartCoroutine(OpponentTurn());
+        }
     }
 
     public void YourPhaseChange()
@@ -93,34 +98,8 @@ public class TurnSystem : MonoBehaviour
                     isYourTurn = false;
                     turnCount++;
                     phaseCount = 0;
+                    gridManager.ResetAttacks();
                 }
-            }
-        }
-    }
-
-    public void OpponentPhaseChange()
-    {
-        if (!isYourTurn)
-        {
-            if (phaseCount != 3)
-            {
-                phaseCount += 1;
-                if (phaseCount == 1)
-                {
-                    gridManager.PlayOpponentCard();
-                }
-                else if (phaseCount == 2)
-                {
-                    gridManager.OpponentAttack();
-                }
-            }
-            else
-            {
-                isYourTurn = true;
-                turnCount++;
-                summonLimit = 1;
-                phaseCount = 0;
-                deckManager.DrawCard(handManager);
             }
         }
     }
@@ -154,5 +133,37 @@ public class TurnSystem : MonoBehaviour
             BP.color = Color.white;
             MP2.color = Color.green;
         }
+    }
+
+    IEnumerator OpponentTurn()
+    {
+        opponentTurn = true;
+
+        phaseCount = 0;
+        UpdatePhaseGraphics();
+        yield return new WaitForSeconds(1f);
+
+        phaseCount = 1;
+        UpdatePhaseGraphics();
+        gridManager.PlayOpponentCard();
+        yield return new WaitForSeconds(2f);
+
+        phaseCount = 2;
+        UpdatePhaseGraphics();
+        gridManager.OpponentAttack();
+        yield return new WaitForSeconds(2f);
+
+        phaseCount = 3;
+        UpdatePhaseGraphics();
+        yield return new WaitForSeconds(1f);
+
+        isYourTurn = true;
+        turnCount++;
+        summonLimit = 1;
+        phaseCount = 0;
+
+        deckManager.DrawCard(handManager);
+
+        opponentTurn = false;
     }
 }

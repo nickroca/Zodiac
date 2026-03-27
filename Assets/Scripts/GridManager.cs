@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour
     public List<GameObject> gridObjects = new List<GameObject>();
     public GridCell[,] gridCells = new GridCell[width, height];
     PlayerLIFE playerLife;
+    OpponentLIFE oppLife;
     DiscardManager discardManager;
     private SummonSelect selectedAttacker = null;
     public TurnSystem turnSystem;
@@ -20,6 +21,7 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         playerLife = FindObjectOfType<PlayerLIFE>();
+        oppLife = FindObjectOfType<OpponentLIFE>();
         discardManager = FindObjectOfType<DiscardManager>();
         turnSystem = FindObjectOfType<TurnSystem>();
         GetGrid();
@@ -182,7 +184,20 @@ public class GridManager : MonoBehaviour
         {
             if (attacker.power > defender.power)
             {
+<<<<<<< Updated upstream
                 Debug.Log("Attacker Wins against Power!");
+=======
+                int difference = attacker.power - defender.power;
+                Debug.Log("Attacker Wins against Power!");
+                if (attackingController == 1)
+                {
+                    oppLife.currentHP = oppLife.currentHP - difference;
+                } 
+                else
+                {
+                    playerLife.currentHP = playerLife.currentHP - difference;
+                }
+>>>>>>> Stashed changes
                 RemoveObjectFromGrid(defenderWins);
             }
             else //if (attacker.power < defender.power)
@@ -224,6 +239,14 @@ public class GridManager : MonoBehaviour
                 if (clickedSummon.controller == 1)
                 {
                     if (turnSystem.isYourTurn && turnSystem.phaseCount == 2) {
+<<<<<<< Updated upstream
+=======
+                        if (clickedSummon.GetComponent<SummonStats>().hasAttacked)
+                        {
+                            Debug.Log("This monster has already attacked");
+                            return;
+                        }
+>>>>>>> Stashed changes
                         if (selectedAttacker == null)
                         {
                             selectedAttacker = clickedSummon;
@@ -245,6 +268,7 @@ public class GridManager : MonoBehaviour
                         int defenderX = (int)clickedSummon.gridPosition.x;
                         int defenderY = (int)clickedSummon.gridPosition.y;
                         doBattle(attackerX, attackerY, defenderX, defenderY);
+                        selectedAttacker.GetComponent<SummonStats>().hasAttacked = true;
                         selectedAttacker = null;
                     }
                     else
@@ -255,11 +279,22 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        if(selectedAttacker != null)
+        {
+            if(!ControlsSummons(2))
+            {
+                Summon attacker = selectedAttacker.GetComponent<SummonStats>().summonStartData;
+                oppLife.currentHP = oppLife.currentHP - attacker.power;
+                Debug.Log("Attacker direct attack");
+                selectedAttacker.GetComponent<SummonStats>().hasAttacked = true;
+                selectedAttacker = null;
+            }
+        }
     }
 
     public void OnSelectedSummon(SummonSelect selected)
     {
-        if (selectedAttacker = null)
+        if (selectedAttacker == null)
         {
             if (selected.controller == 1)
             {
@@ -309,7 +344,11 @@ public class GridManager : MonoBehaviour
             Summon attacker = gridCells[x, 2].objectInCell
                 .GetComponent<SummonStats>().summonStartData;
             
+<<<<<<< Updated upstream
             if (attacker.attackPosition)
+=======
+            if (!attacker.attackPosition)
+>>>>>>> Stashed changes
                 continue;
 
             int bestTargetX = -1;
@@ -366,6 +405,41 @@ public class GridManager : MonoBehaviour
             if (bestTargetX != -1)
             {
                 doBattle(x, 2, bestTargetX, 1);
+            }
+            if (bestTargetX == -1)
+            {
+                if (!ControlsSummons(1))
+                {
+                    playerLife.currentHP = playerLife.currentHP - attacker.power;
+                    Debug.Log("Opponent direct attack");
+                }
+            }
+        }
+    }
+
+    public bool ControlsSummons(int row)
+    {
+        for(int x = 0; x < width; x++)
+        {
+            if (IsCellFull(new Vector2(x, row)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void ResetAttacks()
+    {
+        foreach (GameObject obj in gridObjects)
+        {
+            if (obj != null)
+            {
+                SummonStats stats = obj.GetComponent<SummonStats>();
+                if (stats != null)
+                {
+                    stats.hasAttacked = false;
+                }
             }
         }
     }

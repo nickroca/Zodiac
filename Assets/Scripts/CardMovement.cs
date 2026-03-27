@@ -84,6 +84,13 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                     {
                         TransitionToState0();
                     }
+<<<<<<< Updated upstream
+=======
+                    else
+                    {
+                        
+                    }
+>>>>>>> Stashed changes
                 }
                 break;
             case 3:
@@ -271,29 +278,4 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             }
         }
     }
-
-
-
-    /*
-    private void updateCardPlayPosition()
-    {
-        if (cardPlayDivider != 0 && canvasRectTransform != null)
-        {
-            float segment = cardPlayMultiplier / cardPlayDivider;
-            cardPlay.y = canvasRectTransform.rect.height * segment;
-        }
-    }
-
-    private void updatePlayPosition()
-    {
-        if (canvasRectTransform != null && playPositionYDivider != 0 && playPositionXDivider != 0)
-        {
-            float segmentX = playPositionXMultiplier / playPositionXDivider;
-            float segmentY = playPositionYMultiplier / playPositionYDivider;
-
-            playPosition.x = canvasRectTransform.rect.width * segmentX;
-            playPosition.y = canvasRectTransform.rect.height * segmentY;
-        }
-    }
-    */
 }

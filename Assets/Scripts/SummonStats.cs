@@ -15,7 +15,8 @@ public class SummonStats : MonoBehaviour
     public int rank;
     public int power;
     public int guard;
-    public bool attackPosition;
+    public bool attackPosition = true;
+    public bool hasAttacked = false;
 
     private bool statsSet = false;
 

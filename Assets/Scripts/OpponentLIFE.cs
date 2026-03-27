@@ -7,7 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using Zodiac;
 
-public class PlayerLIFE : MonoBehaviour
+public class OpponentLIFE : MonoBehaviour
 {
     public int staticHP;
     public int maxHP; //not actually maxHP, just to make it so the bar doesn't go past its max width
