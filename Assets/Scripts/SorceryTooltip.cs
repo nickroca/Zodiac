@@ -12,7 +12,7 @@ public class SorceryTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Awake()
     {
-        tooltip = FindObjectOfType<SorceryStatsTooltipDisplay>();
+        tooltip = FindAnyObjectByType<SorceryStatsTooltipDisplay>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -24,7 +24,7 @@ public class SorceryTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
-            tooltip = FindObjectOfType<SorceryStatsTooltipDisplay>();
+            tooltip = FindAnyObjectByType<SorceryStatsTooltipDisplay>();
         }
     }
 

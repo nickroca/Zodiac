@@ -17,7 +17,7 @@ public class DeckPileManager : MonoBehaviour
 
     void Start()
     {
-        handManager = FindObjectOfType<HandManager>();
+        handManager = FindAnyObjectByType<HandManager>();
     }
 
     void Update()

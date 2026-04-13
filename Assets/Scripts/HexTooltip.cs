@@ -12,7 +12,7 @@ public class HexTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Awake()
     {
-        tooltip = FindObjectOfType<HexStatsTooltipDisplay>();
+        tooltip = FindAnyObjectByType<HexStatsTooltipDisplay>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -24,7 +24,7 @@ public class HexTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         else
         {
-            tooltip = FindObjectOfType<HexStatsTooltipDisplay>();
+            tooltip = FindAnyObjectByType<HexStatsTooltipDisplay>();
         }
     }
 

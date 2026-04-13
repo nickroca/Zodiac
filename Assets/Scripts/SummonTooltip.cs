@@ -12,7 +12,7 @@ public class SummonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void Awake()
     {
-        tooltip = FindObjectOfType<SummonStatsTooltipDisplay>();
+        tooltip = FindAnyObjectByType<SummonStatsTooltipDisplay>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -24,7 +24,7 @@ public class SummonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
-            tooltip = FindObjectOfType<SummonStatsTooltipDisplay>();
+            tooltip = FindAnyObjectByType<SummonStatsTooltipDisplay>();
         }
     }
 

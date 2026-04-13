@@ -20,7 +20,7 @@ public class CardTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
         else
         {
-            tooltip = FindObjectOfType<CardStatsTooltipDisplay>();
+            tooltip = FindAnyObjectByType<CardStatsTooltipDisplay>();
         }
     }
 

@@ -11,7 +11,7 @@ public class GridCell : MonoBehaviour
 
     void Start()
     {
-        gridmanager = FindObjectOfType<GridManager>();
+        gridmanager = FindAnyObjectByType<GridManager>();
     }
 
     private void OnMouseDown()

@@ -40,6 +40,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     TurnSystem turnSystem;
     PositionManager positionManager;
     public bool positionSelected = false;
+    private List<GridCell> sacrifices = new List<GridCell>();
+    private int requiredSacrifices = 0;
+    private bool sacrificeSuccessful = false;
 
     void Awake()
     {
@@ -57,12 +60,12 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         //updateCardPlayPosition();
         //updatePlayPosition();
-        gridManager = FindObjectOfType<GridManager>();
-        handManager = FindObjectOfType<HandManager>();
-        discardManager = FindObjectOfType<DiscardManager>();
-        cardDisplay = FindObjectOfType<CardDisplay>();
-        turnSystem = FindObjectOfType<TurnSystem>();
-        positionManager = FindObjectOfType<PositionManager>();
+        gridManager = FindAnyObjectByType<GridManager>();
+        handManager = FindAnyObjectByType<HandManager>();
+        discardManager = FindAnyObjectByType<DiscardManager>();
+        cardDisplay = GetComponent<CardDisplay>();
+        turnSystem = FindAnyObjectByType<TurnSystem>();
+        positionManager = FindAnyObjectByType<PositionManager>();
 
         gridLayerMask = LayerMask.GetMask("Grid");
         summonLayerMask = LayerMask.GetMask("Summons");
@@ -94,9 +97,17 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 break;
         }
 
-        if (cardData != cardDisplay.cardData)
+        /*if (cardData != cardDisplay.cardData)
         {
             cardData = cardDisplay.cardData;
+        }*/
+
+        if (sacrificeSuccessful && Input.GetMouseButton(1))
+        {
+            CancelSacrifice();
+        }
+        {
+            
         }
     }
 
@@ -111,6 +122,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         rectTransform.localPosition = originalPosition;
         glowEffect.SetActive(false);
         playArrow.SetActive(false);
+        sacrificeSuccessful = false;
+        sacrifices.Clear();
+        requiredSacrifices = 0;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -219,13 +233,53 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void TryToPlaySummonCard(Ray ray, Summon summonCard)
     {
+        if (!sacrificeSuccessful && requiredSacrifices > 0)
+        {
+            return;
+        }
+        
+        if (!sacrificeSuccessful)
+        {
+            requiredSacrifices = summonCard.rank;
+            int controlled = gridManager.CountPlayerSummons();
+            if (controlled < requiredSacrifices)
+            {
+                Debug.Log("You do not control enough Summons to play that card!");
+                return;
+            }
+
+            if (requiredSacrifices > 0)
+            {
+                sacrificeSuccessful = true;
+                sacrifices.Clear();
+                Debug.Log($"Select {requiredSacrifices} summon cards to sacrifice.");
+                return;
+            }
+        }
+
+        if (sacrificeSuccessful && sacrifices.Count < requiredSacrifices)
+        {
+            Debug.Log("Select more sacrifices.");
+            return;
+        }
+        
+        
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
+            if (cardData != cardDisplay.cardData)
+            {
+                cardData = cardDisplay.cardData;
+            }
             if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
             {
+                foreach (var tributeCell in sacrifices)
+                {
+                    gridManager.RemoveObjectFromGrid(tributeCell.gridIndex);
+                }
+                
                 summonCard.attackPosition = positionManager.attackPosition;
                 cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
                 //cell.objectInCell.attackposition = positionManager.attackPosition;
@@ -233,7 +287,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 handManager.UpdateHandVisuals();
                 Debug.Log($"Played Summon: {summonCard.name}");
                 Destroy(gameObject);
-                turnSystem.summonLimit = 0;
+                turnSystem.summonLimit--;
+                sacrificeSuccessful = false;
+                sacrifices.Clear();
             }
         }
     }
@@ -270,5 +326,29 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 Destroy(gameObject);
             }
         }
+    }
+
+    public bool IsAwaitingSacrifices()
+    {
+        return sacrificeSuccessful;
+    }
+
+    public void SelectSacrifice(GridCell cell)
+    {
+        if (sacrifices.Contains(cell))
+        {
+            Debug.Log("Cannot sacrifice the same unit twice.");
+            return;
+        }
+        sacrifices.Add(cell);
+    }
+
+    public void CancelSacrifice()
+    {
+        Debug.Log("Sacrifice Cancelled");
+        sacrificeSuccessful = false;
+        sacrifices.Clear();
+        requiredSacrifices = 0;
+        TransitionToState0();
     }
 }

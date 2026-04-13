@@ -20,10 +20,10 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
-        playerLife = FindObjectOfType<PlayerLIFE>();
-        oppLife = FindObjectOfType<OpponentLIFE>();
-        discardManager = FindObjectOfType<DiscardManager>();
-        turnSystem = FindObjectOfType<TurnSystem>();
+        playerLife = FindAnyObjectByType<PlayerLIFE>();
+        oppLife = FindAnyObjectByType<OpponentLIFE>();
+        discardManager = FindAnyObjectByType<DiscardManager>();
+        turnSystem = FindAnyObjectByType<TurnSystem>();
         GetGrid();
         //transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
@@ -234,6 +234,16 @@ public class GridManager : MonoBehaviour
             {
                 if (clickedSummon.controller == 1)
                 {
+                    CardMovement activeCard = FindAnyObjectByType<CardMovement>();
+                    if (activeCard != null && activeCard.IsAwaitingSacrifices())
+                    {
+                        if (clickedSummon.controller == 1)
+                        {
+                            activeCard.SelectSacrifice(clickedCell);
+                        }
+                        return;
+                    }
+
                     if (turnSystem.isYourTurn && turnSystem.phaseCount == 2) {
                         if (clickedSummon.GetComponent<SummonStats>().hasAttacked)
                         {
@@ -431,5 +441,19 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int CountPlayerSummons()
+    {
+        int count = 0;
+        for (int x = 0; x < width; x++)
+        {
+            Vector2 pos = new Vector2(x, 1);
+            if (IsCellFull(pos))
+            {
+                count++;
+            }
+        }
+        return count;
     }
 }

@@ -32,11 +32,11 @@ public class DeckManager : MonoBehaviour
     {
         if (deckPileManager == null)
         {
-            deckPileManager = FindObjectOfType<DeckPileManager>();
+            deckPileManager = FindAnyObjectByType<DeckPileManager>();
         }
         if (handManager == null)
         {
-            handManager = FindObjectOfType<HandManager>();
+            handManager = FindAnyObjectByType<HandManager>();
         }
     }
 

@@ -30,10 +30,10 @@ public class TurnSystem : MonoBehaviour
 
     void Start()
     {
-        deckManager = FindObjectOfType<DeckPileManager>();
-        handManager = FindObjectOfType<HandManager>();
-        gridManager = FindObjectOfType<GridManager>();
-        positionManager = FindObjectOfType<PositionManager>();
+        deckManager = FindAnyObjectByType<DeckPileManager>();
+        handManager = FindAnyObjectByType<HandManager>();
+        gridManager = FindAnyObjectByType<GridManager>();
+        positionManager = FindAnyObjectByType<PositionManager>();
         
         isYourTurn = true;
         phaseCount = 0;
@@ -45,7 +45,7 @@ public class TurnSystem : MonoBehaviour
         if(isYourTurn == true)
         {
             turnText.text = "Your Turn";
-        } 
+        }
         else
         {
             turnText.text = "Opponent Turn";
@@ -56,7 +56,7 @@ public class TurnSystem : MonoBehaviour
             positionManager.attackBoard.SetActive(false);
             positionManager.defenseBoard.SetActive(false);
             switched = false;
-        } 
+        }
         else
         {
             if (!switched) {
