@@ -224,6 +224,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
+<<<<<<< Updated upstream
             if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
             {
                 summonCard.attackPosition = positionManager.attackPosition;
@@ -234,6 +235,27 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 Debug.Log($"Played Summon: {summonCard.name}");
                 Destroy(gameObject);
                 turnSystem.summonLimit = 0;
+=======
+
+            if (cell.gridIndex.y == 1) {
+                if (!gridManager.TrySacrifice(summonCard.rank))
+                {
+                    Debug.Log("Needs more sacrifices");
+                    return;
+                }
+
+                if (gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
+                {
+                    summonCard.attackPosition = positionManager.attackPosition;
+                    cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
+                    //cell.objectInCell.attackposition = positionManager.attackPosition;
+                    handManager.cardsInHand.Remove(gameObject);
+                    handManager.UpdateHandVisuals();
+                    Debug.Log($"Played Summon: {summonCard.name}");
+                    Destroy(gameObject);
+                    turnSystem.summonLimit = 0;
+                }
+>>>>>>> Stashed changes
             }
         }
     }

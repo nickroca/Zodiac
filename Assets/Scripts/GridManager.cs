@@ -432,4 +432,53 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void ToggleSacrifice(GridCell cell)
+    {
+        if (cell == null || cell.objectInCell == null)
+        {
+            return;
+        }
+
+        SummonSelect summon = cell.objectInCell.GetComponent<SummonSelect>();
+
+        if (summon.controller != 1)
+        {
+            return;
+        }
+
+        if(sacrifices.Contains(cell))
+        {
+            Debug.Log("Added Sacrifice: " + cell.name);
+            sacrifices.Remove(cell);
+        } 
+        else
+        {
+            Debug.Log("Removed Sacrifice: " + cell.name);
+            sacrifices.Add(cell);
+        }
+    }
+
+    public bool TrySacrifice(int count)
+    {
+        if(sacrifices.Count != count)
+        {
+            Debug.Log($"Needs {count} sacrifices. Currently selected: {sacrifices.Count}");
+            return false;
+        }
+
+        foreach (GridCell cell in sacrifices)
+        {
+            if (cell != null)
+            {
+                RemoveObjectFromGrid(cell.gridIndex);
+            }
+        }
+
+        sacrifices.Clear();
+        return true;
+    }
+>>>>>>> Stashed changes
 }
