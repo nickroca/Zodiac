@@ -115,6 +115,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         currentState = 0;
         GameManager.Instance.PlayingCard = false;
+        gridManager.sacrifices.Clear();
 
         //reset back to original
         rectTransform.localScale = originalScale;
@@ -205,6 +206,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+            if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+            {
+                if (cell.gridIndex.y == 1)
+                gridManager.ToggleSacrifice(cell);
+            }
+        }
+
         if (!Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -269,6 +282,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
+<<<<<<< Updated upstream
             if (cardData != cardDisplay.cardData)
             {
                 cardData = cardDisplay.cardData;
@@ -290,6 +304,27 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 turnSystem.summonLimit--;
                 sacrificeSuccessful = false;
                 sacrifices.Clear();
+=======
+
+            if (cell.gridIndex.y == 1) {
+                if (!gridManager.TrySacrifice(summonCard.rank))
+                {
+                    Debug.Log("Needs more sacrifices");
+                    return;
+                }
+
+                if (gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
+                {
+                    summonCard.attackPosition = positionManager.attackPosition;
+                    cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
+                    //cell.objectInCell.attackposition = positionManager.attackPosition;
+                    handManager.cardsInHand.Remove(gameObject);
+                    handManager.UpdateHandVisuals();
+                    Debug.Log($"Played Summon: {summonCard.name}");
+                    Destroy(gameObject);
+                    turnSystem.summonLimit = 0;
+                }
+>>>>>>> Stashed changes
             }
         }
     }

@@ -17,6 +17,7 @@ public class GridManager : MonoBehaviour
     DiscardManager discardManager;
     private SummonSelect selectedAttacker = null;
     public TurnSystem turnSystem;
+    public List<GridCell> sacrifices = new List<GridCell>();
 
     private void Start()
     {
@@ -287,9 +288,16 @@ public class GridManager : MonoBehaviour
             if(!ControlsSummons(2))
             {
                 Summon attacker = selectedAttacker.GetComponent<SummonStats>().summonStartData;
-                oppLife.currentHP = oppLife.currentHP - attacker.power;
-                Debug.Log("Attacker direct attack");
-                selectedAttacker.GetComponent<SummonStats>().hasAttacked = true;
+                if (attacker.attackPosition)
+                {
+                    oppLife.currentHP = oppLife.currentHP - attacker.power;
+                    Debug.Log("Attacker direct attack");
+                    selectedAttacker.GetComponent<SummonStats>().hasAttacked = true;
+                }
+                else
+                {
+                    Debug.Log("Not in attack position");
+                }
                 selectedAttacker = null;
             }
         }
@@ -443,6 +451,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     public int CountPlayerSummons()
     {
         int count = 0;
@@ -455,5 +464,51 @@ public class GridManager : MonoBehaviour
             }
         }
         return count;
+=======
+    public void ToggleSacrifice(GridCell cell)
+    {
+        if (cell == null || cell.objectInCell == null)
+        {
+            return;
+        }
+
+        SummonSelect summon = cell.objectInCell.GetComponent<SummonSelect>();
+
+        if (summon.controller != 1)
+        {
+            return;
+        }
+
+        if(sacrifices.Contains(cell))
+        {
+            Debug.Log("Added Sacrifice: " + cell.name);
+            sacrifices.Remove(cell);
+        } 
+        else
+        {
+            Debug.Log("Removed Sacrifice: " + cell.name);
+            sacrifices.Add(cell);
+        }
+    }
+
+    public bool TrySacrifice(int count)
+    {
+        if(sacrifices.Count != count)
+        {
+            Debug.Log($"Needs {count} sacrifices. Currently selected: {sacrifices.Count}");
+            return false;
+        }
+
+        foreach (GridCell cell in sacrifices)
+        {
+            if (cell != null)
+            {
+                RemoveObjectFromGrid(cell.gridIndex);
+            }
+        }
+
+        sacrifices.Clear();
+        return true;
+>>>>>>> Stashed changes
     }
 }
