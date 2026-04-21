@@ -102,15 +102,19 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void TransitionToState0()
     {
-        currentState = 0;
-        GameManager.Instance.PlayingCard = false;
+        if (!gridManager.isTargeting)
+        {
+            currentState = 0;
+            GameManager.Instance.PlayingCard = false;
+            gridManager.sacrifices.Clear();
 
-        //reset back to original
-        rectTransform.localScale = originalScale;
-        rectTransform.localRotation = originalRotation;
-        rectTransform.localPosition = originalPosition;
-        glowEffect.SetActive(false);
-        playArrow.SetActive(false);
+            //reset back to original
+            rectTransform.localScale = originalScale;
+            rectTransform.localRotation = originalRotation;
+            rectTransform.localPosition = originalPosition;
+            glowEffect.SetActive(false);
+            playArrow.SetActive(false);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -121,7 +125,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             originalRotation = rectTransform.localRotation;
             originalScale = rectTransform.localScale;
 
-            
+
             currentState = 1;
         }
     }
@@ -180,7 +184,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         {
             GameManager.Instance.PlayingCard = true;
         }
-        
+
         rectTransform.localPosition = playPosition;
         if (positionManager.attackPosition)
         {
@@ -189,6 +193,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         else
         {
             rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+            if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+            {
+                if (cell.gridIndex.y == 1)
+                    gridManager.ToggleSacrifice(cell);
+            }
         }
 
         if (!Input.GetMouseButton(0))
@@ -224,16 +240,26 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 1 && gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
+
+            if (cell.gridIndex.y == 1)
             {
-                summonCard.attackPosition = positionManager.attackPosition;
-                cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
-                //cell.objectInCell.attackposition = positionManager.attackPosition;
-                handManager.cardsInHand.Remove(gameObject);
-                handManager.UpdateHandVisuals();
-                Debug.Log($"Played Summon: {summonCard.name}");
-                Destroy(gameObject);
-                turnSystem.summonLimit = 0;
+                if (!gridManager.TrySacrifice(summonCard.rank))
+                {
+                    Debug.Log("Needs more sacrifices");
+                    return;
+                }
+
+                if (gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
+                {
+                    summonCard.attackPosition = positionManager.attackPosition;
+                    cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
+                    //cell.objectInCell.attackposition = positionManager.attackPosition;
+                    handManager.cardsInHand.Remove(gameObject);
+                    handManager.UpdateHandVisuals();
+                    Debug.Log($"Played Summon: {summonCard.name}");
+                    Destroy(gameObject);
+                    turnSystem.summonLimit = 0;
+                }
             }
         }
     }
@@ -242,17 +268,40 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
-        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+        if (sorceryCard.effect.requiresTarget)
         {
-            Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos, true, positionManager.attackPosition))
+            gridManager.StartTargeting(target => target.cellFull, cell =>
             {
-                handManager.cardsInHand.Remove(gameObject);
-                handManager.UpdateHandVisuals();
-                Debug.Log($"Played Sorcery: {sorceryCard.name}");
-                Destroy(gameObject);
-            }
+                sorceryCard.effect.Activate(gridManager, cell);
+                ResolveSorcery(sorceryCard, cell);
+            });
         }
+        else
+        {
+            sorceryCard.effect.Activate(gridManager, null);
+            ResolveSorcery(sorceryCard, null);
+        }
+    }
+
+    private void ResolveSorcery(Sorcery sorceryCard, GridCell target)
+    {
+        Debug.Log($"Activated Sorcery: {sorceryCard.name}");
+
+        if (sorceryCard.type == Sorcery.SorceryType.Normal)
+        {
+            discardManager.AddToDiscard(sorceryCard);
+        }
+        else if (sorceryCard.type == Sorcery.SorceryType.Permanent)
+        {
+            //Not coded yet
+        }
+        else if (sorceryCard.type == Sorcery.SorceryType.Artifact)
+        {
+            //Not coded yet
+        }
+        handManager.cardsInHand.Remove(gameObject);
+        handManager.UpdateHandVisuals();
+        Destroy(gameObject);
     }
 
     private void TryToPlayHexCard(Ray ray, Hex hexCard)
