@@ -17,6 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 21a2ce77488fd74478b556cf3d709597, type: 3}
   ID: 0
+  rarity: 0
   type: 0
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: 26a710b56ef08c24c9f7133aad3cca02, type: 2}
   trigger: 2

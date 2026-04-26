@@ -65,12 +65,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
-    <Compile Include="Assets\Scripts\Sorcery Effects\DestroySorceriesAndHexes.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\SorceryTooltip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\RandomDestroy.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\SorceryStats.cs" />
@@ -82,11 +82,13 @@
     <Compile Include="Assets\Scripts\SorceryStatsTooltipDisplay.cs" />
     <Compile Include="Assets\Scripts\SummonSelect.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\PowerBoost.cs" />
+    <Compile Include="Assets\Scripts\HexHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\SummonTooltip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\DrawCards.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\ElementPowerBoost.cs" />
     <Compile Include="Assets\Scripts\TurnSystem.cs" />
     <Compile Include="Assets\Scripts\PositionManager.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Assets\Scripts\UIPositionObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\DragUIObject.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\LifeGain.cs" />
     <Compile Include="Assets\Scripts\PlayerLIFE.cs" />
     <Compile Include="Assets\Scripts\CardMovement.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\SwordManager.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\ElementDestroy.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\DealDamage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\DiscardManager.cs" />
   </ItemGroup>
