@@ -24,9 +24,9 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text guardText;
     public Image[] element;
 
-    //Sorcery Cards
-
-    //Hex Cards
+    //Sorcery/Hex Cards
+    public GameObject effectBox;
+    public TMP_Text effectText;
 
 
 
@@ -67,6 +67,8 @@ public class CardDisplay : MonoBehaviour
         sorceryElements.SetActive(false);
         hexElements.SetActive(false);
         summonElements.SetActive(true);
+        effectBox.SetActive(false);
+
         for (int i = 0; i < element.Length; i++)
         {
             if (((int)summonCard.element) == i)
@@ -89,6 +91,8 @@ public class CardDisplay : MonoBehaviour
         sorceryElements.SetActive(true);
         hexElements.SetActive(false);
         summonElements.SetActive(false);
+        effectBox.SetActive(true);
+        effectText.text = sorceryCard.text;
         for (int i = 0; i < element.Length; i++)
         {
             element[i].gameObject.SetActive(false);
@@ -100,6 +104,8 @@ public class CardDisplay : MonoBehaviour
         sorceryElements.SetActive(false);
         hexElements.SetActive(true);
         summonElements.SetActive(false);
+        effectBox.SetActive(true);
+        effectText.text = hexCard.text;
         for (int i = 0; i < element.Length; i++)
         {
             element[i].gameObject.SetActive(false);

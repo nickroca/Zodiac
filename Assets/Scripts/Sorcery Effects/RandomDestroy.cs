@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/Targeted Destruction")]
-public class TargetDestroy : SorceryEffect
+[CreateAssetMenu(menuName = "Effects/Random Destruction")]
+public class RandomDestroy : SorceryEffect
 {
     private void OnEnable()
     {
-        requiresTarget = true;
+        requiresTarget = false;
     }
 
     public override void Activate(GridManager gridManager, GridCell target = null)

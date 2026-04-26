@@ -144,6 +144,7 @@ public class TurnSystem : MonoBehaviour
     IEnumerator OpponentTurn()
     {
         opponentTurn = true;
+        gridManager.OnOpponentTurnStart?.Invoke();
 
         phaseCount = 0;
         UpdatePhaseGraphics();
@@ -168,6 +169,7 @@ public class TurnSystem : MonoBehaviour
         summonLimit = 1;
         phaseCount = 0;
         opponentTurn = false;
+        gridManager.OnOpponentTurnEnd?.Invoke();
 
         deckManager.DrawCard(handManager);
 

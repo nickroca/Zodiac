@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae90548ff968d1419687ad89c0e2850, type: 3}
-  m_Name: Spiked Shield
-  m_EditorClassIdentifier: 
-  cardName: Spiked Shield
-  text: Attach to your Summon. If an opponent's Summon attacks the attached Summon,
-    destroy it after the battle.
+  m_Name: OnSummonTest
+  m_EditorClassIdentifier: Assembly-CSharp::Hex
+  cardName: On Summon Test
+  text: On opponent's summon attack, deal 5 damage to them.
   sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 21a2ce77488fd74478b556cf3d709597, type: 3}
-  type: 2
+  type: 0
+  effect: {fileID: 11400000, guid: 26a710b56ef08c24c9f7133aad3cca02, type: 2}
+  trigger: 0

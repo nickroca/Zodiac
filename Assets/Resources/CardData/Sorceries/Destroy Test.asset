@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bddee7d9f2e69a442924fdc08923fca0, type: 3}
-  m_Name: Fireball
-  m_EditorClassIdentifier: 
-  cardName: Fireball
-  text: Destroy 1 opponent's Summon.
+  m_Name: Destroy Test
+  m_EditorClassIdentifier: Assembly-CSharp::Sorcery
+  cardName: Destroy Test
+  text: Destroy an opponent's Summon.
   sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 3000c47a7f1dab94ea9fa9a37a51802d, type: 3}
   type: 0
+  effect: {fileID: 11400000, guid: d02b43485bd18394384e729ff7a39716, type: 2}

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public OptionsManager OptionsManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
     public DeckManager DeckManager { get; private set; }
+    public List<Card> allCards = new List<Card>();
 
     public bool PlayingCard = false;
 
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeManagers();
+            Card[] cardAssets = Resources.LoadAll<Card>("CardData");
+            allCards.AddRange(cardAssets);
         }
         else if (Instance != this)
         {

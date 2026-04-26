@@ -77,7 +77,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 HandleHoverState();
                 break;
             case 2:
-                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
+                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3))
                 {
                     HandleDragState();
                     if (!Input.GetMouseButton(0)) //check if mouse button is released
@@ -87,7 +87,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 }
                 break;
             case 3:
-                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
+                if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3))
                 {
                     HandlePlayState();
                 }
@@ -125,7 +125,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             originalRotation = rectTransform.localRotation;
             originalScale = rectTransform.localScale;
 
-
             currentState = 1;
         }
     }
@@ -140,7 +139,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (currentState == 1 && turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && turnSystem.summonLimit != 0)
+        if (currentState == 1 && turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && (turnSystem.summonLimit != 0 || !(cardData is Summon)))
         {
             currentState = 2;
         }
@@ -195,7 +194,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
@@ -249,7 +248,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                     return;
                 }
 
-                if (gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition))
+                GameObject placedObj = gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition);
+                if (placedObj != null)
                 {
                     summonCard.attackPosition = positionManager.attackPosition;
                     cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
@@ -268,40 +268,61 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
-        if (sorceryCard.effect.requiresTarget)
+        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
-            gridManager.StartTargeting(target => target.cellFull, cell =>
+            Vector2 targetPos = cell.gridIndex;
+
+            if (cell.gridIndex.y != 0)
             {
-                sorceryCard.effect.Activate(gridManager, cell);
-                ResolveSorcery(sorceryCard, cell);
-            });
-        }
-        else
-        {
-            sorceryCard.effect.Activate(gridManager, null);
-            ResolveSorcery(sorceryCard, null);
+                return;
+            }
+
+            GameObject placedObj = gridManager.AddObjectToGrid(sorceryCard.prefab, targetPos, true, true);
+            
+            if (placedObj != null)
+            {
+                Debug.Log($"Placed Sorcery: {sorceryCard.name}");
+
+                handManager.cardsInHand.Remove(gameObject);
+                handManager.UpdateHandVisuals();
+                Destroy(gameObject);
+
+                if (sorceryCard.effect.requiresTarget)
+                {
+                    gridManager.StartTargeting(target => target.cellFull, selectedCell =>
+                    {
+                        sorceryCard.effect.Activate(gridManager, selectedCell);
+                        ResolveSorcery(sorceryCard, placedObj, selectedCell, targetPos);
+                    });
+                }
+                else
+                {
+                    sorceryCard.effect.Activate(gridManager, null);
+                    ResolveSorcery(sorceryCard, placedObj, null, targetPos);
+                }
+            }
         }
     }
 
-    private void ResolveSorcery(Sorcery sorceryCard, GridCell target)
+    private void ResolveSorcery(Sorcery sorceryCard, GameObject placedObj, GridCell target, Vector2 placePos)
     {
         Debug.Log($"Activated Sorcery: {sorceryCard.name}");
 
+        
+
         if (sorceryCard.type == Sorcery.SorceryType.Normal)
         {
+            gridManager.RemoveObjectFromGrid(placePos);
             discardManager.AddToDiscard(sorceryCard);
         }
         else if (sorceryCard.type == Sorcery.SorceryType.Permanent)
         {
-            //Not coded yet
+            //not yet implemented
         }
         else if (sorceryCard.type == Sorcery.SorceryType.Artifact)
         {
-            //Not coded yet
+            //not yet implemented
         }
-        handManager.cardsInHand.Remove(gameObject);
-        handManager.UpdateHandVisuals();
-        Destroy(gameObject);
     }
 
     private void TryToPlayHexCard(Ray ray, Hex hexCard)
@@ -311,8 +332,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
         {
             Vector2 targetPos = cell.gridIndex;
-            if (cell.gridIndex.y == 0 && gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, positionManager.attackPosition))
+
+            if (cell.gridIndex.y != 0)
             {
+                Debug.Log("Hex must be placed in the bottom row.");
+                return;
+            }
+
+            GameObject placedObj = gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, positionManager.attackPosition);
+            if (placedObj != null)
+            {
+                HexHandler handler = placedObj.AddComponent<HexHandler>();
+                handler.Init(hexCard, gridManager, targetPos);
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
                 Debug.Log($"Played Hex: {hexCard.name}");

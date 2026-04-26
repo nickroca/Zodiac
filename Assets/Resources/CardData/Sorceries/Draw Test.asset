@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bddee7d9f2e69a442924fdc08923fca0, type: 3}
-  m_Name: Big Cannon
-  m_EditorClassIdentifier: 
-  cardName: Big Cannon
-  text: Discard 2 cards to deal 10 damage to your opponent.
+  m_Name: Draw Test
+  m_EditorClassIdentifier: Assembly-CSharp::Sorcery
+  cardName: Draw 2
+  text: Draw 2 cards.
   sprite: {fileID: 21300000, guid: aa21f3d5f44bcea4d8f037cbe88a903b, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 3000c47a7f1dab94ea9fa9a37a51802d, type: 3}
   type: 0
+  effect: {fileID: 11400000, guid: e15b8c675be0ac642977c01119cccd94, type: 2}

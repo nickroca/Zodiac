@@ -35,21 +35,41 @@ public class SwordManager : MonoBehaviour
             {
                 sword1obj.SetActive(true);
             }
-            else if (gridManager.CanSummonAttack(1, 1))
+            else
+            {
+                sword1obj.SetActive(false);
+            }
+            if (gridManager.CanSummonAttack(1, 1))
             {
                 sword2obj.SetActive(true);
             }
-            else if (gridManager.CanSummonAttack(2, 1))
+            else
+            {
+                sword2obj.SetActive(false);
+            }
+            if (gridManager.CanSummonAttack(2, 1))
             {
                 sword3obj.SetActive(true);
             }
-            else if (gridManager.CanSummonAttack(3, 1))
+            else
+            {
+                sword3obj.SetActive(false);
+            }
+            if (gridManager.CanSummonAttack(3, 1))
             {
                 sword4obj.SetActive(true);
             }
-            else if (gridManager.CanSummonAttack(4, 1))
+            else
+            {
+                sword4obj.SetActive(false);
+            }
+            if (gridManager.CanSummonAttack(4, 1))
             {
                 sword5obj.SetActive(true);
+            }
+            else
+            {
+                sword5obj.SetActive(false);
             }
         }
         else
