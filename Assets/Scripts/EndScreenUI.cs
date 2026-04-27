@@ -8,11 +8,14 @@ public class EndScreenUI : MonoBehaviour
 {
     public TextMeshProUGUI resultText;
     public Image fadePanel;
+    //public GameOverManager goManager;
 
     void Start()
     {
-        resultText.text = GameOverManager.resultMessage;
-        resultText.color = GameOverManager.resultColor;
+        //goManager = FindObjectOfType<GameOverManager>();
+        
+        //resultText.text = GameOverManager.resultMessage;
+        //resultText.color = GameOverManager.resultColor;
 
         StartCoroutine(FadeInAndPop());
     }
