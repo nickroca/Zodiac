@@ -80,6 +80,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 if (turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3))
                 {
                     HandleDragState();
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, summonLayerMask);
+
+                        if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
+                        {
+                            gridManager.ToggleSacrifice(cell);
+                        }
+                    }
                     if (!Input.GetMouseButton(0)) //check if mouse button is released
                     {
                         TransitionToState0();
