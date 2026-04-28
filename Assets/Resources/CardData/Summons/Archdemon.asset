@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Archdemon
   m_EditorClassIdentifier: 
   cardName: Archdemon
-  text: Guard Break. Double all damage your opponent takes from this card.
+  text: 
   sprite: {fileID: 21300000, guid: a57a2a687cb669b4abdc02ff95e109ec, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 37c685e5c20e25d46ba156c0f2899463, type: 3}
+  ID: 74
+  rarity: 3
   element: 5
   rank: 2
   power: 30

@@ -63,6 +63,8 @@ MonoBehaviour:
   description: Just a single battle.
   preview: {fileID: -2064868069179515889}
   dependencies:
+  - dependency: {fileID: 6055239036607759393, guid: 63badf6983fdc0c4fbc2c7db556749d2, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: d16ba4840c4ba5e40bf3fbd6da36cb60, type: 3}
     instantiationMode: 1
   - dependency: {fileID: 1835446846155515304, guid: a8794eddf95994741b6e87e668e5413b, type: 3}
