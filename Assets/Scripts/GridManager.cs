@@ -17,6 +17,15 @@ public class GridManager : MonoBehaviour
     DiscardManager discardManager;
     private SummonSelect selectedAttacker = null;
     public TurnSystem turnSystem;
+    public List<GridCell> sacrifices = new List<GridCell>();
+    SwordManager swordManager;
+    public bool isTargeting = false;
+    private System.Action<GridCell> onTargetSelected;
+    private System.Func<GridCell, bool> isValidTarget;
+    public System.Action<GameObject> OnOpponentSummon;
+    public System.Action<GameObject> OnOpponentAttack;
+    public System.Action OnOpponentTurnStart;
+    public System.Action OnOpponentTurnEnd;
 
     private void Start()
     {
@@ -24,6 +33,7 @@ public class GridManager : MonoBehaviour
         oppLife = FindObjectOfType<OpponentLIFE>();
         discardManager = FindObjectOfType<DiscardManager>();
         turnSystem = FindObjectOfType<TurnSystem>();
+        swordManager = FindObjectOfType<SwordManager>();
         GetGrid();
         //transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
@@ -33,7 +43,7 @@ public class GridManager : MonoBehaviour
         GridCell[] allCells = GetComponentsInChildren<GridCell>();
         Debug.Log($"Total Cells Found: {allCells.Length - 1}");
         int index = 0;
-        for(int x = 0; x < width; x++)
+        for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
@@ -61,7 +71,7 @@ public class GridManager : MonoBehaviour
         */
     }
 
-    public bool AddObjectToGrid(GameObject obj, Vector2 gridPosition, bool playerCard, bool attackPosition)
+    public GameObject AddObjectToGrid(GameObject obj, Vector2 gridPosition, bool playerCard, bool attackPosition)
     {
         if (gridPosition.x >= 0 && gridPosition.x < width && gridPosition.y >= 0 && gridPosition.y < height)
         {
@@ -69,18 +79,21 @@ public class GridManager : MonoBehaviour
 
             if (cell.cellFull)
             {
-                return false;
+                return null;
             }
             else
             {
                 //If grid is spaced out improperly, change the value after cell.GC<>().pos (higher value is more spaced out, smaller is less)
                 GameObject newObj = Instantiate(obj, cell.GetComponent<Transform>().position, Quaternion.identity);
                 SummonSelect selectable = newObj.GetComponent<SummonSelect>();
-                selectable.gridPosition = gridPosition;
-                selectable.controller = playerCard ? 1 : 2;
+                if (selectable != null)
+                {
+                    selectable.gridPosition = gridPosition;
+                    selectable.controller = playerCard ? 1 : 2;
+                }
                 newObj.transform.SetParent(cell.transform);
-                newObj.transform.localScale = new Vector3(0.9f,0.9f,1);
-                if(!playerCard)
+                newObj.transform.localScale = new Vector3(0.9f, 0.9f, 1);
+                if (!playerCard)
                 {
                     newObj.transform.localRotation = Quaternion.Euler(0, 0, 180);
                     if (!attackPosition)
@@ -100,12 +113,12 @@ public class GridManager : MonoBehaviour
                 gridObjects.Add(newObj);
                 cell.objectInCell = newObj;
                 cell.cellFull = true;
-                return true;
+                return newObj;
             }
         }
         else
         {
-            return false;
+            return null;
         }
     }
 
@@ -123,20 +136,26 @@ public class GridManager : MonoBehaviour
     public void PlayOpponentCard()
     {
         int summons = 0;
-        for(int i = 0; i < 5; i++)
+        int spot = 4;
+        for (int i = 4; i >= 0; i--)
         {
             Vector2 search = new Vector2(i, 2);
             if (IsCellFull(search))
             {
                 summons++;
+            } 
+            else
+            {
+                spot = i;
             }
         }
-        if(summons != 5)
+        
+        if (summons != 5)
         {
             Card[] cardAssets = Resources.LoadAll<Card>("CardData/Summons");
             System.Random rand = new System.Random();
+            Vector2 place = new Vector2(spot, 2);
             Summon oppCard = cardAssets[rand.Next(cardAssets.Length)] as Summon;
-            Vector2 place = new Vector2(summons, 2);
             if (oppCard.power < oppCard.guard || oppCard.power < 10)
             {
                 oppCard.attackPosition = false;
@@ -145,7 +164,7 @@ public class GridManager : MonoBehaviour
             {
                 oppCard.attackPosition = true;
             }
-            if(oppCard.attackPosition)
+            if (oppCard.attackPosition)
             {
                 Debug.Log("Summoning Opponent's Monster in Attack Position");
             }
@@ -153,14 +172,20 @@ public class GridManager : MonoBehaviour
             {
                 Debug.Log("Summoning Opponent's Monster in Defense Position");
             }
-            AddObjectToGrid(oppCard.prefab, place, false, oppCard.attackPosition);
-            GridCell oppCell = gridCells[summons, 2];
-            oppCell.objectInCell.GetComponent<SummonStats>().summonStartData = oppCard;
+            GameObject placedObj = AddObjectToGrid(oppCard.prefab, place, false, oppCard.attackPosition);
+
+            if(placedObj != null)
+            {
+                GridCell oppCell = gridCells[spot, 2];
+                oppCell.objectInCell.GetComponent<SummonStats>().summonStartData = oppCard;
+
+                OnOpponentSummon?.Invoke(placedObj);
+            }
 
             //cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
         }
     }
-    
+
     public bool IsCellFull(Vector2 gridPosition)
     {
         GridCell cell = gridCells[(int)gridPosition.x, (int)gridPosition.y].GetComponent<GridCell>();
@@ -176,10 +201,10 @@ public class GridManager : MonoBehaviour
 
     public void doBattle(int attacking, int attackingController, int defending, int defendingController)
     {
-        Summon attacker = gridCells[attacking, attackingController].objectInCell.GetComponent<SummonStats>().summonStartData;
-        Summon defender = gridCells[defending, defendingController].objectInCell.GetComponent<SummonStats>().summonStartData;
-        Vector2 attackerWins = new Vector2(attacking, attackingController);
-        Vector2 defenderWins = new Vector2(defending, defendingController);
+        SummonStats attacker = gridCells[attacking, attackingController].objectInCell.GetComponent<SummonStats>();
+        SummonStats defender = gridCells[defending, defendingController].objectInCell.GetComponent<SummonStats>();
+        Vector2 attackerSpot = new Vector2(attacking, attackingController);
+        Vector2 defenderSpot = new Vector2(defending, defendingController);
         if (defender.attackPosition)
         {
             if (attacker.power > defender.power)
@@ -189,43 +214,60 @@ public class GridManager : MonoBehaviour
                 if (attackingController == 1)
                 {
                     oppLife.currentHP = oppLife.currentHP - difference;
-                } 
+                }
                 else
                 {
                     playerLife.currentHP = playerLife.currentHP - difference;
                 }
-                RemoveObjectFromGrid(defenderWins);
+                RemoveObjectFromGrid(defenderSpot);
             }
             else //if (attacker.power < defender.power)
             {
                 Debug.Log("Defender Wins against Attacker!");
-                discardManager.AddToDiscard(attacker);
-                RemoveObjectFromGrid(attackerWins);
+                discardManager.AddToDiscard(gridCells[attacking, attackingController].objectInCell.GetComponent<Summon>());
+                RemoveObjectFromGrid(attackerSpot);
             }
             if (attacker.power == defender.power)
             {
                 Debug.Log("Clash Happened");
-                discardManager.AddToDiscard(attacker);
-                RemoveObjectFromGrid(attackerWins);
-                RemoveObjectFromGrid(defenderWins);
+                discardManager.AddToDiscard(gridCells[attacking, attackingController].objectInCell.GetComponent<Summon>());
+                RemoveObjectFromGrid(attackerSpot);
+                RemoveObjectFromGrid(defenderSpot);
             }
-        } 
+        }
         else
         {
-            if(attacker.power <= defender.guard)
+            if (attacker.power <= defender.guard)
             {
                 Debug.Log("Attacker loses against Guard!");
             }
             else
             {
                 Debug.Log("Attacker Wins against Guard!");
-                RemoveObjectFromGrid(defenderWins);
+                RemoveObjectFromGrid(defenderSpot);
             }
         }
     }
 
     public void OnCellClicked(GridCell clickedCell)
     {
+        if (isTargeting)
+        {
+            if (isValidTarget != null && !isValidTarget(clickedCell))
+            {
+                Debug.Log("Invalid target");
+                return;
+            }
+            
+            isTargeting = false;
+            Time.timeScale = 1f;
+            onTargetSelected?.Invoke(clickedCell);
+            onTargetSelected = null;
+            isValidTarget = null;
+
+            return;
+        }
+        
         if (clickedCell.objectInCell != null)
         {
             SummonSelect clickedSummon = clickedCell.objectInCell.GetComponent<SummonSelect>();
@@ -234,7 +276,8 @@ public class GridManager : MonoBehaviour
             {
                 if (clickedSummon.controller == 1)
                 {
-                    if (turnSystem.isYourTurn && turnSystem.phaseCount == 2) {
+                    if (turnSystem.isYourTurn && turnSystem.phaseCount == 2)
+                    {
                         if (clickedSummon.GetComponent<SummonStats>().hasAttacked)
                         {
                             Debug.Log("This monster has already attacked");
@@ -272,14 +315,21 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        if(selectedAttacker != null)
+        if (selectedAttacker != null)
         {
-            if(!ControlsSummons(2))
+            if (!ControlsSummons(2))
             {
-                Summon attacker = selectedAttacker.GetComponent<SummonStats>().summonStartData;
-                oppLife.currentHP = oppLife.currentHP - attacker.power;
-                Debug.Log("Attacker direct attack");
-                selectedAttacker.GetComponent<SummonStats>().hasAttacked = true;
+                SummonStats attacker = selectedAttacker.GetComponent<SummonStats>();
+                if (attacker.attackPosition)
+                {
+                    oppLife.currentHP = oppLife.currentHP - attacker.power;
+                    Debug.Log("Attacker direct attack");
+                    attacker.hasAttacked = true;
+                }
+                else
+                {
+                    Debug.Log("Not in attack position");
+                }
                 selectedAttacker = null;
             }
         }
@@ -298,21 +348,21 @@ public class GridManager : MonoBehaviour
             {
                 Debug.Log($"Select your own Summon first");
             }
-        return;
+            return;
         }
         if (selected.controller == 2)
         {
             if (IsCellFull(selected.gridPosition))
             {
                 doBattle((int)selectedAttacker.gridPosition.x, (int)selectedAttacker.gridPosition.y, (int)selected.gridPosition.x, (int)selected.gridPosition.y);
-                
+
                 selectedAttacker = null;
             }
             else
             {
                 return;
             }
-        } 
+        }
         else
         {
             selectedAttacker = selected;
@@ -334,9 +384,8 @@ public class GridManager : MonoBehaviour
             if (!IsCellFull(oppPos))
                 continue;
 
-            Summon attacker = gridCells[x, 2].objectInCell
-                .GetComponent<SummonStats>().summonStartData;
-            
+            SummonStats attacker = gridCells[x, 2].objectInCell.GetComponent<SummonStats>();
+
             if (!attacker.attackPosition)
                 continue;
 
@@ -351,8 +400,7 @@ public class GridManager : MonoBehaviour
                 if (!IsCellFull(playerPos))
                     continue;
 
-                Summon defender = gridCells[px, 1].objectInCell
-                    .GetComponent<SummonStats>().summonStartData;
+                SummonStats defender = gridCells[px, 1].objectInCell.GetComponent<SummonStats>();
 
                 bool canKill = false;
 
@@ -393,14 +441,20 @@ public class GridManager : MonoBehaviour
             // Attack best target if found
             if (bestTargetX != -1)
             {
-                doBattle(x, 2, bestTargetX, 1);
+                OnOpponentAttack?.Invoke(gridCells[x, 2].objectInCell);
+                if (IsCellFull(oppPos)) {
+                    doBattle(x, 2, bestTargetX, 1);
+                }
             }
             if (bestTargetX == -1)
             {
                 if (!ControlsSummons(1))
                 {
-                    playerLife.currentHP = playerLife.currentHP - attacker.power;
-                    Debug.Log("Opponent direct attack");
+                    if (IsCellFull(oppPos)) {
+                        OnOpponentAttack?.Invoke(gridCells[x, 2].objectInCell);
+                        playerLife.currentHP = playerLife.currentHP - attacker.power;
+                        Debug.Log("Opponent direct attack");
+                    }
                 }
             }
         }
@@ -408,7 +462,7 @@ public class GridManager : MonoBehaviour
 
     public bool ControlsSummons(int row)
     {
-        for(int x = 0; x < width; x++)
+        for (int x = 0; x < width; x++)
         {
             if (IsCellFull(new Vector2(x, row)))
             {
@@ -431,5 +485,79 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ToggleSacrifice(GridCell cell)
+    {
+        if (cell == null || cell.objectInCell == null)
+        {
+            return;
+        }
+
+        SummonSelect summon = cell.objectInCell.GetComponent<SummonSelect>();
+
+        if (summon.controller != 1)
+        {
+            return;
+        }
+
+        if (sacrifices.Contains(cell))
+        {
+            Debug.Log("Added Sacrifice: " + cell.name);
+            sacrifices.Remove(cell);
+        }
+        else
+        {
+            Debug.Log("Removed Sacrifice: " + cell.name);
+            sacrifices.Add(cell);
+        }
+    }
+
+    public bool TrySacrifice(int count)
+    {
+        if (sacrifices.Count != count)
+        {
+            Debug.Log($"Needs {count} sacrifices. Currently selected: {sacrifices.Count}");
+            return false;
+        }
+
+        foreach (GridCell cell in sacrifices)
+        {
+            if (cell != null)
+            {
+                RemoveObjectFromGrid(cell.gridIndex);
+            }
+        }
+
+        sacrifices.Clear();
+        return true;
+    }
+
+    public bool CanSummonAttack(int row, int column)
+    {
+        Vector2 check = new Vector2(row, column);
+        if (IsCellFull(check))
+        {
+            if (gridCells[row, column].objectInCell.GetComponent<SummonStats>().hasAttacked)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void StartTargeting(System.Func<GridCell, bool> isValid, System.Action<GridCell> callback)
+    {
+        isTargeting = true;
+        isValidTarget = isValid;
+        onTargetSelected = callback;
+
+        Time.timeScale = 0f;
+
+        Debug.Log("Select a target...");
     }
 }

@@ -8,6 +8,7 @@ using static Sorcery;
 public class Hex : Card
 {
     public HexType type;
+    public SorceryEffect effect;
 
     public enum HexType
     {
@@ -15,4 +16,14 @@ public class Hex : Card
         Permanent,
         Artifact
     }
+
+    public enum Trigger
+    {
+        OnSummon,
+        OnAttack,
+        OnTurnStart,
+        OnTurnEnd
+    }
+
+    public Trigger trigger;
 }

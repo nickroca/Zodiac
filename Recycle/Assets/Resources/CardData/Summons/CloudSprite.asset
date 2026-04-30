@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
+  m_Name: CloudSprite
+  m_EditorClassIdentifier: 
+  cardName: Cloud Sprite
+  text: 
+  sprite: {fileID: 21300000, guid: ee0b756823bd1e94cb9960259b5766cc, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a3d5a08380d54b14a92e443af910089d, type: 3}
+  element: 3
+  rank: 0
+  power: 12
+  guard: 15
+  attackPosition: 0

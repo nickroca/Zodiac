@@ -16,7 +16,8 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         //Load all card assets from the Resources folder
-        Card[] cardAssets = Resources.LoadAll<Card>("CardData/Summons");
+        Card[] cardAssets = Resources.LoadAll<Card>("CardData");
+        //cardAssets.add(Resources.LoadAll<Card>("CardData/Sorceries"));
         System.Random rand = new System.Random();
         Card[] cards = new Card[40];
         for (int i = 0; i < 40; i++)

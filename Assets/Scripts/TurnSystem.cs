@@ -25,6 +25,7 @@ public class TurnSystem : MonoBehaviour
     public Image MP1;
     public Image BP;
     public Image MP2;
+    public GameObject EndTurnButton;
     private bool switched;
     private bool opponentTurn = false;
 
@@ -36,7 +37,7 @@ public class TurnSystem : MonoBehaviour
         positionManager = FindObjectOfType<PositionManager>();
         
         isYourTurn = true;
-        phaseCount = 0;
+        phaseCount = 1;
         turnCount = 1;
     }
 
@@ -45,10 +46,16 @@ public class TurnSystem : MonoBehaviour
         if(isYourTurn == true)
         {
             turnText.text = "Your Turn";
+            if (phaseCount >= 1)
+            {
+                EndTurnButton.SetActive(true);
+            }
         } 
         else
         {
             turnText.text = "Opponent Turn";
+            EndTurnButton.SetActive(false);
+
         }
         UpdatePhaseGraphics();
         if(!isYourTurn || (phaseCount == 0 || phaseCount == 2))
@@ -98,7 +105,6 @@ public class TurnSystem : MonoBehaviour
                     isYourTurn = false;
                     turnCount++;
                     phaseCount = 0;
-                    gridManager.ResetAttacks();
                 }
             }
         }
@@ -114,23 +120,23 @@ public class TurnSystem : MonoBehaviour
             MP2.color = Color.white;
         } else if (phaseCount == 1)
         {
-            DP.color = Color.white;
+            DP.color = Color.red;
             MP1.color = Color.green;
             BP.color = Color.white;
             MP2.color = Color.white;
         }
         else if (phaseCount == 2)
         {
-            DP.color = Color.white;
-            MP1.color = Color.white;
+            DP.color = Color.red;
+            MP1.color = Color.red;
             BP.color = Color.green;
             MP2.color = Color.white;
         }
         else
         {
-            DP.color = Color.white;
-            MP1.color = Color.white;
-            BP.color = Color.white;
+            DP.color = Color.red;
+            MP1.color = Color.red;
+            BP.color = Color.red;
             MP2.color = Color.green;
         }
     }
@@ -138,6 +144,7 @@ public class TurnSystem : MonoBehaviour
     IEnumerator OpponentTurn()
     {
         opponentTurn = true;
+        gridManager.OnOpponentTurnStart?.Invoke();
 
         phaseCount = 0;
         UpdatePhaseGraphics();
@@ -161,9 +168,46 @@ public class TurnSystem : MonoBehaviour
         turnCount++;
         summonLimit = 1;
         phaseCount = 0;
+        opponentTurn = false;
+        gridManager.OnOpponentTurnEnd?.Invoke();
 
         deckManager.DrawCard(handManager);
 
-        opponentTurn = false;
+        yield return new WaitForSeconds(1f);
+
+        phaseCount++;
+        gridManager.ResetAttacks();
+    }
+
+    public void BPClick()
+    {
+        if (isYourTurn)
+        {
+            if (phaseCount == 1 && turnCount != 1)
+            {
+                phaseCount = 2;
+            }
+        }
+    }
+
+    public void MP2Click()
+    {
+        if (isYourTurn)
+        {
+            if (phaseCount == 2 && turnCount != 1)
+            {
+                phaseCount = 3;
+            }
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (isYourTurn)
+        {
+            isYourTurn = false;
+            turnCount++;
+            phaseCount = 0;
+        }
     }
 }

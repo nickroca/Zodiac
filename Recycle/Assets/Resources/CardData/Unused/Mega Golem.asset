@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e439a910380794f888b9827c1f19b2, type: 3}
+  m_Name: Mega Golem
+  m_EditorClassIdentifier: 
+  cardName: Mega Golem
+  text: 
+  sprite: {fileID: 21300000, guid: f5290286f862f214197b19cdca4d406f, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 7f4cd119b46815c40a04c6ddba3a035b, type: 3}
+  element: 1
+  rank: 1
+  power: 0
+  guard: 30
+  attackPosition: 0

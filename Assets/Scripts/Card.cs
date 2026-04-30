@@ -11,5 +11,13 @@ namespace Zodiac {
         public string text;
         public Sprite sprite;
         public GameObject prefab;
+        public int ID;
+        public int rarity;
+        /* Rarities:
+         * 1 = Common
+         * 2 = Rare
+         * 3 = Super Rare
+         * 4 = Ultra Rare
+         */
     }
 }
