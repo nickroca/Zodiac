@@ -2,10 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MapNode : MonoBehaviour, IPointerClickHandler
 {
     public MapNode[] connectedNodes;
+
+    public int row;
+    public int col;
+
     public bool isUnlocked = false;
 
     private MapManager mapManager;
@@ -34,9 +39,6 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
     {
         image = GetComponent<Image>();
         label = GetComponentInChildren<TextMeshProUGUI>();
-
-        if (image == null)
-            Debug.LogError(gameObject.name + " missing Image component");
     }
 
     public void SetNodeType(NodeType type)
@@ -51,7 +53,14 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
     {
         currentState = state;
 
-        if (image == null) return;
+        if (image == null)
+            image = GetComponent<Image>();
+
+        if (image == null)
+        {
+            Debug.LogError("Missing Image on node: " + name);
+            return;
+        }
 
         switch (state)
         {
@@ -64,7 +73,7 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
                 break;
 
             case NodeState.Skipped:
-                image.color = new Color(0.75f, 0.75f, 0.75f);
+                image.color = Color.gray;
                 break;
 
             case NodeState.Available:
@@ -95,12 +104,8 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         mapManager?.MoveToNode(this);
 
         if (nodeType == NodeType.Battle)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Setup");
-        }
+            SceneManager.LoadScene("Setup");
         else
-        {
-            Debug.Log("Pack clicked");
-        }
+            SceneManager.LoadScene("Pack");
     }
 }
