@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class MapNode : MonoBehaviour, IPointerClickHandler
 {
@@ -9,6 +10,7 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
 
     private MapManager mapManager;
     private Image image;
+    private TextMeshProUGUI label;
 
     public enum NodeState
     {
@@ -19,26 +21,30 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         Locked
     }
 
+    public enum NodeType
+    {
+        Battle,
+        Pack
+    }
+
+    public NodeType nodeType;
     public NodeState currentState;
 
     void Awake()
     {
         image = GetComponent<Image>();
+        label = GetComponentInChildren<TextMeshProUGUI>();
 
         if (image == null)
-        {
-            Debug.LogError(gameObject.name + " missing Image component"); 
-        }
+            Debug.LogError(gameObject.name + " missing Image component");
     }
 
-    public void SetManager(MapManager manager)
+    public void SetNodeType(NodeType type)
     {
-        mapManager = manager;
-    }
+        nodeType = type;
 
-    public void Unlock()
-    {
-        isUnlocked = true;
+        if (label != null)
+            label.text = type == NodeType.Battle ? "Battle" : "Pack";
     }
 
     public void SetState(NodeState state)
@@ -71,12 +77,30 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         }
     }
 
-   //click the node
+    public void SetManager(MapManager manager)
+    {
+        mapManager = manager;
+    }
+
+    public void Unlock()
+    {
+        isUnlocked = true;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!isUnlocked || currentState != NodeState.Available)
             return;
 
         mapManager?.MoveToNode(this);
+
+        if (nodeType == NodeType.Battle)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Setup");
+        }
+        else
+        {
+            Debug.Log("Pack clicked");
+        }
     }
 }

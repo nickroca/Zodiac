@@ -93,6 +93,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\DragUIObject.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\LifeGain.cs" />
+    <Compile Include="Assets\Scripts\NodeTypeAssigner.cs" />
     <Compile Include="Assets\Scripts\PlayerLIFE.cs" />
     <Compile Include="Assets\Scripts\CardMovement.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />

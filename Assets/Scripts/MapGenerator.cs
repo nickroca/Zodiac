@@ -19,10 +19,11 @@ public class MapGenerator : MonoBehaviour
 
     private List<List<MapNode>> mapRows = new List<List<MapNode>>();
     private MapManager mapManager;
-
+    private NodeTypeAssigner typeAssigner;
     void Start()
     {
         mapManager = FindObjectOfType<MapManager>();
+        typeAssigner = FindObjectOfType<NodeTypeAssigner>();
         GenerateMap();
     }
 
@@ -69,6 +70,11 @@ public class MapGenerator : MonoBehaviour
             {
                 ConnectRows(mapRows[y - 1], currentRow, y == 1, y == rows - 1);
             }
+        }
+
+        if (typeAssigner != null)
+        {
+            typeAssigner.AssignTypes(mapRows);
         }
 
         MapNode start = mapRows[0][0];
