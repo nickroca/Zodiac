@@ -130,7 +130,7 @@ public class MapGenerator : MonoBehaviour
         a.connectedNodes = list.ToArray();
 
         GameObject line = Instantiate(linePrefab, canvasTransform, false);
-        line.transform.SetSiblingIndex(0);
+        line.transform.SetSiblingIndex(1);
 
         RectTransform rt = line.GetComponent<RectTransform>();
 
