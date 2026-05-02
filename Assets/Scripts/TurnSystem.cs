@@ -21,6 +21,7 @@ public class TurnSystem : MonoBehaviour
     HandManager handManager;
     GridManager gridManager;
     PositionManager positionManager;
+    HandHolder handHolder;
     public Image DP;
     public Image MP1;
     public Image BP;
@@ -35,6 +36,7 @@ public class TurnSystem : MonoBehaviour
         handManager = FindObjectOfType<HandManager>();
         gridManager = FindObjectOfType<GridManager>();
         positionManager = FindObjectOfType<PositionManager>();
+        handHolder = FindObjectOfType<HandHolder>();
         
         isYourTurn = true;
         phaseCount = 1;
@@ -177,6 +179,9 @@ public class TurnSystem : MonoBehaviour
 
         phaseCount++;
         gridManager.ResetAttacks();
+
+        handHolder.hhText.text = "Click on a card and drag it into your zone to play it.\r\n" +
+                                         "You can only play 1 Summon each turn.";
     }
 
     public void BPClick()

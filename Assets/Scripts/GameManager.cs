@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public AudioManager AudioManager { get; private set; }
     public DeckManager DeckManager { get; private set; }
     public List<Card> allCards = new List<Card>();
+    public List<int> playerDeck = new List<int>();
+    public List<int> playerDeckInitial = new List<int>();
+    public List<int> playerInventory = new List<int>();
+    public List<List<int>> enemyDecks = new List<List<int>>();
 
     public bool PlayingCard = false;
 
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
             InitializeManagers();
             Card[] cardAssets = Resources.LoadAll<Card>("CardData");
             allCards.AddRange(cardAssets);
+            allCards.Sort((a, b) => a.id.CompareTo(b.id));
         }
         else if (Instance != this)
         {
@@ -78,6 +83,61 @@ public class GameManager : MonoBehaviour
                 DeckManager = GetComponentInChildren<DeckManager>();
             }
         }
+    }
+
+    public Card GetCardByID(int id)
+    {
+        return allCards.Find(card => card.id == id);
+    }
+
+    public Card GetRandomCard()
+    {
+        float rand = Random.value;
+        int rarity = 1;
+
+        if (rand <= 0.8f)
+        {
+            rarity = 1;
+        }
+        else if (rand <= 0.95f)
+        {
+            rarity = 2;
+        }
+        else
+        {
+            rarity = 3;
+        }
+
+        List<Card> validCards = allCards.FindAll(c => c.rarity == rarity);
+
+        return validCards[Random.Range(0, validCards.Count)];
+    }
+
+    public void AddCardtoInventory(Card card)
+    {
+        playerInventory.Add(card.id);
+    }
+
+    public void Reset()
+    {
+        playerInventory.Clear();
+        playerDeck = new List<int>(playerDeckInitial);
+    }
+
+    public List<Card> GetEnemyDeck(int index)
+    {
+        List<Card> result = new List<Card>();
+
+        foreach (int id in enemyDecks[index])
+        {
+            Card card = GetCardByID(id);
+            if (card != null)
+            {
+                result.Add(card);
+            }
+        }
+
+        return result;
     }
 
     public int PlayerHP

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e8f391d8539227d44bfd8f3cbf34e788
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - deckGrid: {instanceID: 0}
+  - inventoryGrid: {instanceID: 0}
+  - cardPrefab: {fileID: 3021126197319410854, guid: 0c50240b15ce52c409ea5667dadb9a27, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -56,7 +56,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         UpdateCardDisplay();
     }

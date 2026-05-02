@@ -40,6 +40,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     TurnSystem turnSystem;
     PositionManager positionManager;
     public bool positionSelected = false;
+    HandHolder handHolder;
 
     void Awake()
     {
@@ -63,6 +64,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         cardDisplay = FindObjectOfType<CardDisplay>();
         turnSystem = FindObjectOfType<TurnSystem>();
         positionManager = FindObjectOfType<PositionManager>();
+        handHolder = FindObjectOfType<HandHolder>();
 
         gridLayerMask = LayerMask.GetMask("Grid");
         summonLayerMask = LayerMask.GetMask("Summons");
@@ -152,6 +154,19 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (currentState == 1 && turnSystem.isYourTurn && (turnSystem.phaseCount == 1 || turnSystem.phaseCount == 3) && (turnSystem.summonLimit != 0 || !(cardData is Summon)))
         {
             currentState = 2;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (cardData is Summon summonCard)
+            {
+                handHolder.hhText.text = "Summon";
+            }
+            else if (cardData is Sorcery sorceryCard)
+            {
+                handHolder.hhText.text = "Sorcery";
+            }
+            else if (cardData is Hex hexCard)
+            {
+                handHolder.hhText.text = "Hex";
+            }
         }
     }
 
@@ -184,6 +199,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         mousePos.z = 0;
         transform.position = mousePos;
+        
         //rectTransform.position = Vector3.Lerp(rectTransform.position, Input.mousePosition, lerpTime); //this doesn't work for some reason
     }
 
