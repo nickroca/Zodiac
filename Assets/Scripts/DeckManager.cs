@@ -11,7 +11,8 @@ public class DeckManager : MonoBehaviour
     public int currentHandSize;
     private HandManager handManager;
     private DeckPileManager deckPileManager;
-    private bool startBattleRun = true;
+    GameManager gameManager;
+    private bool startBattleRun = false;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class DeckManager : MonoBehaviour
 
         //add the loaded cards to the allCards list
         allCards.AddRange(cards);
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Awake()
@@ -43,7 +46,7 @@ public class DeckManager : MonoBehaviour
 
     private void Update()
     {
-        if (startBattleRun)
+        if (gameManager.battleTime)
         {
             BattleSetup();
         }

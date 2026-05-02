@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private int playerHP;
     private int difficulty = 1;
+    public bool battleTime = false;
     public OptionsManager OptionsManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
     public DeckManager DeckManager { get; private set; }

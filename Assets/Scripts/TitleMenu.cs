@@ -3,7 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class TitleMenu : MonoBehaviour
 {
-   public void PlayGame()
+    GameManager gameManager;
+
+    private void Start()
+    {
+        
+    }
+
+    public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
     }
