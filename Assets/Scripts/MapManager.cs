@@ -4,23 +4,49 @@ public class MapManager : MonoBehaviour
 {
     public MapNode currentNode;
 
-    void Start()
+    public void SetStartNode(MapNode startNode)
     {
-        currentNode.Unlock();
-        UnlockNext(currentNode);
+        currentNode = startNode;
+
+        currentNode.SetState(MapNode.NodeState.Current);
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            node.SetState(MapNode.NodeState.Available);
+        }
     }
 
     public void MoveToNode(MapNode newNode)
     {
-        currentNode = newNode;
-        UnlockNext(currentNode);
-    }
+        bool valid = false;
 
-    void UnlockNext(MapNode node)
-    {
-        foreach (MapNode n in node.connectedNodes)
+        foreach (MapNode node in currentNode.connectedNodes)
         {
-            n.Unlock();
+            if (node == newNode)
+            {
+                valid = true;
+                break;
+            }
+        }
+
+        if (!valid) return;
+
+        currentNode.SetState(MapNode.NodeState.Visited);
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            if (node != newNode)
+            {
+                node.SetState(MapNode.NodeState.Skipped);
+            }
+        }
+
+        currentNode = newNode;
+        currentNode.SetState(MapNode.NodeState.Current);
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            node.SetState(MapNode.NodeState.Available);
         }
     }
 }
