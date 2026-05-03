@@ -16,6 +16,8 @@ MonoBehaviour:
   text: 
   sprite: {fileID: 21300000, guid: ee0b756823bd1e94cb9960259b5766cc, type: 3}
   prefab: {fileID: 1766478236457053089, guid: a3d5a08380d54b14a92e443af910089d, type: 3}
+  id: 46
+  rarity: 2
   element: 3
   rank: 0
   power: 12

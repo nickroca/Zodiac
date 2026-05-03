@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Undine
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 29
-  rarity: 0
+  sprite: {fileID: 553653065305356412, guid: 4f1c38272164a6a4794e0ec8afc5608b, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e6981f4db221a914a9cb3753710c708e, type: 3}
+  id: 29
+  rarity: 3
   element: 2
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 25
+  guard: 30
   attackPosition: 1

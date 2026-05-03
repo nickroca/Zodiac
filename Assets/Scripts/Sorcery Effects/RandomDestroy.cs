@@ -10,11 +10,11 @@ public class RandomDestroy : SorceryEffect
 
     public override void Activate(GridManager gridManager, GridCell target = null)
     {
-        if (target == null || target.objectInCell == null)
+        if ((target == null || target.objectInCell == null) && requiresTarget)
         {
             return;
         }
 
-        gridManager.RemoveObjectFromGrid(target.gridIndex);
+        gridManager.RemoveObjectFromGrid(target.gridIndex, false);
     }
 }

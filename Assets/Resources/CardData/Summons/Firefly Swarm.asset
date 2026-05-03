@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Firefly Swarm
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 80
-  rarity: 0
+  sprite: {fileID: 2918545077249893203, guid: 5a1cbd8ae9bb01b429145cf75b7aeb58, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 7095e1252191c0947b0c2f0e848711e9, type: 3}
+  id: 80
+  rarity: 1
   element: 4
   rank: 0
-  power: 5
-  guard: 10
-  attackPosition: 1
+  power: 8
+  guard: 8
+  attackPosition: 0

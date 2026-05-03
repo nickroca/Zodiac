@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Chimera
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 8
-  rarity: 0
+  sprite: {fileID: -7038271629089209879, guid: 041ac665b4ea9bf41858781ea12de982, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e052586e48790054398002e319d0e38f, type: 3}
+  id: 8
+  rarity: 2
   element: 0
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 21
+  guard: 18
   attackPosition: 1

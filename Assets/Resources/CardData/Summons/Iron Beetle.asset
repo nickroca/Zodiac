@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Iron Beetle
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 36
-  rarity: 0
+  sprite: {fileID: -2561356735363217775, guid: f52f9f8649e2e2f43a7edb2642bcf8ab, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 9603c10ef0f729e43a1612a12aebf372, type: 3}
+  id: 36
+  rarity: 3
   element: 1
   rank: 0
-  power: 0
-  guard: 0
+  power: 18
+  guard: 11
   attackPosition: 1

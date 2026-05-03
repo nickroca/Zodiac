@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Elf Archer
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 79
-  rarity: 0
+  sprite: {fileID: 5045324274926178876, guid: 50db85a11520d144c9b4eff241764185, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a2c6bbc4165cb474db028f19ebcd26c2, type: 3}
+  id: 79
+  rarity: 2
   element: 4
   rank: 0
   power: 17

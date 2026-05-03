@@ -38,7 +38,9 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         originalParent = transform.parent;
         transform.SetParent(transform.root);
 
-        canvasGroup.blocksRaycasts = false;
+        if (canvasGroup != null) {
+            canvasGroup.blocksRaycasts = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,7 +50,9 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = true;
+        if (canvasGroup != null) {
+            canvasGroup.blocksRaycasts = true;
+        }
         
         if (transform.parent == canvas.transform)
         {

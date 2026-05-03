@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Spark Spirit
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 50
-  rarity: 0
+  sprite: {fileID: -7071178497478595195, guid: 4cf3a5127f5cf6d4caa2f74d3fd0c38e, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a12295b9891c30a4883aad6d44c64f9b, type: 3}
+  id: 50
+  rarity: 2
   element: 3
   rank: 0
-  power: 0
-  guard: 0
+  power: 16
+  guard: 10
   attackPosition: 1

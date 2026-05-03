@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Ghoul
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 61
-  rarity: 0
+  sprite: {fileID: 6515602111186535438, guid: b8817431e842906418669fdc6b2d29bb, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 652f7731366b4b344802f00660ffb0eb, type: 3}
+  id: 61
+  rarity: 1
   element: 5
   rank: 0
-  power: 0
-  guard: 0
+  power: 5
+  guard: 5
   attackPosition: 1

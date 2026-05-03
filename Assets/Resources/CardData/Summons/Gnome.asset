@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Gnome
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 44
-  rarity: 0
+  sprite: {fileID: 3402368762417361602, guid: 2772401c6add9214eac14ee235db87e9, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 5827a6faf1889df4eaf26ad0f09f87f2, type: 3}
+  id: 44
+  rarity: 3
   element: 1
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 24
+  guard: 32
   attackPosition: 1

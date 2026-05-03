@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Flying Fish
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 22
-  rarity: 0
+  sprite: {fileID: -6777813597426319468, guid: d5f2d9e3aac81c74d9b65182f85b1aeb, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 3daa21a3f066b1a4a88836bc449751a8, type: 3}
+  id: 22
+  rarity: 1
   element: 2
   rank: 0
-  power: 0
-  guard: 0
-  attackPosition: 1
+  power: 8
+  guard: 8
+  attackPosition: 0

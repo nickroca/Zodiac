@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Fire Sorcerer
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 6
-  rarity: 0
+  sprite: {fileID: 7076654330081903564, guid: 39e805e922a737f4a8d3383533f86515, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b086a5be194e0cb438e8f8acce6a2419, type: 3}
+  id: 6
+  rarity: 3
   element: 0
   rank: 0
-  power: 0
-  guard: 0
+  power: 18
+  guard: 14
   attackPosition: 1

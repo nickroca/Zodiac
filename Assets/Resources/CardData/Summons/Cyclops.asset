@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Cyclops
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 41
-  rarity: 0
+  sprite: {fileID: 4809396141046213086, guid: e21c42fdaeacee94f8074b242b743095, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 79162dc0ab7304f40925c1e49321bc06, type: 3}
+  id: 42
+  rarity: 1
   element: 1
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 23
+  guard: 16
   attackPosition: 1

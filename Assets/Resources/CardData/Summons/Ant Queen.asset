@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Ant Queen
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 38
-  rarity: 0
+  sprite: {fileID: 3974136976436516344, guid: b220fae5339d63544b57acec286e9707, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e87236eedd187c843b7dc74281f654e8, type: 3}
+  id: 38
+  rarity: 1
   element: 1
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 16
+  guard: 24
   attackPosition: 1

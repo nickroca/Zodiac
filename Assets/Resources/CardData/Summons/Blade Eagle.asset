@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Blade Eagle
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 49
-  rarity: 0
+  sprite: {fileID: 2011281774504316320, guid: b22afcf2740ecee4c92fdf2ecbeef7b2, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 4c96fa378a2e8b445ae807dc59daad19, type: 3}
+  id: 49
+  rarity: 1
   element: 3
   rank: 0
-  power: 0
-  guard: 0
+  power: 15
+  guard: 7
   attackPosition: 1

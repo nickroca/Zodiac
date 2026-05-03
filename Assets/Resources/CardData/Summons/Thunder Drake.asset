@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Thunder Drake
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 58
-  rarity: 0
+  sprite: {fileID: 3653677331287836351, guid: 42cd498d8103461478ebfabec36db50f, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b710a82aa469d6a4b86e0627b53d5d35, type: 3}
+  id: 58
+  rarity: 2
   element: 3
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 26
+  guard: 26
   attackPosition: 1

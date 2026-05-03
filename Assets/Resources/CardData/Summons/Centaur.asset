@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Centaur
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 40
-  rarity: 0
+  sprite: {fileID: -3151532704864698956, guid: 79eebdd013d957a48b76ea984f9b1147, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 60791c686d5f1884c8ea1492a8f44513, type: 3}
+  id: 40
+  rarity: 2
   element: 1
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 22
+  guard: 17
   attackPosition: 1

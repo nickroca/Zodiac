@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Volcano Golem
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 10
-  rarity: 0
+  sprite: {fileID: -3392406573131837033, guid: e0bee81121bd3c44abd1ef1a543f5014, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 11c66d2b77989764ab5497c5e383eb1f, type: 3}
+  id: 10
+  rarity: 1
   element: 0
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 16
+  guard: 24
   attackPosition: 1

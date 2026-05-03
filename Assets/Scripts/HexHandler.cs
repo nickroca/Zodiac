@@ -64,7 +64,7 @@ public class HexHandler : MonoBehaviour
             target = AutoSelectTarget(opponentObj);
         }
         hexData.effect.Activate(gridManager, target);
-        gridManager.RemoveObjectFromGrid(gridPosition);
+        gridManager.RemoveObjectFromGrid(gridPosition, true);
         FindObjectOfType<DiscardManager>().AddToDiscard(hexData);
 
         Unsubscribe();

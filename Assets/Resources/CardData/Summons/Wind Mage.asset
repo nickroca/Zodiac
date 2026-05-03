@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Wind Mage
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 54
-  rarity: 0
+  sprite: {fileID: -7031798015364181175, guid: 845263c615fe9604e9a20bf72d203110, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: fcfaa3d40b093134eaab8cd2e87555be, type: 3}
+  id: 53
+  rarity: 3
   element: 3
   rank: 0
-  power: 0
+  power: 18
   guard: 0
   attackPosition: 1

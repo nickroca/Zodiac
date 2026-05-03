@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Sylph
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 59
-  rarity: 0
+  sprite: {fileID: -2896356110754062344, guid: b18d9d2bbe33c6e48a435a1711471e66, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 214fea50d136b694e9e5112c88a65bae, type: 3}
+  id: 59
+  rarity: 3
   element: 3
-  rank: 0
-  power: 0
+  rank: 2
+  power: 30
   guard: 0
   attackPosition: 1

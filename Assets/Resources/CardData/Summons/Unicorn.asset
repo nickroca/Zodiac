@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Unicorn
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 85
-  rarity: 0
+  sprite: {fileID: -2092730633671331588, guid: a2010e3e5d540f046bfca00d7541aaf7, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 48e89e2e71b88d24eb28f34e0341e78a, type: 3}
+  id: 85
+  rarity: 3
   element: 4
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 23
+  guard: 23
   attackPosition: 1

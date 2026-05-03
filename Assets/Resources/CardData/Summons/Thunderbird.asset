@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Thunderbird
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 57
-  rarity: 0
+  sprite: {fileID: -335484885754276683, guid: 0ead0a1e5fd8a4049981198f20bc6072, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: dc5b8bdf26e87754a87934e0c8231a01, type: 3}
+  id: 57
+  rarity: 1
   element: 3
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 25
+  guard: 20
   attackPosition: 1

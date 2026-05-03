@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Angel Knight
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 83
-  rarity: 0
+  sprite: {fileID: -8650183584797594399, guid: 83359fa2b99eda74b9d523f4c45db807, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 397e2fcd7c3fcaf4ba6beb7bc0a7c5fe, type: 3}
+  id: 83
+  rarity: 1
   element: 4
   rank: 1
   power: 19

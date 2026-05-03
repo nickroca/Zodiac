@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Spear Fishman
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 21
-  rarity: 0
+  sprite: {fileID: 2825044583303064109, guid: b05339dcbedd4484c97a6b94de598032, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 7b7731043b27af243ac626788e40847d, type: 3}
+  id: 21
+  rarity: 2
   element: 2
   rank: 0
-  power: 0
-  guard: 0
+  power: 17
+  guard: 9
   attackPosition: 1

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Fire Drake
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 9
-  rarity: 0
+  sprite: {fileID: 8241686423773900840, guid: dd726a1a9a4e39d4daea6116761a5825, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 403e903b86ca48143a96c93381dcdf65, type: 3}
+  id: 9
+  rarity: 1
   element: 0
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 20
+  guard: 20
   attackPosition: 1

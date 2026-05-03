@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Minotaur
   m_EditorClassIdentifier: 
   cardName: Minotaur
-  text: Guard Break. Veteran.
+  text: 
   sprite: {fileID: 21300000, guid: 684860b50696f134e9bb47d1ad1ce79e, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 3b7a33e35770e554b854a0a2914400e4, type: 3}
-  ID: 42
-  rarity: 0
+  id: 41
+  rarity: 3
   element: 1
   rank: 1
   power: 25

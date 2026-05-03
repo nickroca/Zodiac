@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Grim Reaper
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 73
-  rarity: 0
+  sprite: {fileID: -6685899267813751174, guid: 634f375f2c0de2a43be3495263cf5655, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e6d9c3ba23226394685828907c2658df, type: 3}
+  id: 73
+  rarity: 2
   element: 5
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 27
+  guard: 15
   attackPosition: 1

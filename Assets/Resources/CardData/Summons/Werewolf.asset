@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Werewolf
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 71
-  rarity: 0
+  sprite: {fileID: -4039291315573906701, guid: 52dd177157098ad46b4f69f52a7531b8, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e5488914ac6e7754f82a64184d79d84b, type: 3}
+  id: 71
+  rarity: 3
   element: 5
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 24
+  guard: 10
   attackPosition: 1

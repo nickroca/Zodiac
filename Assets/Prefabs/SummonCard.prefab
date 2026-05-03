@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectScale: 1.1
   cardPlay: {x: 0, y: 150}
-  playPosition: {x: 450, y: 350, z: 0}
+  playPosition: {x: 450, y: -50, z: 0}
   glowEffect: {fileID: 1161720467470548495}
   playArrow: {fileID: 107925017665779242}
   lerpTime: 0.3
@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e6254365de786409865261a13a80e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckBuilderCardUI
+  cardImage: {fileID: 0}
   cardID: 0
 --- !u!1 &3108477914467608122
 GameObject:
@@ -1159,6 +1160,7 @@ GameObject:
   - component: {fileID: 6930657053208028013}
   - component: {fileID: 4633580437625350360}
   - component: {fileID: 2593754038154370263}
+  - component: {fileID: 545969626847755771}
   m_Layer: 6
   m_Name: CardCanvas
   m_TagString: Untagged
@@ -1258,6 +1260,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &545969626847755771
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967730118909315925}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4116688043820758847
 GameObject:
   m_ObjectHideFlags: 0

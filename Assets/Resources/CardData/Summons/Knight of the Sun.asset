@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Knight of the Sun
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 88
-  rarity: 0
+  sprite: {fileID: 8036956259161772209, guid: 55c7713197c6460439faac3de514db72, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: d6379b1553881ea47a8f7a1541b5b437, type: 3}
+  id: 88
+  rarity: 2
   element: 4
   rank: 2
   power: 28

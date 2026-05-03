@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Gargoyle
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 32
-  rarity: 0
+  sprite: {fileID: -2990900167212558872, guid: e2c9eb640c6f71240967ee34e4bb92e9, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 5a0954c153ddd8a489e4ab0e820506c1, type: 3}
+  id: 32
+  rarity: 1
   element: 1
   rank: 0
-  power: 0
-  guard: 0
+  power: 8
+  guard: 8
   attackPosition: 1

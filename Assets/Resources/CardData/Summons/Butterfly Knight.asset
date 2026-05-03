@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Butterfly Knight
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 84
-  rarity: 0
+  sprite: {fileID: -391474131388044186, guid: 37a2a0b30c0c6ab459e5b276929da285, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: ea3cf6b7fb97c8641b283d4797bd0278, type: 3}
+  id: 84
+  rarity: 2
   element: 4
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 20
+  guard: 21
   attackPosition: 1

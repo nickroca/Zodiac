@@ -62,10 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardDisplay.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\StatSwap.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\MapNode.cs" />
+    <Compile Include="Assets\Scripts\MapState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\DestroyLowest.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\SorceryTooltip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -96,9 +99,11 @@
     <Compile Include="Assets\Scripts\Sorcery Effects\DrawCards.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\ElementPowerBoost.cs" />
     <Compile Include="Assets\Scripts\TurnSystem.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\DefenseDestroy.cs" />
     <Compile Include="Assets\Scripts\PositionManager.cs" />
     <Compile Include="Assets\Scripts\Hex.cs" />
     <Compile Include="Assets\Scripts\StateManager.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\Refresh.cs" />
     <Compile Include="Assets\Scripts\Summon.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -106,7 +111,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\DragUIObject.cs" />
     <Compile Include="Assets\Scripts\DeckBuilderManager.cs" />
+    <Compile Include="Assets\Scripts\CardInstance.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\LifeGain.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\AllPowerReduce.cs" />
     <Compile Include="Assets\Scripts\PlayerLIFE.cs" />
     <Compile Include="Assets\Scripts\CardMovement.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />
@@ -136,9 +143,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\LowDestroy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HandManager.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\AllLowDestroy.cs" />
     <Compile Include="Assets\UnityExcelImporterX\Example\Scripts\MstItemCustomType.cs" />
     <Compile Include="Assets\Scripts\CardStatsTooltipDisplay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -156,6 +165,7 @@
     <Compile Include="Assets\Scripts\Sorcery Effects\ElementDestroy.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\DealDamage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\Sorcery Effects\DealandGain.cs" />
     <Compile Include="Assets\Scripts\DiscardManager.cs" />
   </ItemGroup>
   <ItemGroup>

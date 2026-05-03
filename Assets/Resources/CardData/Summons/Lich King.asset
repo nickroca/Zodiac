@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Lich King
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 75
+  sprite: {fileID: 1410964630887004844, guid: 15f4059620ffed140927d09acff2693d, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a7b8d40990178644da1dcf5a36a8233a, type: 3}
+  id: 75
   rarity: 4
   element: 5
   rank: 3

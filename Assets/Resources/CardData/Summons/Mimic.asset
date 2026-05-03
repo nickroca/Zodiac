@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Mimic
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 63
-  rarity: 0
+  sprite: {fileID: -413800416329549740, guid: 8c86d315ae30eb54d9fb6c2b2d2dd285, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a4a67d9d1958f94479fb4754268f9e49, type: 3}
+  id: 63
+  rarity: 1
   element: 5
   rank: 0
-  power: 0
-  guard: 0
-  attackPosition: 1
+  power: 8
+  guard: 8
+  attackPosition: 0

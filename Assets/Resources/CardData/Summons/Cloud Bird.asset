@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Cloud Bird
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 56
-  rarity: 0
+  sprite: {fileID: 2780308300674392081, guid: a82ec508a2107ee46a1646b0a7b65b4b, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 1904697800e240f499c4f49e774c4059, type: 3}
+  id: 56
+  rarity: 2
   element: 3
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 15
+  guard: 24
   attackPosition: 1

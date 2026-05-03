@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Smoke Fiend
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 5
-  rarity: 0
+  sprite: {fileID: 5804252473268040444, guid: 5855e7a508f7e574fa91150aeb59c655, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 00ed0da8873d6dc4ba948baa925cabf0, type: 3}
+  id: 5
+  rarity: 1
   element: 0
   rank: 0
-  power: 0
-  guard: 0
+  power: 7
+  guard: 15
   attackPosition: 1

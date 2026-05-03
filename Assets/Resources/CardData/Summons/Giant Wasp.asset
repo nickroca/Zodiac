@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Giant Wasp
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 48
-  rarity: 0
+  sprite: {fileID: -7504829961840330863, guid: 6f73317964e56a4499a10eb19c0cca20, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 6efc7a61220bc6d48aec8e11e38d215c, type: 3}
+  id: 48
+  rarity: 1
   element: 3
   rank: 0
-  power: 0
-  guard: 0
-  attackPosition: 1
+  power: 8
+  guard: 8
+  attackPosition: 0

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Valkyrie
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 86
-  rarity: 0
+  sprite: {fileID: 8428372614177468317, guid: 6b9047b6d22b60a4abd173751608a75e, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 065604f0210376e4eacb0399b5ba8546, type: 3}
+  id: 86
+  rarity: 2
   element: 4
   rank: 1
   power: 23

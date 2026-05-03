@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
   currentNode: {fileID: 284045076}
+  currentFloor: 1
+  maxFloors: 3
 --- !u!1 &284045074
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapNode
   connectedNodes: []
   isUnlocked: 0
+  nodeType: 0
+  value: 0
+  currentState: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6444464c48d402d4ca328c69811bf711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapCameraScript
-  minY: 230
-  maxY: 1170
 --- !u!1 &653093315
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,10 +975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9850e186ef5350742ab8bb6e2857aab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  nodePrefab: {fileID: 7638252856599224221, guid: c57e1cb8c44aad345a65f806dd05ba95, type: 3}
+  nodePrefab: {fileID: 80239487420834595, guid: 913dd15ce7ef1444b8e7b06ea112f2c1, type: 3}
   linePrefab: {fileID: 2222327487482197360, guid: 042facddb977f864b9fde81f7a52d64c, type: 3}
   canvasTransform: {fileID: 1129719489}
-  rows: 6
+  rows: 8
   minNodesPerRow: 2
   maxNodesPerRow: 3
   xSpacing: 250

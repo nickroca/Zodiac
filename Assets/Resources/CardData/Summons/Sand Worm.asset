@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Sand Worm
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 37
-  rarity: 0
+  sprite: {fileID: -3574086367565815394, guid: 86ec89cd044ec9e49b03bd22542f59ed, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: d41131687463ebd43b2403423d4d1566, type: 3}
+  id: 37
+  rarity: 2
   element: 1
   rank: 0
-  power: 0
-  guard: 0
+  power: 16
+  guard: 10
   attackPosition: 1

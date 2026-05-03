@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Electric Mage
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 52
-  rarity: 0
+  sprite: {fileID: -8993367672745126896, guid: 4b3aa9a8527043a44886ed3079961379, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 00fba791dc1fbc2418761ed80178b33f, type: 3}
+  id: 52
+  rarity: 1
   element: 3
   rank: 0
-  power: 0
+  power: 16
   guard: 0
   attackPosition: 1

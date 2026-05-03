@@ -8,13 +8,20 @@ public class TargetDestroy : SorceryEffect
         requiresTarget = true;
     }
 
-    public override void Activate(GridManager gridManager, GridCell target = null)
+    public override void Activate(GridManager gridManager, GridCell target)
     {
         if (target == null || target.objectInCell == null)
         {
             return;
         }
 
-        gridManager.RemoveObjectFromGrid(target.gridIndex);
+        if (target.gridIndex.y == 1)
+        {
+            gridManager.RemoveObjectFromGrid(target.gridIndex, true);
+        }
+        else
+        {
+            gridManager.RemoveObjectFromGrid(target.gridIndex, false);
+        }
     }
 }

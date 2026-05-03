@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Setup.unity
     guid: df38717d00055f34b9f1b4dafc4af820
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MapScene.unity
-    guid: 2ecb0b4208c0aa54fa6775c47458e90a
+    guid: 6dda1142823b7e647b799c3de0309bee
+  - enabled: 1
+    path: Assets/Scenes/DeckBuilder.unity
+    guid: ab413ac27c27770458321f954a80f313
   m_configObjects: {}

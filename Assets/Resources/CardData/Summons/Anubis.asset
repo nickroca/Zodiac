@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Anubis
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 72
-  rarity: 0
+  sprite: {fileID: 4264317810600858832, guid: 084a053591412dc47bad9dd8bf21dc0a, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: fba17278c5ce3f946ab66f280ff9e64d, type: 3}
+  id: 72
+  rarity: 1
   element: 5
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 23
+  guard: 23
   attackPosition: 1

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
 //used a lot of online guides
@@ -23,12 +24,32 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         mapManager = FindObjectOfType<MapManager>();
-        GenerateMap();
+
+        if (GameManager.Instance.returnToMap)
+        {
+            GenerateNewFloor(mapManager.currentFloor);
+
+            mapManager.LoadMapState();
+
+            GameManager.Instance.returnToMap = false;
+        }
+        else
+        {
+            GenerateNewFloor(mapManager.currentFloor);
+        }
     }
 
-    void GenerateMap()
+    void GenerateMap(int floor)
     {
         mapRows.Clear();
+
+        int[,] enemyPools = new int[,]
+        {
+            {0, 1, 2, 3},
+            {4, 5, 6, 7},
+            {8, 9, 10, 11}
+        };
+
 
         for (int y = 0; y < rows; y++)
         {
@@ -58,6 +79,7 @@ public class MapGenerator : MonoBehaviour
                 node.SetManager(mapManager);
                 node.Unlock();
 
+                AssignNodeType(node, y, floor);
                 node.SetState(MapNode.NodeState.Locked);
 
                 currentRow.Add(node);
@@ -139,5 +161,52 @@ public class MapGenerator : MonoBehaviour
         rt.sizeDelta = new Vector2(dir.magnitude, 4f);
         rt.anchoredPosition = a.GetComponent<RectTransform>().anchoredPosition + dir / 2f;
         rt.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+    }
+
+    public void GenerateNewFloor(int floor)
+    {
+        foreach(Transform child in canvasTransform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        mapRows.Clear();
+
+        GenerateMap(floor);
+    }
+
+    void AssignNodeType(MapNode node, int row, int floor)
+    {
+        int bossRow = rows - 1;
+
+        if (row == bossRow)
+        {
+            node.nodeType = MapNode.NodeType.Boss;
+            node.value = GetBossForFloor(floor);
+            return;
+        }
+
+        if(Random.value < 0.7f)
+        {
+            node.nodeType = MapNode.NodeType.Enemy;
+            node.value = GetRandomEnemyForFloor(floor);
+        } 
+        else
+        {
+            node.nodeType = MapNode.NodeType.Card;
+            int[] cardValues = { 3, 5, 7 };
+            node.value = cardValues[Random.Range(0, cardValues.Length)];
+        }
+    }
+
+    int GetRandomEnemyForFloor(int floor)
+    {
+        int start = (floor - 1) * 4;
+        return Random.Range(start, start + 3);
+    }
+
+    int GetBossForFloor(int floor)
+    {
+        return (floor - 1) * 4 + 3;
     }
 }

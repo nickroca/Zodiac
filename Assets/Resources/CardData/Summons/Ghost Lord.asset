@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Ghost Lord
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 69
-  rarity: 0
+  sprite: {fileID: 8301267595052697645, guid: 4fb80a58b38e48b4eb9f66bf26c52bc6, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: bf1886c5c0e3d6e4d89f267f5d68b144, type: 3}
+  id: 69
+  rarity: 2
   element: 5
-  rank: 0
-  power: 0
+  rank: 1
+  power: 21
   guard: 0
   attackPosition: 1

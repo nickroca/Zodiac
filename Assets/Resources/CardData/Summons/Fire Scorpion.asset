@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Fire Scorpion
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 3
-  rarity: 0
+  sprite: {fileID: -1152278789990838204, guid: 213dddabf14ac5f47a72595f27aeb2d2, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b086a5be194e0cb438e8f8acce6a2419, type: 3}
+  id: 3
+  rarity: 1
   element: 0
   rank: 0
-  power: 0
-  guard: 0
-  attackPosition: 1
+  power: 8
+  guard: 8
+  attackPosition: 0

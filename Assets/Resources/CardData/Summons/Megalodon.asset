@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Megalodon
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 24
-  rarity: 0
+  sprite: {fileID: 6299871455324618538, guid: 4d123c8c6ea901549bb3adff85fe8902, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 0c0a1d9363d506b48922b09122892a0f, type: 3}
+  id: 24
+  rarity: 2
   element: 2
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 20
+  guard: 16
   attackPosition: 1

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Mechanical Angel
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 87
-  rarity: 0
+  sprite: {fileID: 7920911158492134257, guid: 0093d02300e8d5d49aa32fe71b7d71a1, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 64a26dd66f9912742876350515615e4a, type: 3}
+  id: 87
+  rarity: 1
   element: 4
   rank: 2
   power: 24

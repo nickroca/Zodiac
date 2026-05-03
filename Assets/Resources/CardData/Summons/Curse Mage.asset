@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Curse Mage
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 66
-  rarity: 0
+  sprite: {fileID: -5912774289492143331, guid: df39d95c59b72214faa4ffc77ddf7974, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 2de36d05531f447498be2e9626c81493, type: 3}
+  id: 66
+  rarity: 3
   element: 5
   rank: 0
-  power: 0
-  guard: 0
+  power: 18
+  guard: 12
   attackPosition: 1

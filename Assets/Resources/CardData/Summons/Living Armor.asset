@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Living Armor
   m_EditorClassIdentifier: 
   cardName: Living Armor
-  text: 'Counter: Switch this card to Defense.'
+  text: 
   sprite: {fileID: 21300000, guid: dd4d77228e1404f42b01b7876dc96f78, type: 3}
   prefab: {fileID: 1766478236457053089, guid: 9be65a22578dd8a4ca0560178b7438f3, type: 3}
+  id: 62
+  rarity: 2
   element: 5
   rank: 0
   power: 15

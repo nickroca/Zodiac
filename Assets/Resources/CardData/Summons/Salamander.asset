@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Salamander
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 14
-  rarity: 0
+  sprite: {fileID: 2511472874445094332, guid: 217b087a6f6f586488fb847a9d4cce6d, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 7a3ac579e4281f141946df27760653b2, type: 3}
+  id: 14
+  rarity: 3
   element: 0
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 29
+  guard: 29
   attackPosition: 1

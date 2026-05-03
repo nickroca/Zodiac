@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Slime
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 16
+  sprite: {fileID: -7282886668606283007, guid: 5cd5d4e9ec9b3fc49bee9e7f2fe478e2, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: ff9ed4d0f4a9d0c42a4bf028cf2f7893, type: 3}
+  id: 16
   rarity: 1
   element: 2
   rank: 0
-  power: 0
-  guard: 0
+  power: 3
+  guard: 3
   attackPosition: 1

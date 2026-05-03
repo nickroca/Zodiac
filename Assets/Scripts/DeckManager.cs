@@ -16,7 +16,7 @@ public class DeckManager : MonoBehaviour
 
     void Start()
     {
-        //Load all card assets from the Resources folder
+        /*//Load all card assets from the Resources folder
         Card[] cardAssets = Resources.LoadAll<Card>("CardData");
         //cardAssets.add(Resources.LoadAll<Card>("CardData/Sorceries"));
         System.Random rand = new System.Random();
@@ -28,8 +28,9 @@ public class DeckManager : MonoBehaviour
 
         //add the loaded cards to the allCards list
         allCards.AddRange(cards);
-
+        */
         gameManager = FindObjectOfType<GameManager>();
+        
     }
 
     void Awake()
@@ -55,7 +56,7 @@ public class DeckManager : MonoBehaviour
     public void BattleSetup()
     {
         handManager.BattleSetup(maxHandSize);
-        deckPileManager.MakeDeckPile(allCards);
+        deckPileManager.MakeDeckPile();
         deckPileManager.BattleSetup(startingHandSize, maxHandSize);
         startBattleRun = false;
     }

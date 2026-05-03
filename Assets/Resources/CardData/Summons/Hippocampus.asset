@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Hippocampus
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 25
-  rarity: 0
+  sprite: {fileID: 7590941565547410746, guid: 9a942be94a76278479eff8946ec9351b, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: a1335b4d2b219f846841f6f071402ade, type: 3}
+  id: 25
+  rarity: 1
   element: 2
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 19
+  guard: 20
   attackPosition: 1

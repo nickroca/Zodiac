@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Army Ant
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 35
-  rarity: 0
+  sprite: {fileID: 5325990909381962176, guid: eaaad8e18328856458b922c97a258a5b, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b5d05b802c1eddc4b8d048830ab89ad9, type: 3}
+  id: 35
+  rarity: 1
   element: 1
   rank: 0
-  power: 0
-  guard: 0
-  attackPosition: 1
+  power: 3
+  guard: 3
+  attackPosition: 0

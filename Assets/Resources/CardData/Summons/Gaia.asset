@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Gaia
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 45
-  rarity: 0
+  sprite: {fileID: -2033363195296439696, guid: 85696e1651407ef4c954d2e292a431f9, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 88880f969b894e64fb22f40a9a4a7a18, type: 3}
+  id: 45
+  rarity: 4
   element: 1
   rank: 3
   power: 40

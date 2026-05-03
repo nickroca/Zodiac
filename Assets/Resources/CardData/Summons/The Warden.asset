@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: The Warden
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 15
+  sprite: {fileID: 5811872067381314538, guid: 968e2e14a291a69458071b5a1cf94d01, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 6b47b6e73824552478c4cef7a28bacee, type: 3}
+  id: 15
   rarity: 4
   element: 0
   rank: 3

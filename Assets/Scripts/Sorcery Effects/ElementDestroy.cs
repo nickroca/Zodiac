@@ -4,6 +4,8 @@ using UnityEngine;
 public class ElementDestroy : SorceryEffect
 {
     public Summon.CardElement element;
+
+    DiscardManager discardManager = FindObjectOfType<DiscardManager>();
     public override void Activate(GridManager gridManager, GridCell target = null)
     {
         for(int x = 0; x < GridManager.width; x++)
@@ -15,7 +17,14 @@ public class ElementDestroy : SorceryEffect
                 SummonStats stats = cell.objectInCell.GetComponent<SummonStats>();
                 if (stats != null && stats.element == element)
                 {
-                    gridManager.RemoveObjectFromGrid(cell.gridIndex);
+                    if (y == 1)
+                    {
+                        gridManager.RemoveObjectFromGrid(cell.gridIndex, true);
+                    } 
+                    else
+                    {
+                        gridManager.RemoveObjectFromGrid(cell.gridIndex, false);
+                    }
                 }
             }
         }

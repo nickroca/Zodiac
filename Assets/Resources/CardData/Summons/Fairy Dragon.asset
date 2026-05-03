@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Fairy Dragon
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 90
+  sprite: {fileID: -5509966561974614766, guid: 1cada340919b344478a3717016397d4c, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: eefaec32945d1be4d8311cd5a01e3205, type: 3}
+  id: 90
   rarity: 4
   element: 4
   rank: 3

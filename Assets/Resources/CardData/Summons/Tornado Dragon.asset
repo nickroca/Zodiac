@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Tornado Dragon
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 60
+  sprite: {fileID: 2913139197762929837, guid: 8f3b3ddd9501dc442bb297859829ecae, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: c2932a938a22c2b448722c9e37bfbc99, type: 3}
+  id: 60
   rarity: 4
   element: 3
   rank: 3

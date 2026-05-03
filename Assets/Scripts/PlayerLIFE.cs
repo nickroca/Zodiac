@@ -15,6 +15,7 @@ public class PlayerLIFE : MonoBehaviour
     public TextMeshProUGUI LIFEText;
     public Image healthBar;
     [SerializeField] private RectTransform bar;
+    GameManager gameManager;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class PlayerLIFE : MonoBehaviour
         staticHP = 40;
         healthBar.color = Color.green;
         LIFEText.text = $"40";
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -30,6 +32,7 @@ public class PlayerLIFE : MonoBehaviour
         if (currentHP < 0)
         {
             currentHP = 0;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }
         if (currentHP != staticHP)
         {

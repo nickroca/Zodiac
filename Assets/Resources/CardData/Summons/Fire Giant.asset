@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: 'Fire Giant '
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 13
-  rarity: 0
+  sprite: {fileID: -3335937712844475091, guid: 70bb26b7551a73042a5ec98acc660766, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e4f997afcd49aca44aab3821f38040ae, type: 3}
+  id: 13
+  rarity: 2
   element: 0
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 27
+  guard: 28
   attackPosition: 1

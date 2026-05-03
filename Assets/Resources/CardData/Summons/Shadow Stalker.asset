@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Shadow Stalker
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 67
-  rarity: 0
+  sprite: {fileID: -8096066019674838020, guid: 5398a9810121f0141ae8babdbefaebb7, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 2597b668f1edd1440a9f7ec0ea688ed0, type: 3}
+  id: 67
+  rarity: 1
   element: 5
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 19
+  guard: 13
   attackPosition: 1

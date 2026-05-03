@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Kraken
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 28
-  rarity: 0
+  sprite: {fileID: -2663931023770825618, guid: bc50c808c86cd0b4980837cb3bfe01a9, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 75016dc5b5a7e6a4090717f99cb059da, type: 3}
+  id: 28
+  rarity: 2
   element: 2
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 26
+  guard: 28
   attackPosition: 1

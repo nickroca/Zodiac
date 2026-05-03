@@ -89,7 +89,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
                         if (hit.collider != null && hit.collider.TryGetComponent<GridCell>(out var cell))
                         {
-                            gridManager.ToggleSacrifice(cell);
+                            GridCell cell2 = hit.collider.GetComponentInParent<GridCell>();
+                            if (cell2 != null)
+                            {
+                                gridManager.ToggleSacrifice(cell);
+                            }
                         }
                     }
                     if (!Input.GetMouseButton(0)) //check if mouse button is released
@@ -157,15 +161,15 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (cardData is Summon summonCard)
             {
-                handHolder.hhText.text = "Summon";
+                HandHolder.Instance.ShowMessage("Summon");
             }
             else if (cardData is Sorcery sorceryCard)
             {
-                handHolder.hhText.text = "Sorcery";
+                HandHolder.Instance.ShowMessage("Sorcery");
             }
             else if (cardData is Hex hexCard)
             {
-                handHolder.hhText.text = "Hex";
+                HandHolder.Instance.ShowMessage("Hex");
             }
         }
     }
@@ -270,21 +274,29 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             {
                 if (!gridManager.TrySacrifice(summonCard.rank))
                 {
-                    Debug.Log("Needs more sacrifices");
+                    HandHolder.Instance.ShowMessage("Needs more sacrifices");
                     return;
                 }
 
                 GameObject placedObj = gridManager.AddObjectToGrid(summonCard.prefab, targetPos, true, positionManager.attackPosition);
                 if (placedObj != null)
                 {
+                    CardInstance instance = placedObj.GetComponent<CardInstance>();
+                    if (instance == null)
+                    {
+                        instance = placedObj.AddComponent<CardInstance>();
+                    }
+                    instance.cardData = summonCard;
+                    instance.controller = 1;
+
                     summonCard.attackPosition = positionManager.attackPosition;
                     cell.objectInCell.GetComponent<SummonStats>().summonStartData = summonCard;
                     //cell.objectInCell.attackposition = positionManager.attackPosition;
                     handManager.cardsInHand.Remove(gameObject);
                     handManager.UpdateHandVisuals();
-                    Debug.Log($"Played Summon: {summonCard.name}");
+                    HandHolder.Instance.ShowMessage($"Played Summon: {summonCard.name}");
                     Destroy(gameObject);
-                    turnSystem.summonLimit = 0;
+                    turnSystem.summonLimit--;
                 }
             }
         }
@@ -307,7 +319,15 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             
             if (placedObj != null)
             {
-                Debug.Log($"Placed Sorcery: {sorceryCard.name}");
+                CardInstance instance = placedObj.GetComponent<CardInstance>();
+                if (instance == null)
+                {
+                    instance = placedObj.AddComponent<CardInstance>();
+                }
+                instance.cardData = sorceryCard;
+                instance.controller = 1;
+                
+                HandHolder.Instance.ShowMessage($"Played Sorcery: {sorceryCard.name}");
 
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
@@ -332,14 +352,13 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void ResolveSorcery(Sorcery sorceryCard, GameObject placedObj, GridCell target, Vector2 placePos)
     {
-        Debug.Log($"Activated Sorcery: {sorceryCard.name}");
+        HandHolder.Instance.ShowMessage($"Activated Sorcery: {sorceryCard.name}");
 
         
 
         if (sorceryCard.type == Sorcery.SorceryType.Normal)
         {
-            gridManager.RemoveObjectFromGrid(placePos);
-            discardManager.AddToDiscard(sorceryCard);
+            gridManager.RemoveObjectFromGrid(placePos, true);
         }
         else if (sorceryCard.type == Sorcery.SorceryType.Permanent)
         {
@@ -361,18 +380,26 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
             if (cell.gridIndex.y != 0)
             {
-                Debug.Log("Hex must be placed in the bottom row.");
+                HandHolder.Instance.ShowMessage("Hex must be placed in the bottom row.");
                 return;
             }
 
             GameObject placedObj = gridManager.AddObjectToGrid(hexCard.prefab, targetPos, true, positionManager.attackPosition);
             if (placedObj != null)
             {
+                CardInstance instance = placedObj.GetComponent<CardInstance>();
+                if (instance == null)
+                {
+                    instance = placedObj.AddComponent<CardInstance>();
+                }
+                instance.cardData = hexCard;
+                instance.controller = 1;
+
                 HexHandler handler = placedObj.AddComponent<HexHandler>();
                 handler.Init(hexCard, gridManager, targetPos);
                 handManager.cardsInHand.Remove(gameObject);
                 handManager.UpdateHandVisuals();
-                Debug.Log($"Played Hex: {hexCard.name}");
+                HandHolder.Instance.ShowMessage($"Played Hex: {hexCard.name}");
                 Destroy(gameObject);
             }
         }

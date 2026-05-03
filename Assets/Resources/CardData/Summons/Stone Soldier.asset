@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Stone Soldier
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 33
-  rarity: 0
+  sprite: {fileID: -1236056872103585083, guid: 87d97b94816ab1541ac62bac29fd78a5, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: bf559916ba012494a85ac945839ad8a2, type: 3}
+  id: 33
+  rarity: 3
   element: 1
   rank: 0
-  power: 0
-  guard: 0
+  power: 18
+  guard: 14
   attackPosition: 1

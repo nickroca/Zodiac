@@ -92,6 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapNode
   connectedNodes: []
   isUnlocked: 0
+  nodeType: 0
+  value: 0
   currentState: 0
 --- !u!1 &2509018755867849221
 GameObject:
@@ -139,6 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapNode
   connectedNodes: []
   isUnlocked: 0
+  nodeType: 0
+  value: 0
   currentState: 3
 --- !u!1 &6228899890694442667
 GameObject:

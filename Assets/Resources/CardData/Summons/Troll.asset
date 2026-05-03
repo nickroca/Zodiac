@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Troll
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 43
-  rarity: 0
+  sprite: {fileID: -4141237505901376896, guid: 2a200ba466908114581fa1485212700d, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: ed8d8f950a7bc7f47ac8ca3950497c3b, type: 3}
+  id: 43
+  rarity: 2
   element: 1
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 2
+  power: 26
+  guard: 23
   attackPosition: 1

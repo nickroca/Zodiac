@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Hellhound
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 4
-  rarity: 0
+  sprite: {fileID: 433180296314071503, guid: df87de426b834fc4990e4b14243bc730, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: e623be31feff4e146b9e5c8812c248e0, type: 3}
+  id: 4
+  rarity: 2
   element: 0
   rank: 0
-  power: 0
-  guard: 0
+  power: 16
+  guard: 10
   attackPosition: 1

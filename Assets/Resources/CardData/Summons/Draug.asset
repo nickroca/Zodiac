@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Draug
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 23
-  rarity: 0
+  sprite: {fileID: -2875230601596818171, guid: 69b083a72f18d2c47a71d953cb09cb74, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: b8f18cc35351006459109b6ab9562636, type: 3}
+  id: 23
+  rarity: 1
   element: 2
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 14
+  guard: 19
   attackPosition: 1

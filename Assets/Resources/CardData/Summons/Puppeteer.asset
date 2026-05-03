@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Puppeteer
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 68
-  rarity: 0
+  sprite: {fileID: 5681608402930609141, guid: 079ce47a54b407d4b95934bd9657e73d, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 063f88579a7c7b7409100fec36905a2c, type: 3}
+  id: 68
+  rarity: 1
   element: 5
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 10
+  guard: 22
   attackPosition: 1

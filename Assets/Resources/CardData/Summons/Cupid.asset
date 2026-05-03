@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Cupid
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 81
-  rarity: 0
+  sprite: {fileID: 4149271677417525947, guid: 2c71069ed401f8b4fb3d74eedcdae658, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 69d7f5ceb1f16f546bbab6c90ffb01ec, type: 3}
+  id: 81
+  rarity: 2
   element: 4
   rank: 0
   power: 15

@@ -14,10 +14,20 @@ public class DeckPileManager : MonoBehaviour
     private HandManager handManager;
     private DiscardManager discardManager;
     public TextMeshProUGUI drawPileCounter;
+    GameManager gameManager;
 
     void Start()
     {
         handManager = FindObjectOfType<HandManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        List<int> deck = gameManager.playerDeck;
+        for (int i = 0; i < deck.Count; i++)
+        {
+            drawPile.Add(gameManager.allCards[deck[i]]);
+        }
+        Utility.Shuffle(drawPile);
+        UpdateDeckPileCount();
+        BattleSetup(5, 6);
     }
 
     void Update()
@@ -28,9 +38,13 @@ public class DeckPileManager : MonoBehaviour
         }
     }
 
-    public void MakeDeckPile(List<Card> cardsToAdd)
+    public void MakeDeckPile()
     {
-        drawPile.AddRange(cardsToAdd);
+        List<int> deck = gameManager.playerDeck;
+        for (int i = 0; i < deck.Count; i++)
+        {
+            drawPile.Add(gameManager.allCards[deck[i]]);
+        }
         Utility.Shuffle(drawPile);
         UpdateDeckPileCount();
     }
@@ -58,6 +72,13 @@ public class DeckPileManager : MonoBehaviour
             UpdateDeckPileCount();
             if (drawPile.Count > 0) currentIndex %= drawPile.Count;
         }
+    }
+
+    public void AddCardToDeck(Card card)
+    {
+        drawPile.Add(card);
+        Utility.Shuffle(drawPile);
+        UpdateDeckPileCount();
     }
 
     private void UpdateDeckPileCount()

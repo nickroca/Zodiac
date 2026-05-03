@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Loch Nessie
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 20
-  rarity: 0
+  sprite: {fileID: 762103113060197750, guid: ffb919dabe52efc44a7e22af2aea14e6, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 1ee004f61d8949e4198b8cc96b66121d, type: 3}
+  id: 20
+  rarity: 2
   element: 2
   rank: 0
-  power: 0
-  guard: 0
+  power: 16
+  guard: 12
   attackPosition: 1

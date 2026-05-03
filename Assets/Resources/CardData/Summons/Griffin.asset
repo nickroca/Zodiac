@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Griffin
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 55
-  rarity: 0
+  sprite: {fileID: -5838028541306521313, guid: e12e7872b46ac1544ae2fa84c6ef841e, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 24cb823c74a3d2740a0b4783f3531a3c, type: 3}
+  id: 55
+  rarity: 2
   element: 3
-  rank: 0
-  power: 0
-  guard: 0
+  rank: 1
+  power: 21
+  guard: 16
   attackPosition: 1

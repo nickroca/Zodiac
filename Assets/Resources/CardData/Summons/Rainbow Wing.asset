@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Summon
   cardName: Rainbow Wing
   text: 
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
-  ID: 82
-  rarity: 0
+  sprite: {fileID: -956168628396979573, guid: c6ec82bb5e1486a42b4d6bcc80866e09, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: facfe0f4b711edf49a8449f9ffb18d13, type: 3}
+  id: 82
+  rarity: 2
   element: 4
   rank: 1
   power: 16
