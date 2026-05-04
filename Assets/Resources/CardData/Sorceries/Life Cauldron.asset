@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddee7d9f2e69a442924fdc08923fca0, type: 3}
+  m_Name: Life Cauldron
+  m_EditorClassIdentifier: Assembly-CSharp::Sorcery
+  cardName: 'Life Cauldron '
+  text: 'Lose 5 LIFE, then draw 1 card. '
+  sprite: {fileID: 0}
+  prefab: {fileID: 0}
+  id: 144
+  rarity: 0
+  type: 0
+  effect: {fileID: 0}
