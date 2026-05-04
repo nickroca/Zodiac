@@ -1,21 +1,45 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Zodiac;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class MapNode : MonoBehaviour, IPointerClickHandler
 {
     public MapNode[] connectedNodes;
-
-    public int row;
-    public int col;
-
     public bool isUnlocked = false;
 
     private MapManager mapManager;
     private Image image;
-    private TextMeshProUGUI label;
+
+    private TMP_Text nodeName;
+
+    private int type1;
+    /* 0 = Enemy
+     * 1 = Card
+     */
+    private int type2;
+    /* Only applies if Type 1 is 0
+     * 0 = Slime
+     * 1 = Skeleton
+     * 2 = Rotten
+     * 3 = Minotaur (Boss)
+     * 4 = Skeleton Knight
+     * 5 = Chimera
+     * 6 = Puppeteer
+     * 7 = Lich King (Boss)
+     * 8 = Grim Reaper
+     * 9 = Mechanical Angel
+     * 10 = Cyclops
+     * 11 = Warden (Boss)
+     */
+
+    public enum NodeType
+    {
+        Enemy, 
+        Card, 
+        Boss
+    }
 
     public enum NodeState
     {
@@ -26,64 +50,19 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         Locked
     }
 
-    public enum NodeType
-    {
-        Battle,
-        Pack
-    }
-
     public NodeType nodeType;
+
+    public int value;
+    // If Enemy, this is the enemy ID
+    // If Card, this is # of cards
+
     public NodeState currentState;
+
+    GameManager gameManager;
 
     void Awake()
     {
         image = GetComponent<Image>();
-        label = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    public void SetNodeType(NodeType type)
-    {
-        nodeType = type;
-
-        if (label != null)
-            label.text = type == NodeType.Battle ? "Battle" : "Pack";
-    }
-
-    public void SetState(NodeState state)
-    {
-        currentState = state;
-
-        if (image == null)
-            image = GetComponent<Image>();
-
-        if (image == null)
-        {
-            Debug.LogError("Missing Image on node: " + name);
-            return;
-        }
-
-        switch (state)
-        {
-            case NodeState.Current:
-                image.color = new Color(0.3f, 0.8f, 0.3f);
-                break;
-
-            case NodeState.Visited:
-                image.color = new Color(0.6f, 1f, 0.6f);
-                break;
-
-            case NodeState.Skipped:
-                image.color = Color.gray;
-                break;
-
-            case NodeState.Available:
-                image.color = new Color(1f, 1f, 0.6f);
-                break;
-
-            case NodeState.Locked:
-                image.color = new Color(0.75f, 0.75f, 0.75f);
-                break;
-        }
     }
 
     public void SetManager(MapManager manager)
@@ -97,17 +76,34 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         isUnlocked = true;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void SetState(NodeState state)
     {
-        if (!isUnlocked || currentState != NodeState.Available)
-            return;
+        currentState = state;
 
-        mapManager?.MoveToNode(this);
+        if (image == null) return;
 
-        if (nodeType == NodeType.Battle)
-            SceneManager.LoadScene("Setup");
-        else
-            SceneManager.LoadScene("Pack");
+        switch (state)
+        {
+            case NodeState.Current:
+                image.color = new Color(0.3f, 0.8f, 0.3f);
+                break;
+
+            case NodeState.Visited:
+                image.color = new Color(0.6f, 1f, 0.6f);
+                break;
+
+            case NodeState.Skipped:
+                image.color = new Color(0.75f, 0.75f, 0.75f);
+                break;
+
+            case NodeState.Available:
+                image.color = new Color(1f, 1f, 0.6f);
+                break;
+
+            case NodeState.Locked:
+                image.color = new Color(0.75f, 0.75f, 0.75f);
+                break;
+        }
     }
 
    //click the node
