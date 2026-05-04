@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Zodiac.slnx",
+    "dotnet.defaultSolution": "ZodiacNew.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
