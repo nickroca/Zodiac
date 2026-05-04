@@ -64,7 +64,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\EndScreenUI.cs" />
     <Compile Include="Assets\Scripts\Sorcery Effects\RandomDestroy.cs" />
-    <Compile Include="Assets\Scripts\VolumeSettings.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\SorceryStats.cs" />
