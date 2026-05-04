@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sorcery
   cardName: 'Armageddon '
   text: 'Destroys all Summons. '
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
+  sprite: {fileID: 6917200100226001912, guid: f17a0812eb2180a419281ccb58b9ce8e, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 6fd28600f69de3541b5e72ef3192c72b, type: 3}
   id: 150
-  rarity: 0
+  rarity: 3
   type: 0
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: 81bc1ba2517fb344c898497b0e60569b, type: 2}

@@ -55,46 +55,46 @@ public class GameManager : MonoBehaviour
             Card[] cardAssets = Resources.LoadAll<Card>("CardData");
             allCards.AddRange(cardAssets);
             allCards.Sort((a, b) => a.id.CompareTo(b.id));
-            playerDeckInitial.Add(1); //1
-            playerDeckInitial.Add(1); //2
-            playerDeckInitial.Add(2); //3
-            playerDeckInitial.Add(2); //4
-            playerDeckInitial.Add(9); //5
-            playerDeckInitial.Add(15); //6
-            playerDeckInitial.Add(15); //7
-            playerDeckInitial.Add(21); //8
-            playerDeckInitial.Add(21); //9
-            playerDeckInitial.Add(22); //10
-            playerDeckInitial.Add(31); //11
-            playerDeckInitial.Add(31); //12
-            playerDeckInitial.Add(34); //13
-            playerDeckInitial.Add(34); //14
-            playerDeckInitial.Add(37); //15
-            playerDeckInitial.Add(47); //16
-            playerDeckInitial.Add(47); //17
-            playerDeckInitial.Add(47); //18
-            playerDeckInitial.Add(55); //19
-            playerDeckInitial.Add(56); //20
-            playerDeckInitial.Add(60); //21
-            playerDeckInitial.Add(60); //22
-            playerDeckInitial.Add(62); //23
-            playerDeckInitial.Add(62); //24
-            playerDeckInitial.Add(66); //25
-            playerDeckInitial.Add(77); //26
-            playerDeckInitial.Add(77); //27
-            playerDeckInitial.Add(79); //28
-            playerDeckInitial.Add(79); //29
-            playerDeckInitial.Add(81); //30
-            playerDeckInitial.Add(1); //31
-            playerDeckInitial.Add(1); //32
-            playerDeckInitial.Add(1); //33
-            playerDeckInitial.Add(1); //34
-            playerDeckInitial.Add(1); //35
-            playerDeckInitial.Add(1); //36
-            playerDeckInitial.Add(1); //37
-            playerDeckInitial.Add(1); //38
-            playerDeckInitial.Add(1); //39
-            playerDeckInitial.Add(1); //40
+            playerDeckInitial.Add(2); //1
+            playerDeckInitial.Add(2); //2
+            playerDeckInitial.Add(3); //3
+            playerDeckInitial.Add(3); //4
+            playerDeckInitial.Add(10); //5
+            playerDeckInitial.Add(16); //6
+            playerDeckInitial.Add(16); //7
+            playerDeckInitial.Add(22); //8
+            playerDeckInitial.Add(22); //9
+            playerDeckInitial.Add(23); //10
+            playerDeckInitial.Add(32); //11
+            playerDeckInitial.Add(32); //12
+            playerDeckInitial.Add(35); //13
+            playerDeckInitial.Add(35); //14
+            playerDeckInitial.Add(38); //15
+            playerDeckInitial.Add(48); //16
+            playerDeckInitial.Add(48); //17
+            playerDeckInitial.Add(48); //18
+            playerDeckInitial.Add(56); //19
+            playerDeckInitial.Add(57); //20
+            playerDeckInitial.Add(61); //21
+            playerDeckInitial.Add(61); //22
+            playerDeckInitial.Add(63); //23
+            playerDeckInitial.Add(63); //24
+            playerDeckInitial.Add(67); //25
+            playerDeckInitial.Add(78); //26
+            playerDeckInitial.Add(78); //27
+            playerDeckInitial.Add(80); //28
+            playerDeckInitial.Add(80); //29
+            playerDeckInitial.Add(82); //30
+            playerDeckInitial.Add(99); //31
+            playerDeckInitial.Add(99); //32
+            playerDeckInitial.Add(99); //33
+            playerDeckInitial.Add(149); //34
+            playerDeckInitial.Add(149); //35
+            playerDeckInitial.Add(149); //36
+            playerDeckInitial.Add(119); //37
+            playerDeckInitial.Add(119); //38
+            playerDeckInitial.Add(119); //39
+            playerDeckInitial.Add(121); //40
             playerDeck = playerDeckInitial;
             SetupEnemyDecks();
         }
@@ -237,34 +237,33 @@ public class GameManager : MonoBehaviour
 
     public void SetupEnemyDecks()
     {
-        // REMINDER: REDUCE ALL IDS BY 1, THEY START AT 0
 
         List<int> slime = new List<int>(); //0
-        slime.Add(15);
-        slime.Add(21);
-        slime.Add(25);
-        slime.Add(34);
-        slime.Add(60);
+        slime.Add(16);
+        slime.Add(22);
+        slime.Add(26);
+        slime.Add(35);
+        slime.Add(61);
         List<int> skeleton = new List<int>(); //1
-        skeleton.Add(60);
-        skeleton.Add(62);
-        skeleton.Add(77);
-        skeleton.Add(2);
+        skeleton.Add(61);
         skeleton.Add(63);
+        skeleton.Add(78);
+        skeleton.Add(3);
+        skeleton.Add(64);
         List<int> rotten = new List<int>(); //2
-        rotten.Add(60);
-        rotten.Add(62);
-        rotten.Add(77);
+        rotten.Add(61);
+        rotten.Add(63);
+        rotten.Add(78);
         rotten.Add(22);
-        rotten.Add(4);
+        rotten.Add(5);
         List<int> minotaur = new List<int>(); //3
-        minotaur.Add(40);
-        minotaur.Add(15);
-        minotaur.Add(4);
-        minotaur.Add(22);
-        minotaur.Add(6);
+        minotaur.Add(41);
         minotaur.Add(16);
-        minotaur.Add(48);
+        minotaur.Add(5);
+        minotaur.Add(23);
+        minotaur.Add(7);
+        minotaur.Add(17);
+        minotaur.Add(49);
         List<int> skeletonKnight = new List<int>(); //4
         //skeletonKnight.Add();
         //skeletonKnight.Add();

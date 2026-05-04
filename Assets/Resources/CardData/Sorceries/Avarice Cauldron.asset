@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sorcery
   cardName: Avarice Cauldron
   text: Draw 2 cards.
-  sprite: {fileID: 0}
-  prefab: {fileID: 0}
+  sprite: {fileID: -7170227026083051896, guid: 7f6b8c9cd1db60941b9b5460227fae01, type: 3}
+  prefab: {fileID: 1766478236457053089, guid: 3e763dcce29fd2549b69dd8e90db6cd2, type: 3}
   id: 99
-  rarity: 0
+  rarity: 2
   type: 0
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: e15b8c675be0ac642977c01119cccd94, type: 2}
