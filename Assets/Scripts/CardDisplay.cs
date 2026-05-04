@@ -56,8 +56,21 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            enabled = false;
+            return;
+        }
+    }
+
     void Update()
     {
+        if (cardData == null)
+        {
+            return;
+        }
         UpdateCardDisplay();
     }
 

@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\HexStats.cs" />
     <Compile Include="Assets\Scripts\GridCellHighlighter.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\TransitionToDeckBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />

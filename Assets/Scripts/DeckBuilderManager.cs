@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Zodiac;
+using NPOI.HSSF.Record.Chart;
 
 public class DeckBuilderManager : MonoBehaviour
 {
@@ -35,6 +37,23 @@ public class DeckBuilderManager : MonoBehaviour
     void CreateCardUI(int id, Transform parent, DeckDropZone.ZoneType zoneType)
     {
         GameObject obj = Instantiate(cardPrefab, parent);
+
+        RectTransform rekt = obj.GetComponent<RectTransform>();
+        rekt.localScale = Vector3.one;
+        rekt.localRotation = Quaternion.identity;
+        rekt.anchoredPosition = Vector2.zero;
+
+        obj.transform.SetAsLastSibling();
+
+        Card cardData = GameManager.Instance.GetCardByID(id + 1);
+
+        CardDisplay display = obj.GetComponent<CardDisplay>();
+        if(display != null)
+        {
+            display.cardData = cardData;
+            display.UpdateCardDisplay();
+        }
+
         DeckBuilderCardUI ui = obj.GetComponent<DeckBuilderCardUI>();
 
         DeckDropZone zone = parent.GetComponentInParent<DeckDropZone>();
@@ -75,6 +94,7 @@ public class DeckBuilderManager : MonoBehaviour
             inventory.Remove(cardID);
             deck.Add(cardID);
         }
+        RefreshUI();
     }
 
     public bool IsDeckValid()
