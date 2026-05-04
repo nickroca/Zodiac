@@ -9,6 +9,13 @@ public class MapManager : MonoBehaviour
     public int currentFloor = 1;
     public int maxFloors = 3;
 
+    MapCamera camera;
+
+    void Start()
+    {
+        camera = FindObjectOfType<MapCamera>();
+    }
+
     public void SetStartNode(MapNode startNode)
     {
         currentNode = startNode;
@@ -21,43 +28,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void MoveToNode(MapNode newNode)
-    {
-        bool valid = false;
-
-        foreach (MapNode node in currentNode.connectedNodes)
-        {
-            if (node == newNode)
-            {
-                valid = true;
-                break;
-            }
-        }
-
-        if (!valid) return;
-
-        currentNode.SetState(MapNode.NodeState.Visited);
-
-        foreach (MapNode node in currentNode.connectedNodes)
-        {
-            if (node != newNode)
-            {
-                node.SetState(MapNode.NodeState.Skipped);
-            }
-        }
-
-        currentNode = newNode;
-        currentNode.SetState(MapNode.NodeState.Current);
-
-        foreach (MapNode node in currentNode.connectedNodes)
-        {
-            node.SetState(MapNode.NodeState.Available);
-        }
-    }
-
     public void AdvanceFloor()
     {
         currentFloor++;
+
+        GameManager.Instance.mapSeed = Random.Range(int.MinValue, int.MaxValue);
 
         if (currentFloor > maxFloors)
         {
@@ -82,11 +57,15 @@ public class MapManager : MonoBehaviour
             GameManager.Instance.savedMap.Add(new MapNodeSaveData
             {
                 nodeName = node.name,
-                state = node.currentState
+                state = node.currentState,
+                row = node.rowIndex,
+                column = node.columnIndex
             });
         }
 
         GameManager.Instance.currentNodeName = currentNode.name;
+        GameManager.Instance.currentNodeRow = currentNode.rowIndex;
+        GameManager.Instance.currentNodeColumn = currentNode.columnIndex;
     }
 
     public void LoadMapState()
@@ -95,17 +74,60 @@ public class MapManager : MonoBehaviour
 
         foreach(var node in allNodes)
         {
-            var data = GameManager.Instance.savedMap.Find(n => n.nodeName == node.name);
+            var data = GameManager.Instance.savedMap.Find(n => n.row == node.rowIndex && n.column == node.columnIndex);
 
             if (data != null)
             {
                 node.SetState(data.state);
-
-                if (node.name == GameManager.Instance.currentNodeName)
-                {
-                    currentNode = node;
-                }
             }
         }
+
+        foreach (var node in allNodes)
+        {
+            if (node.rowIndex == GameManager.Instance.currentNodeRow && node.columnIndex == GameManager.Instance.currentNodeColumn)
+            {
+                currentNode = node;
+                break;
+            }
+        }
+    }
+
+    public void MoveToNode(MapNode newNode)
+    {
+        bool valid = false;
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            if (node == newNode)
+            {
+                valid = true;
+                break;
+            }
+        }
+
+        if (!valid)
+        {
+            return;
+        }
+
+        currentNode.SetState(MapNode.NodeState.Visited);
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            if (node != newNode)
+            {
+                node.SetState(MapNode.NodeState.Skipped);
+            }
+        }
+
+        currentNode = newNode;
+        currentNode.SetState(MapNode.NodeState.Current);
+
+        foreach (MapNode node in currentNode.connectedNodes)
+        {
+            node.SetState(MapNode.NodeState.Available);
+        }
+
+        camera?.MoveToRow(currentNode.rowIndex);
     }
 }

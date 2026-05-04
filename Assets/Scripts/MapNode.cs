@@ -3,11 +3,15 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Zodiac;
 using TMPro;
+using System.Text.RegularExpressions;
 
 public class MapNode : MonoBehaviour, IPointerClickHandler
 {
     public MapNode[] connectedNodes;
     public bool isUnlocked = false;
+
+    public int rowIndex;
+    public int columnIndex;
 
     private MapManager mapManager;
     private Image image;
@@ -63,12 +67,13 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
     void Awake()
     {
         image = GetComponent<Image>();
+        nodeName = GetComponentInChildren<TMP_Text>();
     }
 
     public void SetManager(MapManager manager)
     {
         mapManager = manager;
-        gameManager = GetComponent<GameManager>();
+        gameManager = GameManager.Instance;
     }
 
     public void Unlock()
@@ -86,22 +91,27 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         {
             case NodeState.Current:
                 image.color = new Color(0.3f, 0.8f, 0.3f);
+                nodeName.color = Color.white;
                 break;
 
             case NodeState.Visited:
                 image.color = new Color(0.6f, 1f, 0.6f);
+                nodeName.color = Color.white;
                 break;
 
             case NodeState.Skipped:
                 image.color = new Color(0.75f, 0.75f, 0.75f);
+                nodeName.color = Color.white;
                 break;
 
             case NodeState.Available:
                 image.color = new Color(1f, 1f, 0.6f);
+                nodeName.color = Color.black;
                 break;
 
             case NodeState.Locked:
                 image.color = new Color(0.75f, 0.75f, 0.75f);
+                nodeName.color = Color.white;
                 break;
         }
     }
@@ -122,16 +132,15 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
         switch(nodeType)
         {
             case NodeType.Enemy:
-                //gameManager.currentEnemyID = value;
                 StartBattle();
                 break;
             case NodeType.Boss:
-                gameManager.currentEnemyID = value;
                 GameManager.Instance.pendingFloorAdvance = true;
                 StartBattle();
                 break;
             case NodeType.Card:
                 GiveCards();
+                FindObjectOfType<MapCamera>()?.UpdateCameraPositionInstant();
                 break;
         }
         if (GameManager.Instance.pendingFloorAdvance)
@@ -159,5 +168,62 @@ public class MapNode : MonoBehaviour, IPointerClickHandler
             GameManager.Instance.AddCardtoInventory(card);
             Debug.Log($"Earned card: {card.cardName}");
         }
+    }
+
+    public void SetDisplayName()
+    {
+        if (nodeName == null)
+        {
+            return;
+        }
+
+        switch (nodeType)
+        {
+            case NodeType.Enemy:
+                string enemyName = GetName(value);
+                nodeName.text = enemyName;
+                break;
+            case NodeType.Card:
+                nodeName.text = "Card Pack";
+                break;
+            case NodeType.Boss:
+                nodeName.text = "Boss";
+                break;
+        }
+    }
+
+    public string GetName(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                return "Slime";
+                break;
+            case 1:
+                return "Skeleton";
+                break;
+            case 2:
+                return "Rotten";
+                break;
+            case 4:
+                return "Skel Knight";
+                break;
+            case 5:
+                return "Chimera";
+                break;
+            case 6:
+                return "Puppeteer";
+                break;
+            case 8:
+                return "Grim Reap";
+                break;
+            case 9:
+                return "Mech Angel";
+                break;
+            case 10:
+                return "Cyclops";
+                break;
+        }
+        return null;
     }
 }

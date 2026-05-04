@@ -26,12 +26,20 @@ public class GameManager : MonoBehaviour
     public bool mapGenerated = false;
     public int currentEnemyID = 0;
     public bool pendingFloorAdvance = false;
+    public int mapSeed;
+    public int currentNodeRow;
+    public int currentNodeColumn;
+
+    private float currentTime = 0f;
+    private const float cheatTime = 5f;
 
     [System.Serializable]
     public class MapNodeSaveData
     {
         public string nodeName;
         public MapNode.NodeState state;
+        public int row;
+        public int column;
     }
 
     public List<MapNodeSaveData> savedMap = new List<MapNodeSaveData>();
@@ -93,6 +101,35 @@ public class GameManager : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        if (!battleTime)
+        {
+            currentTime = 0f;
+            return;
+        }
+
+        bool M = Input.GetKey(KeyCode.M);
+        bool K = Input.GetKey(KeyCode.K);
+        bool O = Input.GetKey(KeyCode.O);
+
+        if (M && K && O)
+        {
+            currentTime += Time.deltaTime;
+            Debug.Log("Cheating...");
+
+            if (currentTime >= cheatTime)
+            {
+                WinTheGame();
+                currentTime = 0f;
+            }
+        } 
+        else
+        {
+            currentTime = 0f;
         }
     }
 
@@ -264,5 +301,14 @@ public class GameManager : MonoBehaviour
     {
         get { return difficulty; }
         set { difficulty = value; }
+    }
+
+    private void WinTheGame()
+    {
+        Debug.Log("Cheated to win...");
+
+        var victim = FindObjectOfType<OpponentLIFE>();
+
+        victim.currentHP = -1;
     }
 }

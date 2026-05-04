@@ -24,18 +24,23 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         mapManager = FindObjectOfType<MapManager>();
+        
+        if(!GameManager.Instance.returnToMap)
+        {
+            GameManager.Instance.mapSeed = Random.Range(int.MinValue, int.MaxValue);
+        }
+
+        Random.InitState(GameManager.Instance.mapSeed);
+
+        GenerateNewFloor(mapManager.currentFloor);
 
         if (GameManager.Instance.returnToMap)
         {
-            GenerateNewFloor(mapManager.currentFloor);
-
             mapManager.LoadMapState();
 
+            FindObjectOfType<MapCamera>()?.UpdateCameraPositionInstant();
+
             GameManager.Instance.returnToMap = false;
-        }
-        else
-        {
-            GenerateNewFloor(mapManager.currentFloor);
         }
     }
 
@@ -76,6 +81,9 @@ public class MapGenerator : MonoBehaviour
                 MapNode node = obj.GetComponent<MapNode>();
 
                 node.name = $"Node_{y}_{x}";
+                node.rowIndex = y;
+                node.columnIndex = x;
+
                 node.SetManager(mapManager);
                 node.Unlock();
 
@@ -83,6 +91,7 @@ public class MapGenerator : MonoBehaviour
                 node.SetState(MapNode.NodeState.Locked);
 
                 currentRow.Add(node);
+                node.SetDisplayName();
             }
 
             mapRows.Add(currentRow);

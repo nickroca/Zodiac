@@ -93,6 +93,7 @@ public class CardDisplay : MonoBehaviour
         summonElements.SetActive(false);
         effectBox.SetActive(true);
         effectText.text = sorceryCard.text;
+        effectText.color = Color.black;
         for (int i = 0; i < element.Length; i++)
         {
             element[i].gameObject.SetActive(false);
