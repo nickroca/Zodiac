@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sorcery
   cardName: Spring of Life
   text: 'Gain 10 LIFE. '
-  sprite: {fileID: -3813834708871293650, guid: 930345916feabb54189c9b5d4d5b4686, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: d8bd217583ab9474b9f0be960f7b41d2, type: 3}
+  sprite: {fileID: 0}
+  prefab: {fileID: 0}
   id: 119
-  rarity: 3
+  rarity: 0
   type: 0
-  effect: {fileID: 11400000, guid: 6cd5f4961d356c94683eb1dfaf3e7ba0, type: 2}
+  effect: {fileID: 0}

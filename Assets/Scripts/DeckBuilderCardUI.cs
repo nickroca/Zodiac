@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,8 +14,6 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-
-    private ScrollRect parentScrollRect;
 
     DeckDropZone currentZone;
 
@@ -41,8 +37,6 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public GameObject effectBox;
     public TMP_Text effectText;
 
-    private bool isDragging = false;
-
     public void Init(int id, DeckDropZone zone)
     {
         cardID = id;
@@ -62,7 +56,6 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
-        parentScrollRect = GetComponentInParent<ScrollRect>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -73,11 +66,6 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         if (canvasGroup != null) {
             canvasGroup.blocksRaycasts = false;
-        }
-
-        if (parentScrollRect != null)
-        {
-            parentScrollRect.enabled = false;
         }
     }
 
@@ -90,11 +78,6 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         if (canvasGroup != null) {
             canvasGroup.blocksRaycasts = true;
-        }
-
-        if (parentScrollRect != null)
-        {
-            parentScrollRect.enabled = true;
         }
         
         if (transform.parent == canvas.transform)
@@ -193,74 +176,5 @@ public class DeckBuilderCardUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             element[i].gameObject.SetActive(false);
         }
-    }
-
-    void Update()
-    {
-        if (isDragging)
-        {
-            rectTransform.position = Input.mousePosition;
-
-            if(Input.GetMouseButtonUp(1))
-            {
-                EndDrag();
-            }
-
-        }
-    }
-
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            BeginDrag();
-        }
-    }
-
-    void BeginDrag()
-    {
-        isDragging = true;
-
-        originalParent = transform.parent;
-        transform.SetParent(canvas.transform);
-
-        if (canvasGroup != null)
-        {
-            canvasGroup.blocksRaycasts = false;
-        }
-    }
-
-    void EndDrag()
-    {
-        isDragging = false;
-
-        if(canvasGroup != null)
-        {
-            canvasGroup.blocksRaycasts = true;
-        }
-
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
-        pointer.position = Input.mousePosition;
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointer, results);
-
-        DeckDropZone foundZone = null;
-
-        foreach (var r in results)
-        {
-            foundZone = r.gameObject.GetComponent<DeckDropZone>();
-            if (foundZone != null)
-                break;
-        }
-
-        if (foundZone != null)
-        {
-            currentZone.manager.MoveCard(cardID, currentZone.zoneType, foundZone.zoneType);
-            SetZone(foundZone);
-        }
-
-        transform.SetParent(originalParent);
-        rectTransform.localPosition = Vector3.zero;
     }
 }

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sorcery
   cardName: Fireball
   text: 'Inflict 5 damage. '
-  sprite: {fileID: -6607481912129624618, guid: 1336260045bd6a540be1ae61e8d3c7b7, type: 3}
-  prefab: {fileID: 1766478236457053089, guid: 5a6ce72d121f239479ed1e668ef88255, type: 3}
+  sprite: {fileID: 0}
+  prefab: {fileID: 0}
   id: 121
-  rarity: 2
+  rarity: 0
   type: 0
-  effect: {fileID: 11400000, guid: 26a710b56ef08c24c9f7133aad3cca02, type: 2}
+  effect: {fileID: 0}
