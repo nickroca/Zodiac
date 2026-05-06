@@ -32,7 +32,7 @@ public class PlayerLIFE : MonoBehaviour
         if (currentHP < 0)
         {
             currentHP = 0;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }
         if (currentHP != staticHP)
         {
