@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ExcelImporter.Editor.csproj" />
+  <Project Path="ExcelImporter.ExcelImporter.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+</Solution>
